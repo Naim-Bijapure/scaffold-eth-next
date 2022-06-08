@@ -19,7 +19,17 @@ const RainbowKitWrapper: React.FC<any> = ({ children }) => {
      * ---------------------*/
     useEffect(() => {
         const { chains, provider } = configureChains(
-            [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
+            [
+                chain.localhost,
+                chain.hardhat,
+                chain.rinkeby,
+                chain.goerli,
+                chain.kovan,
+                chain.mainnet,
+                chain.polygon,
+                chain.optimism,
+                chain.arbitrum,
+            ],
             [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
         );
         setChains(chains);
