@@ -1,0 +1,94 @@
+{
+    "name": "@scaffold-eth/next-typescript",
+    "version": "0.4.0",
+    "keywords": [
+        "ethereum",
+        "react",
+        "uniswap",
+        "workspaces",
+        "yarn"
+    ],
+    "private": true,
+    "scripts": {
+        "build": "yarn workspace @scaffold-eth/vite-app build",
+        "serve": "yarn workspace @scaffold-eth/vite-app serve",
+        "start": "yarn workspace @scaffold-eth/vite-app start",
+        "dev": "yarn workspace @scaffold-eth/next-ts dev",
+        "contracts:build": "yarn workspace @scaffold-eth/foundry compile && yarn workspace @scaffold-eth/vite-app contracts:foundry && yarn workspace @scaffold-eth/vite-app contracts:external",
+        "contracts:rebuild": "yarn workspace @scaffold-eth/foundry clean && yarn contracts:build",
+        "foundry": "yarn workspace @scaffold-eth/foundry foundry",
+        "compile": "yarn workspace @scaffold-eth/foundry compile",
+        "chain": "yarn workspace @scaffold-eth/foundry chain",
+        "fork": "yarn workspace @scaffold-eth/foundry fork",
+        "test": "yarn workspace @scaffold-eth/foundry test",
+        "export": "yarn workspace @scaffold-eth/foundry export",
+        "deploy": "yarn workspace @scaffold-eth/foundry deploy",
+        "watch": "yarn workspace @scaffold-eth/foundry watch",
+        "generate": "yarn workspace @scaffold-eth/foundry generate",
+        "account": "yarn workspace @scaffold-eth/foundry account",
+        "balance": "yarn workspace @scaffold-eth/foundry balance",
+        "ipfs": "yarn workspace @scaffold-eth/vite-app ipfs",
+        "surge": "yarn workspace @scaffold-eth/vite-app surge",
+        "s3": "yarn workspace @scaffold-eth/vite-app s3",
+        "ship": "yarn workspace @scaffold-eth/vite-app ship",
+        "subgraph": "yarn workspace @scaffold-eth/subgraph",
+        "prepare": "husky install",
+        "postinstall": "husky install",
+        "lint": "yarn workspace @scaffold-eth/vite-app lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/foundry lint --fix"
+    },
+    "workspaces": {
+        "packages": [
+            "packages/common",
+            "packages/next-ts",
+            "packages/foundry-hardhat-ts",
+            "packages/*"
+        ]
+    },
+    "packageManager": "yarn@3.2.0",
+    "devDependencies": {
+        "cross-env": "^7.0.3",
+        "eslint": "^8.14.0",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.4.1",
+        "prettier": "^2.6.2",
+        "prettier-plugin-solidity": "^1.0.0-beta.19",
+        "sass": "^1.51.0",
+        "shx": "^0.3.4",
+        "ts-node": "^10.7.0"
+    },
+    "lint-staged": {
+        "packages/vite-app-ts/src/**/*.{ts,tsx}": [
+            "yarn workspace @scaffold-eth/vite-app lint --fix",
+            "yarn workspace @scaffold-eth/vite-app format"
+        ],
+        "packages/common/src/**/*.{ts,tsx}": [
+            "yarn workspace @scaffold-eth/common lint --fix",
+            "yarn workspace @scaffold-eth/common format"
+        ],
+        "packages/foundry-ts/test/**/*.ts": [
+            "yarn workspace @scaffold-eth/foundry lint --fix",
+            "yarn workspace @scaffold-eth/foundry format"
+        ],
+        "packages/foundry-ts/helpers/**/*.ts": [
+            "yarn workspace @scaffold-eth/foundry lint --fix",
+            "yarn workspace @scaffold-eth/foundry format"
+        ],
+        "packages/foundry-ts/tasks/**/*.ts": [
+            "yarn workspace @scaffold-eth/foundry lint --fix",
+            "yarn workspace @scaffold-eth/foundry format"
+        ],
+        "packages/foundry-ts/deploy/**/*.ts": [
+            "yarn workspace @scaffold-eth/foundry lint --fix",
+            "yarn workspace @scaffold-eth/foundry format"
+        ],
+        "packages/foundry-ts/**/*.sol": [
+            "yarn workspace @scaffold-eth/foundry format",
+            "yarn workspace @scaffold-eth/foundry solhint --fix"
+        ]
+    },
+    "dependencies": {
+        "ipfs-http-client": "^56.0.3",
+        "react-router-dom": "latest",
+        "web3.storage": "^4.2.0"
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "solidity.packageDefaultDependenciesContractsDirectory": ".",
+    "solidity.packageDefaultDependenciesDirectory": "packages/foundry-hardat-ts/node_modules",
+    "solidity.defaultCompiler": "localFile"
+}
