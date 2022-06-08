@@ -46,6 +46,7 @@ const Header: React.FC = () => {
                                     <AiOutlineHome />
                                 </a>
                             </Link>
+                            ️
                         </li>
                         <li
                             className={`${pathname === "/Debug" ? "bordered " : "tooltip tooltip-info"}`}
@@ -54,17 +55,6 @@ const Header: React.FC = () => {
                             <Link href={"/Debug"}>
                                 <a>
                                     <VscDebugAll />
-                                </a>
-                            </Link>
-                        </li>
-
-                        <li
-                            className={`${pathname === "/Burn" ? "bordered " : "tooltip tooltip-info"}`}
-                            data-tip="Burn"
-                        >
-                            <Link href={"/Burn"}>
-                                <a>
-                                    <FaBurn />
                                 </a>
                             </Link>
                         </li>

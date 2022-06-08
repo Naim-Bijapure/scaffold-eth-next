@@ -85,10 +85,5 @@
             "yarn workspace @scaffold-eth/foundry format",
             "yarn workspace @scaffold-eth/foundry solhint --fix"
         ]
-    },
-    "dependencies": {
-        "ipfs-http-client": "^56.0.3",
-        "react-router-dom": "latest",
-        "web3.storage": "^4.2.0"
     }
 }
