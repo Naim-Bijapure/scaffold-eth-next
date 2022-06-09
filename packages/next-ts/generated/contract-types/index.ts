@@ -2,5 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { YourContract } from "./YourContract";
+export type { YourContract1 } from "./YourContract1";
 
 export { YourContract__factory } from "./factories/YourContract__factory";
+export { YourContract1__factory } from "./factories/YourContract1__factory";

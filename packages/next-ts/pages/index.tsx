@@ -10,57 +10,79 @@ import {
     useSendTransaction,
     useNetwork,
 } from "wagmi";
-import { BigNumber, ethers } from "ethers";
+import { BigNumber, ContractFactory, ContractInterface, ethers } from "ethers";
 
-import { YourContract } from "../generated/contract-types";
-import contracts from "../generated/hardhat_contracts.json";
+import {
+    YourContract,
+    YourContract1,
+    YourContract1__factory,
+    YourContract__factory,
+} from "../generated/contract-types";
+import contractsJson from "../generated/hardhat_contracts.json";
+
+let ContractsConfig = {
+    YourContract: { factory: YourContract__factory, json: contractsJson },
+    YourContract1: { factory: YourContract1__factory, json: contractsJson },
+} as const;
+
+type contractNameType = keyof typeof ContractsConfig;
+
+const useAppLoadContract = ({
+    contractName,
+    // signer,
+    chainId,
+}: {
+    contractName: contractNameType;
+    // signer: any;
+    chainId: number;
+}) => {
+    type factoryConnectType = typeof ContractsConfig[typeof contractName]["factory"]["connect"];
+    type contractType = NonNullable<ReturnType<factoryConnectType>>;
+
+    const signer = useSigner();
+
+    const contract = useContract<contractType>({
+        addressOrName: ContractsConfig[contractName]["json"][chainId][0]["contracts"][contractName]["address"],
+        contractInterface: ContractsConfig[contractName].factory.abi,
+        signerOrProvider: signer.data,
+    });
+
+    return contract;
+};
 
 const Home: NextPage = () => {
     // const { data, isLoading } = useAccount();
     const [purpose, setPurpose] = useState<string>("");
     const [readContract, setReadContract] = useState<any>();
 
-    // const { data, isError, isLoading } = useFeeData();
-    // console.log("data: ", data);
-
-    // on individual read
-    // const { data, isError, isLoading } = useContractRead(
-    //     {
-    //         addressOrName: contracts[31337][0]["contracts"].YourContract.address,
-    //         contractInterface: contracts[31337][0]["contracts"].YourContract.abi,
-    //     },
-    //     "purpose"
-    // );
-
     const provider = useProvider();
     const signer = useSigner();
 
-    const yourContract = useContract<YourContract>({
-        addressOrName: contracts[31337][0]["contracts"].YourContract.address,
-        contractInterface: contracts[31337][0]["contracts"].YourContract.abi,
-        signerOrProvider: signer.data,
-    });
-
     const { data } = useAccount();
-    console.log("data: ", data?.address);
 
     // const sendTx = useSendTransaction({ request: { to: data?.address, value: BigNumber.from("1000000000000000000") } });
-    // console.log("sendTx: ", sendTx);
-    // useEffect(() => {}, []);
 
     const { activeChain, chains, error, isLoading, pendingChainId, switchNetwork } = useNetwork();
-    console.log("activeChain: ", activeChain);
+    const YourContract = useAppLoadContract({
+        contractName: "YourContract1",
+        chainId: Number(activeChain?.id),
+    });
 
     const onTest = async () => {
+        let propose = await YourContract.purpose();
+        console.log("propose: ", propose);
         // let balance = await burner.signer?.getBalance();
-        // console.log("balance: ", balance);
+        //
         // let localProvider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
         // let burnerSigner = localProvider.getSigner(0);
-        // console.log("data: ", await burnerSigner.getAddress());
+        //
         // let balance = await burnerSigner.getBalance();
-        // console.log("balance: ", balance.toString());
+        //
         // await burnerSigner.sendTransaction({ to: data?.address, value: ethers.utils.parseEther("1") });
         // window.location.reload();
+        // if (switchNetwork) {
+        //     switchNetwork(4);
+        // }
     };
 
     return (
@@ -81,12 +103,11 @@ const Home: NextPage = () => {
                             <button
                                 className="btn btn-primary"
                                 onClick={async () => {
-                                    console.log("purpose", purpose);
                                     let data = await yourContract.purpose();
-                                    console.log("data: ", data);
+
                                     // const tx = await yourContract.setPurpose(purpose);
                                     // const rcpt = await tx.wait();
-                                    // console.log('rcpt: ', rcpt);
+                                    //
                                 }}
                             >
                                 submit
