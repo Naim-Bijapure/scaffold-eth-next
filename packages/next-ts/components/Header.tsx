@@ -7,9 +7,9 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { AiOutlineHome, AiOutlineInfoCircle } from "react-icons/ai";
 import { FaBurn } from "react-icons/fa";
 import { VscDebugAll } from "react-icons/vsc";
+import NavigationTabs from "./NavigationTabs";
 
 const Header: React.FC = () => {
-    const { pathname } = useRouter();
     return (
         <>
             <div className="flex flex-col items-center">
@@ -37,40 +37,7 @@ const Header: React.FC = () => {
                 </div>
 
                 {/* navigatin menu tabs  */}
-                {/* TODO: make dynamic ading paths on a seperate file */}
-                <div className="m-2">
-                    <ul className="menu flex justify-center menu-horizontal bg-base-100 rounded-box ">
-                        <li className={`${pathname === "/" ? "bordered " : "tooltip tooltip-info"}`} data-tip="Home">
-                            <Link href={"/"}>
-                                <a>
-                                    <AiOutlineHome />
-                                </a>
-                            </Link>
-                            ️
-                        </li>
-                        <li
-                            className={`${pathname === "/Debug" ? "bordered " : "tooltip tooltip-info"}`}
-                            data-tip="Debug"
-                        >
-                            <Link href={"/Debug"}>
-                                <a>
-                                    <VscDebugAll />
-                                </a>
-                            </Link>
-                        </li>
-
-                        <li
-                            className={`${pathname === "/Help" ? "bordered " : "tooltip tooltip-info"}`}
-                            data-tip="Help"
-                        >
-                            <Link href={"/Help"}>
-                                <a>
-                                    <AiOutlineInfoCircle />
-                                </a>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
+                <NavigationTabs />
             </div>
         </>
     );

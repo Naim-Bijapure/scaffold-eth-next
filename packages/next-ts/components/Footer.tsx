@@ -3,9 +3,7 @@ import FaucetModal from "./FaucetModal";
 const Footer: React.FC = () => {
     return (
         <div>
-            <FaucetModal />
-
-            <footer className="footer items-center p-4 bg-neutral text-neutral-content">
+            <footer className="footer items-center p-4 bg-neutral text-neutral-content ">
                 <div className="items-center grid-flow-col">
                     <svg
                         width="36"

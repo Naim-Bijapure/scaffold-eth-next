@@ -1,75 +1,40 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import {
-    useAccount,
-    useFeeData,
-    useContractRead,
-    useContract,
-    useProvider,
-    useSigner,
-    useSendTransaction,
-    useNetwork,
-} from "wagmi";
-import { BigNumber, ContractFactory, ContractInterface, ethers } from "ethers";
+import { toast } from "react-toastify";
+import { useAccount } from "wagmi";
 
-import {
-    YourContract,
-    YourContract1,
-    YourContract1__factory,
-    YourContract__factory,
-} from "../generated/contract-types";
-import contractsJson from "../generated/hardhat_contracts.json";
-
-let ContractsConfig = {
-    YourContract: { factory: YourContract__factory, json: contractsJson },
-    YourContract1: { factory: YourContract1__factory, json: contractsJson },
-} as const;
-
-type contractNameType = keyof typeof ContractsConfig;
-
-const useAppLoadContract = ({
-    contractName,
-    // signer,
-    chainId,
-}: {
-    contractName: contractNameType;
-    // signer: any;
-    chainId: number;
-}) => {
-    type factoryConnectType = typeof ContractsConfig[typeof contractName]["factory"]["connect"];
-    type contractType = NonNullable<ReturnType<factoryConnectType>>;
-
-    const signer = useSigner();
-
-    const contract = useContract<contractType>({
-        addressOrName: ContractsConfig[contractName]["json"][chainId][0]["contracts"][contractName]["address"],
-        contractInterface: ContractsConfig[contractName].factory.abi,
-        signerOrProvider: signer.data,
-    });
-
-    return contract;
-};
+import transcactor, { ContractTransactionType } from "../functions/transcaction";
+import useAppLoadContract from "../hooks/useAppLoadContract";
 
 const Home: NextPage = () => {
     // const { data, isLoading } = useAccount();
     const [purpose, setPurpose] = useState<string>("");
-    const [readContract, setReadContract] = useState<any>();
+    const [contractPurpose, setContractPurpose] = useState<string>("");
 
-    const provider = useProvider();
-    const signer = useSigner();
+    // const { data, isLoading } = useAccount();
 
-    const { data } = useAccount();
-
-    // const sendTx = useSendTransaction({ request: { to: data?.address, value: BigNumber.from("1000000000000000000") } });
-
-    const { activeChain, chains, error, isLoading, pendingChainId, switchNetwork } = useNetwork();
     const YourContract = useAppLoadContract({
         contractName: "YourContract1",
-        chainId: Number(activeChain?.id),
     });
 
+    const getPurpose = async () => {
+        let purpose = await YourContract?.purpose();
+        console.log("YourContract: ", YourContract);
+        setContractPurpose(purpose as string);
+    };
+
+    const updateContractPurpose = async () => {
+        let rcpt = await transcactor(YourContract?.setPurpose as ContractTransactionType, [purpose]);
+        console.log("rcpt: ", rcpt);
+        setContractPurpose(purpose);
+    };
+
+    useEffect(() => {
+        void getPurpose();
+    }, [YourContract]);
+
     const onTest = async () => {
-        let propose = await YourContract.purpose();
+        let propose = YourContract && (await YourContract.purpose());
         console.log("propose: ", propose);
         // let balance = await burner.signer?.getBalance();
         //
@@ -84,13 +49,14 @@ const Home: NextPage = () => {
         //     switchNetwork(4);
         // }
     };
-
+    // const notify = () => toast(<NotificationMsg />, { autoClose: false });
     return (
         <>
-            <main className="flex justify-center ">
+            <main className="flex flex-col justify-center  items-center ">
                 <div className="m-2 card shadow-md w-1/3 border-2">
                     <div className="card-body ">
                         <span className="card-title ">YourContract</span>
+                        <span>purpose: {contractPurpose && contractPurpose}</span>
                         <input
                             type={"text"}
                             className=" input input-primary"
@@ -100,21 +66,8 @@ const Home: NextPage = () => {
                         />
 
                         <div className="card-actions">
-                            <button
-                                className="btn btn-primary"
-                                onClick={async () => {
-                                    let data = await yourContract.purpose();
-
-                                    // const tx = await yourContract.setPurpose(purpose);
-                                    // const rcpt = await tx.wait();
-                                    //
-                                }}
-                            >
+                            <button className="btn btn-primary" onClick={updateContractPurpose}>
                                 submit
-                            </button>
-
-                            <button className="btn btn-primary" onClick={onTest}>
-                                Test
                             </button>
                         </div>
                     </div>
