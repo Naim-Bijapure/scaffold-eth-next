@@ -44,7 +44,13 @@ const FaucetModal: React.FC = () => {
                     🔥
                 </label>
 
-                <input type="checkbox" id="faucetModal" className="modal-toggle" checked={modalOpen} />
+                <input
+                    type="checkbox"
+                    id="faucetModal"
+                    className="modal-toggle"
+                    checked={modalOpen}
+                    onChange={() => null}
+                />
                 <div
                     className="modal modal-bottom sm:modal-middle "
                     //

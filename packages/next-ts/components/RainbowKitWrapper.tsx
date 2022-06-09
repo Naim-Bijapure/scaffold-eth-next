@@ -5,6 +5,7 @@ import { publicProvider } from "wagmi/providers/public";
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { targedChains, targetNetowrks } from "../configs/appContract.config";
 
 const RainbowKitWrapper: React.FC<any> = ({ children }) => {
     const { theme, setTheme } = useTheme();
@@ -19,17 +20,7 @@ const RainbowKitWrapper: React.FC<any> = ({ children }) => {
      * ---------------------*/
     useEffect(() => {
         const { chains, provider } = configureChains(
-            [
-                chain.localhost,
-                chain.hardhat,
-                chain.rinkeby,
-                chain.goerli,
-                chain.kovan,
-                chain.mainnet,
-                chain.polygon,
-                chain.optimism,
-                chain.arbitrum,
-            ],
+            [...targedChains],
             [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
         );
         setChains(chains);

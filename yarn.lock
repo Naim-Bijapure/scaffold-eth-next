@@ -1692,6 +1692,8 @@ __metadata:
     react-blockies: ^1.4.1
     react-dom: 18.1.0
     react-icons: ^4.4.0
+    react-loader-spinner: ^5.1.5
+    react-toastify: ^9.0.4
     sass: ^1.52.2
     tailwindcss: ^3.0.24
     typescript: 4.7.3
@@ -5295,7 +5297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:1.1.1, clsx@npm:^1.1.0":
+"clsx@npm:1.1.1, clsx@npm:^1.1.0, clsx@npm:^1.1.1":
   version: 1.1.1
   resolution: "clsx@npm:1.1.1"
   checksum: ff052650329773b9b245177305fc4c4dc3129f7b2be84af4f58dc5defa99538c61d4207be7419405a5f8f3d92007c954f4daba5a7b74e563d5de71c28c830063
@@ -14644,6 +14646,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-loader-spinner@npm:^5.1.5":
+  version: 5.1.5
+  resolution: "react-loader-spinner@npm:5.1.5"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 2e5dd2beca5338ab9b7b9b33a8a2364ee5296d8aa32f3a7b2c82b4471e55e7768004c97d30ea9d20fd35a13aa625d24b38e960ad4ca0382d7d6eece14af5f4f5
+  languageName: node
+  linkType: hard
+
 "react-native-fetch-api@npm:^2.0.0":
   version: 2.0.0
   resolution: "react-native-fetch-api@npm:2.0.0"
@@ -14740,6 +14752,18 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 7ee8ef3aab74c7ae1d70ff34a27643d11ba1a8d62d072c767827d9ff9a520905223e567002e0bf6c772929d8ea1c781a3ba0cc4a563e92b1e3dc2eaa817ecbe8
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^9.0.4":
+  version: 9.0.4
+  resolution: "react-toastify@npm:9.0.4"
+  dependencies:
+    clsx: ^1.1.1
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: 130c443f1c6f72033dbed6b5c41c88a5fab6c7e8f7bc320c400c09bc7ca11116158d554feb212b160aa1320308b69771217663bd0762b5ffd5f68bef6dba5b86
   languageName: node
   linkType: hard
 

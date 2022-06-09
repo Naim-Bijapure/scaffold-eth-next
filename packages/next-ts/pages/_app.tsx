@@ -1,14 +1,16 @@
 import RainbowKitWrapper from "../components/RainbowKitWrapper";
 
-import "../styles/globals.scss";
-import type { AppProps } from "next/app";
-import Layout from "../components/Layout";
-import { useEffect, useState } from "react";
-
-//@ts-ignore
-// import { themeChange } from "theme-change";
-import { ThemeProvider } from "next-themes";
 import "@rainbow-me/rainbowkit/styles.css";
+import { ThemeProvider } from "next-themes";
+import type { AppProps } from "next/app";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
+// ----------
+import Layout from "../components/Layout";
+import "../styles/globals.scss";
 
 function App({ Component, pageProps }: AppProps) {
     const [currentTheme, setCurrentTheme] = useState<any>();
@@ -21,6 +23,7 @@ function App({ Component, pageProps }: AppProps) {
                         <Component {...pageProps} />
                     </Layout>
                 </RainbowKitWrapper>
+                <ToastContainer />
             </ThemeProvider>
         </>
     );

@@ -975,8 +975,11 @@ __metadata:
     postcss: ^8.4.14
     react: 18.1.0
     react-blockies: ^1.4.1
+    react-copy-to-clipboard: ^5.1.0
     react-dom: 18.1.0
     react-icons: ^4.4.0
+    react-loader-spinner: ^5.1.5
+    react-toastify: ^9.0.4
     sass: ^1.52.2
     tailwindcss: ^3.0.24
     typescript: 4.7.3
@@ -2178,7 +2181,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:1.1.1, clsx@npm:^1.1.0":
+"clsx@npm:1.1.1, clsx@npm:^1.1.0, clsx@npm:^1.1.1":
   version: 1.1.1
   resolution: "clsx@npm:1.1.1"
   checksum: ff052650329773b9b245177305fc4c4dc3129f7b2be84af4f58dc5defa99538c61d4207be7419405a5f8f3d92007c954f4daba5a7b74e563d5de71c28c830063
@@ -5191,6 +5194,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-copy-to-clipboard@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "react-copy-to-clipboard@npm:5.1.0"
+  dependencies:
+    copy-to-clipboard: ^3.3.1
+    prop-types: ^15.8.1
+  peerDependencies:
+    react: ^15.3.0 || 16 || 17 || 18
+  checksum: f00a4551b9b63c944a041a6ab46af5ef20ba1106b3bc25173e7ef9bffbfba17a613368682ab8820cfe8d4b3acc5335cd9ce20229145bcc1e6aa8d1db04c512e5
+  languageName: node
+  linkType: hard
+
 "react-dom@npm:18.1.0":
   version: 18.1.0
   resolution: "react-dom@npm:18.1.0"
@@ -5216,6 +5231,16 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
+  languageName: node
+  linkType: hard
+
+"react-loader-spinner@npm:^5.1.5":
+  version: 5.1.5
+  resolution: "react-loader-spinner@npm:5.1.5"
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 2e5dd2beca5338ab9b7b9b33a8a2364ee5296d8aa32f3a7b2c82b4471e55e7768004c97d30ea9d20fd35a13aa625d24b38e960ad4ca0382d7d6eece14af5f4f5
   languageName: node
   linkType: hard
 
@@ -5288,6 +5313,18 @@ __metadata:
     "@types/react":
       optional: true
   checksum: e999e978c3261756060e67ec0c0ddaf7551850eca2beefd26f807dbcb416fd456d7d3674333e61562604eef5cf9e4503848981e8bfdc7f9e67321414ed6e1a4e
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^9.0.4":
+  version: 9.0.4
+  resolution: "react-toastify@npm:9.0.4"
+  dependencies:
+    clsx: ^1.1.1
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: 130c443f1c6f72033dbed6b5c41c88a5fab6c7e8f7bc320c400c09bc7ca11116158d554feb212b160aa1320308b69771217663bd0762b5ffd5f68bef6dba5b86
   languageName: node
   linkType: hard
 
