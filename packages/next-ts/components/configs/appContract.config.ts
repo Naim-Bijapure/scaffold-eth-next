@@ -1,5 +1,5 @@
-import { YourContract1__factory, YourContract__factory } from "../generated/contract-types";
-import contractsJson from "../generated/hardhat_contracts.json";
+import { YourContract1__factory, YourContract__factory } from "../../generated/contract-types";
+import contractsJson from "../../generated/hardhat_contracts.json";
 import { Chain, chain } from "wagmi";
 
 // import { Chain, chain, configureChains, createClient, WagmiConfig } from "wagmi";

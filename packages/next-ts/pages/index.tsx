@@ -1,9 +1,10 @@
+import { BigNumberish } from "ethers";
+import { formatEther } from "ethers/lib/utils";
 import type { NextPage } from "next";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { useAccount } from "wagmi";
+import { useAccount, useBalance } from "wagmi";
 
-import transcactor, { ContractTransactionType } from "../functions/transcaction";
 import useAppLoadContract from "../hooks/useAppLoadContract";
 
 const Home: NextPage = () => {
@@ -11,7 +12,8 @@ const Home: NextPage = () => {
     const [purpose, setPurpose] = useState<string>("");
     const [contractPurpose, setContractPurpose] = useState<string>("");
 
-    // const { data, isLoading } = useAccount();
+    const { data: accountData, isLoading } = useAccount();
+    const { data } = useBalance({ addressOrName: accountData?.address });
 
     const YourContract = useAppLoadContract({
         contractName: "YourContract1",
@@ -21,12 +23,6 @@ const Home: NextPage = () => {
         let purpose = await YourContract?.purpose();
         console.log("YourContract: ", YourContract);
         setContractPurpose(purpose as string);
-    };
-
-    const updateContractPurpose = async () => {
-        let rcpt = await transcactor(YourContract?.setPurpose as ContractTransactionType, [purpose]);
-        console.log("rcpt: ", rcpt);
-        setContractPurpose(purpose);
     };
 
     useEffect(() => {
@@ -52,25 +48,54 @@ const Home: NextPage = () => {
     // const notify = () => toast(<NotificationMsg />, { autoClose: false });
     return (
         <>
-            <main className="flex flex-col justify-center  items-center ">
-                <div className="m-2 card shadow-md w-1/3 border-2">
-                    <div className="card-body ">
-                        <span className="card-title ">YourContract</span>
-                        <span>purpose: {contractPurpose && contractPurpose}</span>
-                        <input
-                            type={"text"}
-                            className=" input input-primary"
-                            placeholder="set purpose"
-                            value={purpose}
-                            onChange={(event) => setPurpose(event.target.value)}
-                        />
+            <main className="m-2 lg:mx-4 flex flex-col items-start justify-center ">
+                <div className="m-2">
+                    <span className="mx-2">📝</span>
+                    This Is Your App Home. You can start editing it in
+                    <span className="highight">/pages </span> folder
+                </div>
 
-                        <div className="card-actions">
-                            <button className="btn btn-primary" onClick={updateContractPurpose}>
-                                submit
-                            </button>
-                        </div>
+                <div className="m-2">
+                    <span className="mx-2">✏️</span>
+                    Edit your smart contract <span className="bg-base-200 mx-2">YourContract.sol</span> in{" "}
+                    <span className="highight">packages/foundry-hardat-ts/src</span>
+                </div>
+                {!contractPurpose ? (
+                    <div className="m-2">
+                        <span className="mx-2">👷‍♀️</span>
+                        You haven't deployed your contract yet, run
+                        <span className="bg-base-200 mx-2">yarn chain</span> and{" "}
+                        <span className="bg-base-200 mx-2">yarn deploy</span> to deploy your first contract!
                     </div>
+                ) : (
+                    <div className="m-2">
+                        <span className="mx-2">🤓</span>
+                        The "purpose" variable from your contract is{" "}
+                        <span className="bg-base-200 mx-2">{contractPurpose}</span>
+                    </div>
+                )}
+
+                <div className="m-2">
+                    <span className="mx-2">🤖</span>
+                    An example to get your balance from wagmi hooks for your account address
+                    <span className="bg-base-200 mx-2">{accountData?.address}</span>
+                    balance : <span className="bg-base-200 mx-2">{formatEther(data?.value as BigNumberish)} eth</span>
+                </div>
+                <div className="m-2">
+                    <span className="mx-2">💭</span>
+                    Check out the{" "}
+                    <Link href={"/Hints"}>
+                        <span className="link link-primary">Hints</span>
+                    </Link>{" "}
+                    tab for more tips.
+                </div>
+                <div className="m-2">
+                    <span className="m-2">🛠</span>
+                    Tinker with your smart contract using the
+                    <Link href={"/Debug"}>
+                        <span className="link link-primary mx-2">Debug</span>
+                    </Link>{" "}
+                    tab.
                 </div>
             </main>
         </>

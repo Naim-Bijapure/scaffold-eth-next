@@ -27,11 +27,27 @@ a {
     .bd-blue {
         border: 1px solid blue;
     }
+
+    .highlight {
+        @apply bg-base-200 mx-2;
+    }
 }
 
-// blockies override
+// BLOCKIES OVERRIDE
 .blockies {
     canvas {
         border-radius: 10px;
     }
+}
+
+// TOASTIFY OVERRIDE
+.Toastify__toast-theme--light {
+    border-radius: 10px;
+    border-right: 10px solid orange;
+}
+
+.Toastify__toast-theme--dark {
+    border-radius: 10px;
+    border-right: 10px solid blue;
+    background-color: rgb(42, 42, 42);
 }

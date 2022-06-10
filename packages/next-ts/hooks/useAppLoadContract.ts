@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { useSigner, useContract, useNetwork } from "wagmi";
-import { contractNameType, ContractsConfig } from "../configs/appContract.config";
+import { contractNameType, ContractsConfig } from "../components/configs/appContract.config";
 
 interface IuseAppLoadContract {
     contractName: contractNameType;

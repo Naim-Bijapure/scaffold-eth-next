@@ -5,7 +5,7 @@ import { publicProvider } from "wagmi/providers/public";
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { targedChains, targetNetowrks } from "../configs/appContract.config";
+import { targedChains, targetNetowrks } from "./configs/appContract.config";
 
 const RainbowKitWrapper: React.FC<any> = ({ children }) => {
     const { theme, setTheme } = useTheme();
