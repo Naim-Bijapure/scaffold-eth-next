@@ -79,7 +79,8 @@ const Home: NextPage = () => {
                     <span className="mx-2">🤖</span>
                     An example to get your balance from wagmi hooks for your account address
                     <span className="bg-base-200 mx-2">{accountData?.address}</span>
-                    balance : <span className="bg-base-200 mx-2">{formatEther(data?.value as BigNumberish)} eth</span>
+                    balance :{" "}
+                    <span className="bg-base-200 mx-2">{data && formatEther(data?.value as BigNumberish)} eth</span>
                 </div>
                 <div className="m-2">
                     <span className="mx-2">💭</span>

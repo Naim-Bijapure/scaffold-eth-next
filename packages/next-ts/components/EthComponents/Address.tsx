@@ -27,7 +27,7 @@ const Address = ({ address }: IAddress) => {
                 </div>
                 <div className="">
                     <CopyToClipBoard text={address}>
-                        <button className="btn btn-ghost text-xl tooltip  tooltip-top" data-tip={address}>
+                        <button className="btn btn-ghost text-xl tooltip  tooltip-top tooltip-info tooltip--open" data-tip={address}>
                             <IoCopyOutline />
                         </button>
                     </CopyToClipBoard>
