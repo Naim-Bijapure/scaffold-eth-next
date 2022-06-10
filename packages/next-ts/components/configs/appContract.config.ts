@@ -1,6 +1,6 @@
-import { YourContract1__factory, YourContract__factory } from "../../generated/contract-types";
-import contractsJson from "../../generated/hardhat_contracts.json";
 import { Chain, chain } from "wagmi";
+import { YourContract__factory, YourContract1__factory } from "../../contracts/contract-types";
+import hardhatConfgJson from "../../contracts/hardhat_contracts.json";
 
 // import { Chain, chain, configureChains, createClient, WagmiConfig } from "wagmi";
 
@@ -8,8 +8,8 @@ import { Chain, chain } from "wagmi";
  * define your contracts
  * ---------------------*/
 export let ContractsConfig = {
-    YourContract: { factory: YourContract__factory, json: contractsJson },
-    YourContract1: { factory: YourContract1__factory, json: contractsJson },
+    YourContract: { factory: YourContract__factory, json: hardhatConfgJson },
+    YourContract1: { factory: YourContract1__factory, json: hardhatConfgJson },
 } as const;
 
 /**----------------------

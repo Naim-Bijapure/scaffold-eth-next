@@ -29,7 +29,15 @@ a {
     }
 
     .highlight {
-        @apply bg-base-200 mx-2;
+        @apply bg-base-100 mx-2 font-bold;
+    }
+    .info-block {
+        div {
+            @apply mt-4;
+        }
+        span {
+            @apply mx-2;
+        }
     }
 }
 
@@ -43,11 +51,11 @@ a {
 // TOASTIFY OVERRIDE
 .Toastify__toast-theme--light {
     border-radius: 10px;
-    border-right: 10px solid orange;
+    // border-right: 10px solid rgb(146, 146, 242);
 }
 
 .Toastify__toast-theme--dark {
     border-radius: 10px;
-    border-right: 10px solid blue;
+    // border-right: 10px solid blue;
     background-color: rgb(42, 42, 42);
 }
