@@ -100,3 +100,5 @@ Please check out our [Gitcoin grant](https://gitcoin.co/grants/2851/scaffold-eth
 
 You need an RPC and API keys for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/vite-app-ts/.env` with your new keys.
 
+
+
