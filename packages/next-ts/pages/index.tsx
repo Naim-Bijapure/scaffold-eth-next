@@ -2,7 +2,7 @@ import { BigNumberish } from "ethers";
 import { formatEther } from "ethers/lib/utils";
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAccount, useBalance } from "wagmi";
 
 import useAppLoadContract from "../hooks/useAppLoadContract";
@@ -19,15 +19,15 @@ const Home: NextPage = () => {
         contractName: "YourContract1",
     });
 
-    const getPurpose = async () => {
+    const getPurpose = useCallback(async () => {
         let purpose = await YourContract?.purpose();
         console.log("YourContract: ", YourContract);
         setContractPurpose(purpose as string);
-    };
+    }, []);
 
     useEffect(() => {
         void getPurpose();
-    }, [YourContract]);
+    }, [YourContract, getPurpose]);
 
     const onTest = async () => {
         let propose = YourContract && (await YourContract.purpose());
@@ -63,14 +63,14 @@ const Home: NextPage = () => {
                 {!contractPurpose ? (
                     <div className="m-2">
                         <span className="mx-2">👷‍♀️</span>
-                        You haven't deployed your contract yet, run
+                        You haven&apos;t deployed your contract yet, run
                         <span className="bg-base-200 mx-2">yarn chain</span> and{" "}
                         <span className="bg-base-200 mx-2">yarn deploy</span> to deploy your first contract!
                     </div>
                 ) : (
                     <div className="m-2">
                         <span className="mx-2">🤓</span>
-                        The "purpose" variable from your contract is{" "}
+                        The &quot;purpose&quat; variable from your contract is{" "}
                         <span className="bg-base-200 mx-2">{contractPurpose}</span>
                     </div>
                 )}

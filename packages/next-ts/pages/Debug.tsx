@@ -15,11 +15,11 @@ const Debug: NextPage = () => {
         contractName: "YourContract1",
     });
 
-    const getPurpose = async () => {
+    const getPurpose = useCallback(async () => {
         let purpose = await YourContract?.purpose();
         console.log("YourContract: ", YourContract);
         setContractPurpose(purpose as string);
-    };
+    }, []);
 
     const updateContractPurpose = async () => {
         let rcpt = await transcactor(YourContract?.setPurpose as ContractTransactionType, [purpose]);
@@ -29,7 +29,7 @@ const Debug: NextPage = () => {
 
     useEffect(() => {
         void getPurpose();
-    }, [YourContract]);
+    }, [YourContract, getPurpose]);
 
     return (
         <>

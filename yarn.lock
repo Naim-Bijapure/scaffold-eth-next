@@ -800,7 +800,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ethersproject/providers@npm:5.6.8, @ethersproject/providers@npm:^5.6.4":
+"@ethersproject/providers@npm:5.6.8, @ethersproject/providers@npm:^5.6.4, @ethersproject/providers@npm:^5.6.8":
   version: 5.6.8
   resolution: "@ethersproject/providers@npm:5.6.8"
   dependencies:
@@ -1640,6 +1640,7 @@ __metadata:
     ethereumjs-util: ^7.1.4
     ethereumjs-wallet: ^1.0.2
     ethers: ^5.6.4
+    forge-std: ^1.0.2
     glob: ^8.0.1
     hardhat: ^2.9.3
     hardhat-contract-sizer: ^2.5.1
@@ -1659,7 +1660,6 @@ __metadata:
     prettier-plugin-solidity: ^1.0.0-beta.19
     qrcode-terminal: ^0.12.0
     rlp: ^3.0.0
-    shx: ^0.3.4
     solhint: ^3.3.7
     solhint-plugin-prettier: ^0.0.5
     solidity-coverage: ^0.7.21
@@ -1674,6 +1674,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@scaffold-eth/next-ts@workspace:packages/next-ts"
   dependencies:
+    "@ethersproject/providers": ^5.6.8
     "@rainbow-me/rainbowkit": ^0.2.3
     "@tailwindcss/forms": ^0.5.2
     "@tailwindcss/typography": ^0.5.2
@@ -1684,17 +1685,21 @@ __metadata:
     daisyui: ^2.15.2
     eslint: 8.17.0
     eslint-config-next: 12.1.6
+    eth-hooks: ^4.2.21
     ethers: ^5.6.8
     next: 12.1.6
     next-themes: ^0.2.0
     postcss: ^8.4.14
+    qrcode.react: ^3.0.2
     react: 18.1.0
     react-blockies: ^1.4.1
+    react-copy-to-clipboard: ^5.1.0
     react-dom: 18.1.0
     react-icons: ^4.4.0
     react-loader-spinner: ^5.1.5
     react-toastify: ^9.0.4
     sass: ^1.52.2
+    shx: ^0.3.4
     tailwindcss: ^3.0.24
     typescript: 4.7.3
     wagmi: ^0.4.9
@@ -1712,7 +1717,6 @@ __metadata:
     prettier: ^2.6.2
     prettier-plugin-solidity: ^1.0.0-beta.19
     sass: ^1.51.0
-    shx: ^0.3.4
     ts-node: ^10.7.0
   languageName: unknown
   linkType: soft
@@ -7700,6 +7704,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eth-hooks@npm:^4.2.21":
+  version: 4.2.36
+  resolution: "eth-hooks@npm:4.2.36"
+  dependencies:
+    "@ethersproject/abi": ^5.6.1
+    "@ethersproject/abstract-provider": ^5.6.0
+    "@ethersproject/address": ^5.6.0
+    "@ethersproject/bignumber": ^5.6.0
+    "@ethersproject/bytes": ^5.6.1
+    "@ethersproject/contracts": ^5.6.0
+    "@ethersproject/networks": ^5.6.2
+    "@ethersproject/providers": ^5.6.4
+    "@ethersproject/signing-key": ^5.6.0
+    "@ethersproject/solidity": ^5.6.0
+    "@ethersproject/units": ^5.6.0
+    "@uniswap/token-lists": ^1.0.0-beta.28
+    "@web3-react/abstract-connector": ^6.0.7
+    "@web3-react/core": ^6.1.9
+    "@web3-react/types": ^6.0.7
+    ethers: ^5.6.4
+    lodash.isequal: ^4.5.0
+    merge-anything: ^5.0.2
+    react-query: ^3.38.*
+    ts-invariant: ^0.9.4
+    use-debounce: ^8.0.1
+    usehooks-ts: ^2.5.4
+    web3modal: ^1.9.7
+  peerDependencies:
+    "@uniswap/sdk": ^3
+    react: ">=17"
+    react-dom: ">=17"
+  checksum: 36ed742cf95339c1dec5a808874aee1c3f5413ef982a349d5782648147c4c05b749dcec5855ea33a2c317ccef0718bdd5b9c7773103654f17e52b9d49ea5c814
+  languageName: node
+  linkType: hard
+
 "eth-json-rpc-filters@npm:4.2.2":
   version: 4.2.2
   resolution: "eth-json-rpc-filters@npm:4.2.2"
@@ -8816,6 +8855,13 @@ __metadata:
   version: 0.6.1
   resolution: "forever-agent@npm:0.6.1"
   checksum: 766ae6e220f5fe23676bb4c6a99387cec5b7b62ceb99e10923376e27bfea72f3c3aeec2ba5f45f3f7ba65d6616965aa7c20b15002b6860833bb6e394dea546a8
+  languageName: node
+  linkType: hard
+
+"forge-std@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "forge-std@npm:1.0.2"
+  checksum: 572bd6fac8089ebb6d03b9dcb0eb0eefe1121b52a75c247f4df1b52f910abc4c7208d471ce0143cf9d4b1ee33638dcaba559e593e936c531ea90df117b189755
   languageName: node
   linkType: hard
 
@@ -14449,6 +14495,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qrcode.react@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "qrcode.react@npm:3.0.2"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 4102e9f416d86808728b93dca4e90cab0b2d3eca2bfe501a26ca62237062ded2121711cfc4edf64832c63e04d34956e26c2e7088023949f9328bbaa56004777d
+  languageName: node
+  linkType: hard
+
 "qrcode@npm:1.4.4":
   version: 1.4.4
   resolution: "qrcode@npm:1.4.4"
@@ -14601,6 +14656,18 @@ __metadata:
   peerDependencies:
     react: ">=15.0.0"
   checksum: 87139fc2cc682d34ff8633c58ce96f89826cc3127499b623fb1d8c99dd8e1fe21055750a051933ffc500ca9c88aa017930deae963ffc635135c02907e5d75e22
+  languageName: node
+  linkType: hard
+
+"react-copy-to-clipboard@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "react-copy-to-clipboard@npm:5.1.0"
+  dependencies:
+    copy-to-clipboard: ^3.3.1
+    prop-types: ^15.8.1
+  peerDependencies:
+    react: ^15.3.0 || 16 || 17 || 18
+  checksum: f00a4551b9b63c944a041a6ab46af5ef20ba1106b3bc25173e7ef9bffbfba17a613368682ab8820cfe8d4b3acc5335cd9ce20229145bcc1e6aa8d1db04c512e5
   languageName: node
   linkType: hard
 
@@ -17485,11 +17552,11 @@ __metadata:
 
 "typescript@patch:typescript@4.7.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
   version: 4.7.3
-  resolution: "typescript@patch:typescript@npm%3A4.7.3#~builtin<compat/typescript>::version=4.7.3&hash=bda367"
+  resolution: "typescript@patch:typescript@npm%3A4.7.3#~builtin<compat/typescript>::version=4.7.3&hash=7ad353"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 8257ce7ecbbf9416da60045a76a99d473698ca9e973fa0ddab7137cacb1587255431176cbbcc801a650938c4dc8109ab88355774829a714fabe56a53a2fe4524
+  checksum: 137d18a77f52254a284960b16ab53d0619f57b69b5d585804b8413f798a1175ce3e774fb95e6a101868577aafe357d8fcfc9171f0dc9fc0c210e9ae59d107cc0
   languageName: node
   linkType: hard
 
@@ -17739,7 +17806,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-debounce@npm:^8.0.0":
+"use-debounce@npm:^8.0.0, use-debounce@npm:^8.0.1":
   version: 8.0.1
   resolution: "use-debounce@npm:8.0.1"
   peerDependencies:
@@ -17780,7 +17847,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"usehooks-ts@npm:^2.5.2":
+"usehooks-ts@npm:^2.5.2, usehooks-ts@npm:^2.5.4":
   version: 2.5.4
   resolution: "usehooks-ts@npm:2.5.4"
   peerDependencies:

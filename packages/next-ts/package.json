@@ -10,10 +10,12 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@ethersproject/providers": "^5.6.8",
         "@rainbow-me/rainbowkit": "^0.2.3",
         "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/typography": "^0.5.2",
         "daisyui": "^2.15.2",
+        "eth-hooks": "^4.2.21",
         "ethers": "^5.6.8",
         "next": "12.1.6",
         "next-themes": "^0.2.0",
