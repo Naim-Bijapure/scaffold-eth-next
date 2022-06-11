@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import transcactor, { ContractTransactionType } from "../functions/transcactor";
 import useAppLoadContract from "../hooks/useAppLoadContract";
@@ -17,7 +17,6 @@ const Debug: NextPage = () => {
 
     const getPurpose = useCallback(async () => {
         let purpose = await YourContract?.purpose();
-        console.log("YourContract: ", YourContract);
         setContractPurpose(purpose as string);
     }, []);
 
