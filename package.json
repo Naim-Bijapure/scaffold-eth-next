@@ -10,9 +10,9 @@
     ],
     "private": true,
     "scripts": {
-        "build": "yarn workspace @scaffold-eth/vite-app build",
-        "serve": "yarn workspace @scaffold-eth/vite-app serve",
-        "start": "yarn workspace @scaffold-eth/vite-app start",
+        "build": "yarn workspace @scaffold-eth/next-ts build",
+        "serve": "yarn workspace @scaffold-eth/next-ts serve",
+        "start": "yarn workspace @scaffold-eth/next-ts start",
         "dev": "yarn workspace @scaffold-eth/next-ts dev",
         "contracts:build": "yarn workspace @scaffold-eth/foundry-hardhat-ts compile && yarn workspace @scaffold-eth/next-ts contracts:hardhat ",
         "contracts:rebuild": "yarn workspace @scaffold-eth/foundry-hardhat-ts clean && yarn contracts:build",
@@ -44,7 +44,7 @@
             "packages/*"
         ]
     },
-    "packageManager": "yarn@3.2.0",
+    "packageManager": "yarn@3.2.1",
     "devDependencies": {
         "cross-env": "^7.0.3",
         "eslint": "^8.14.0",
@@ -53,7 +53,6 @@
         "prettier": "^2.6.2",
         "prettier-plugin-solidity": "^1.0.0-beta.19",
         "sass": "^1.51.0",
-        "shx": "^0.3.4",
         "ts-node": "^10.7.0"
     },
     "lint-staged": {
