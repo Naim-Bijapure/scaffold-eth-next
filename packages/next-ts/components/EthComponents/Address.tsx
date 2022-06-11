@@ -20,14 +20,17 @@ const Address = ({ address }: IAddress) => {
         <>
             <div className="flex justify-between items-center  border-2 rounded-xl p-1">
                 <div className="rounded-xl blockies">
-                    <Blockies seed={address?.toLowerCase()} size={11} />
+                    <Blockies seed={address ? address?.toLowerCase() : "aaaaa"} size={11} />
                 </div>
                 <div className="m-2 ">
                     {address?.slice(0, 6)}...{address?.slice(-4)}
                 </div>
                 <div className="">
                     <CopyToClipBoard text={address}>
-                        <button className="btn btn-ghost text-xl tooltip  tooltip-top tooltip-info tooltip--open" data-tip={address}>
+                        <button
+                            className="btn btn-ghost text-xl tooltip  tooltip-top tooltip-info tooltip--open"
+                            data-tip={address}
+                        >
                             <IoCopyOutline />
                         </button>
                     </CopyToClipBoard>

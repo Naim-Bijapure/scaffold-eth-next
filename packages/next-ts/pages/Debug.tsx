@@ -18,7 +18,7 @@ const Debug: NextPage = () => {
     const getPurpose = useCallback(async () => {
         let purpose = await YourContract?.purpose();
         setContractPurpose(purpose as string);
-    }, []);
+    }, [YourContract]);
 
     const updateContractPurpose = async () => {
         let rcpt = await transcactor(YourContract?.setPurpose as ContractTransactionType, [purpose]);
