@@ -4,10 +4,12 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "contracts:hardhat": "yarn shx rm -rf './contracts/contract-types' && yarn shx mkdir -p ./contracts/contract-types &&  yarn shx cp -r '../foundry-hardat-ts/generated/contract-types' './contracts'",
+        "contracts:build": "yarn shx rm -rf './contracts/contract-types' && yarn shx mkdir -p ./contracts/contract-types &&  yarn shx cp -r '../foundry-ts/generated/contract-types' './contracts'",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "vercel:deploy": "vercel deploy",
+        "vercel": "vercel"
     },
     "dependencies": {
         "@ethersproject/providers": "^5.6.8",
@@ -28,6 +30,7 @@
         "react-loader-spinner": "^5.1.5",
         "react-toastify": "^9.0.4",
         "sass": "^1.52.2",
+        "vercel": "^25.1.0",
         "wagmi": "^0.4.9"
     },
     "devDependencies": {

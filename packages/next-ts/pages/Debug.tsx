@@ -12,7 +12,7 @@ const Debug: NextPage = () => {
     // const { data, isLoading } = useAccount();
 
     const YourContract = useAppLoadContract({
-        contractName: "YourContract1",
+        contractName: "YourContract",
     });
 
     const getPurpose = useCallback(async () => {

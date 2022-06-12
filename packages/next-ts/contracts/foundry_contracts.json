@@ -1,0 +1,9 @@
+{
+    "31337": {
+        "contracts": {
+            "YourContract": {
+                "address": "0x9889aa12e7dda79b01d43284ab9e2317b16a1ffd"
+            }
+        }
+    }
+}

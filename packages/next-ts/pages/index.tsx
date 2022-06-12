@@ -16,36 +16,18 @@ const Home: NextPage = () => {
     const { data } = useBalance({ addressOrName: accountData?.address });
 
     const YourContract = useAppLoadContract({
-        contractName: "YourContract1",
+        contractName: "YourContract",
     });
 
     const getPurpose = useCallback(async () => {
         let purpose = await YourContract?.purpose();
-        console.log("YourContract: ", YourContract);
         setContractPurpose(purpose as string);
-    }, []);
+    }, [YourContract]);
 
     useEffect(() => {
         void getPurpose();
     }, [YourContract, getPurpose]);
 
-    const onTest = async () => {
-        let propose = YourContract && (await YourContract.purpose());
-        console.log("propose: ", propose);
-        // let balance = await burner.signer?.getBalance();
-        //
-        // let localProvider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
-        // let burnerSigner = localProvider.getSigner(0);
-        //
-        // let balance = await burnerSigner.getBalance();
-        //
-        // await burnerSigner.sendTransaction({ to: data?.address, value: ethers.utils.parseEther("1") });
-        // window.location.reload();
-        // if (switchNetwork) {
-        //     switchNetwork(4);
-        // }
-    };
-    // const notify = () => toast(<NotificationMsg />, { autoClose: false });
     return (
         <>
             <main className="m-2 lg:mx-4 flex flex-col items-start justify-center ">

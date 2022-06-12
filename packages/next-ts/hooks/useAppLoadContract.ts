@@ -23,12 +23,12 @@ const useAppLoadContract = ({ contractName }: IuseAppLoadContract) => {
     const { data: signerData } = useSigner();
     const provider = useProvider();
 
-    const { activeChain, chains, error, pendingChainId, switchNetwork, isLoading, isSuccess } = useNetwork();
+    const { activeChain, chains } = useNetwork();
     const chainId = Number(activeChain?.id);
 
     const contractAddress =
         ContractsConfig[contractName]["json"][chainId] !== undefined
-            ? ContractsConfig[contractName]["json"][chainId][0]["contracts"][contractName]["address"]
+            ? ContractsConfig[contractName]["json"][chainId]["contracts"][contractName]["address"]
             : ethers.constants.AddressZero;
 
     const contractInstance = useContract<contractType>({

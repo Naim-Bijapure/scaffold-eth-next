@@ -9,10 +9,8 @@ node_modules/
 cache_hardhat/
 artifacts/
 
+generated/
+lib/
 
 #Hardhat plugin files
 typechain-types/
-
-.next/
-.yarn
-.vercel
