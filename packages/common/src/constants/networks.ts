@@ -1,11 +1,16 @@
 import { TNetworkInfo } from "eth-hooks/models";
+import path from "path";
+import dotenv from "dotenv";
 
 import { TNetworkNames } from "../models/TNetworkNames";
 
-// const INFURA_ID = process.env.VITE_RPC_MAINNET_INFURA;
-// const INFURA_ID = process.env.VITE_RPC_MAINNET_INFURA;
+
+// loading a root .env file
+dotenv.config({ path: path.resolve(__dirname, "../../../../.env") });
+
 //TODO:define a .env location for this id
-const INFURA_ID = "d7d49f3bcbd943b6bceb4a7549cd1bb0";
+const INFURA_ID = process.env.INFURA_ID;
+console.log("INFURA_ID: ", INFURA_ID);
 
 let hostname = "localhost";
 if (typeof window !== "undefined") {
