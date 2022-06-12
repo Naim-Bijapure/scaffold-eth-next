@@ -1,8 +1,15 @@
 {
+    "4": {
+        "contracts": {
+            "YourContract": {
+                "address": "0x508f25f641b5befd319eade28eb14a48820191aa"
+            }
+        }
+    },
     "31337": {
         "contracts": {
             "YourContract": {
-                "address": "0x9889aa12e7dda79b01d43284ab9e2317b16a1ffd"
+                "address": "0x508f25f641b5befd319eade28eb14a48820191aa"
             }
         }
     }

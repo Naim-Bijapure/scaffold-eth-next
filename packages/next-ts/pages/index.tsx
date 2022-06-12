@@ -6,10 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useAccount, useBalance } from "wagmi";
 
 import useAppLoadContract from "../hooks/useAppLoadContract";
-
 const Home: NextPage = () => {
-    // const { data, isLoading } = useAccount();
-    const [purpose, setPurpose] = useState<string>("");
     const [contractPurpose, setContractPurpose] = useState<string>("");
 
     const { data: accountData, isLoading } = useAccount();
@@ -52,7 +49,7 @@ const Home: NextPage = () => {
                 ) : (
                     <div className="m-2">
                         <span className="mx-2">🤓</span>
-                        The &quot;purpose&quat; variable from your contract is{" "}
+                        The &quot;purpose&quot; variable from your contract is{" "}
                         <span className="bg-base-200 mx-2">{contractPurpose}</span>
                     </div>
                 )}

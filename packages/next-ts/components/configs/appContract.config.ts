@@ -5,7 +5,8 @@ import foundryContracts from "../../contracts/foundry_contracts.json";
 // import { Chain, chain, configureChains, createClient, WagmiConfig } from "wagmi";
 
 /**----------------------
- * define your contracts
+ * define your contracts like   YourContract: { factory: YourContract__factory, json: foundryContracts }
+ * inside ContractsConfig
  * ---------------------*/
 export let ContractsConfig = {
     YourContract: { factory: YourContract__factory, json: foundryContracts },

@@ -4,8 +4,16 @@ import chalk from "chalk";
 import fs from "fs";
 
 import { NETWORKS } from "@scaffold-eth/common/src/constants/networks";
+import dotenv from "dotenv";
+
 import account from "../generated/account.json";
 import { DEPLOY_CONTRACTS } from "../configs";
+import { ethers } from "ethers";
+import path from "node:path";
+import sendBalanceToLocalAddress from "../helpers/sendBalanceToLocalAddress";
+
+//load root .env file
+dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
 
 let args = process.argv.slice(2);
 
@@ -89,6 +97,19 @@ const deploy = async (contractName: string, { args }: { args: string[] }) => {
 
 async function run() {
     console.log(chalk.blueBright(`deploying...`));
+
+    if (network === "localhost") {
+        let localProvider = new ethers.providers.StaticJsonRpcProvider(process.env.STATIC_LOCAL_RPC);
+        let balanceBigNumber = await localProvider.getBalance(address);
+        let balance = ethers.utils.formatEther(balanceBigNumber).toString();
+        // if initial balance is zero at start
+        if (Number(balance) === 0) {
+            await sendBalanceToLocalAddress(address);
+        }
+
+        let balanceBigNumber1 = await localProvider.getBalance(address);
+        let balance1 = ethers.utils.formatEther(balanceBigNumber1).toString();
+    }
 
     for (const contract of DEPLOY_CONTRACTS) {
         await deploy(contract.contractName, { args: [...contract.args] });

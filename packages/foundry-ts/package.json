@@ -22,7 +22,7 @@
         "format": "yarn prettier -w ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts contracts/**/*.sol ",
         "format:check": "yarn prettier -c ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts ./contracts/**/*.sol ",
         "hh:watch-test": "hardhat watch compilation & hardhat watch test --network hardhat",
-        "--------":"--------------Forge Commands---------------",
+        "--------": "--------------Forge Commands---------------",
         "forge:build": "forge build && yarn generate-types ",
         "forge:watch": "forge build --watch ",
         "forge:clean": "forge clean ",
