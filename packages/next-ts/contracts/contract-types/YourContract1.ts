@@ -14,18 +14,26 @@ import {
 } from "ethers";
 import { FunctionFragment, Result, EventFragment } from "@ethersproject/abi";
 import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+import type {
+  TypedEventFilter,
+  TypedEvent,
+  TypedListener,
+  OnEvent,
+} from "./common";
 
 export interface YourContract1Interface extends utils.Interface {
   contractName: "YourContract1";
   functions: {
+    "N()": FunctionFragment;
     "purpose()": FunctionFragment;
     "setPurpose(string)": FunctionFragment;
   };
 
+  encodeFunctionData(functionFragment: "N", values?: undefined): string;
   encodeFunctionData(functionFragment: "purpose", values?: undefined): string;
   encodeFunctionData(functionFragment: "setPurpose", values: [string]): string;
 
+  decodeFunctionResult(functionFragment: "N", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "purpose", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setPurpose", data: BytesLike): Result;
 
@@ -71,6 +79,10 @@ export interface YourContract1 extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    N(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     purpose(overrides?: CallOverrides): Promise<[string]>;
 
     setPurpose(
@@ -78,6 +90,10 @@ export interface YourContract1 extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
   };
+
+  N(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   purpose(overrides?: CallOverrides): Promise<string>;
 
@@ -87,6 +103,8 @@ export interface YourContract1 extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    N(overrides?: CallOverrides): Promise<void>;
+
     purpose(overrides?: CallOverrides): Promise<string>;
 
     setPurpose(newPurpose: string, overrides?: CallOverrides): Promise<void>;
@@ -101,6 +119,10 @@ export interface YourContract1 extends BaseContract {
   };
 
   estimateGas: {
+    N(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     purpose(overrides?: CallOverrides): Promise<BigNumber>;
 
     setPurpose(
@@ -110,6 +132,10 @@ export interface YourContract1 extends BaseContract {
   };
 
   populateTransaction: {
+    N(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     purpose(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     setPurpose(

@@ -1,9 +1,9 @@
 {
-    "name": "@scaffold-eth/foundry-hardhat-ts",
+    "name": "@scaffold-eth/foundry-ts",
     "version": "0.1.0",
     "license": "MIT",
     "scripts": {
-        "chain": "cross-env BUILDING=true anvil --balance 10000 --host 0.0.0.0 ",
+        "chain": "cross-env BUILDING=true anvil --balance 10000000 --host 0.0.0.0 ",
         "fork": "cross-env BUILDING=true hardhat node --fork https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad",
         "test": "yarn hardhat test --network hardhat",
         "compile": "cross-env BUILDING=true hardhat compile",
@@ -21,8 +21,17 @@
         "solhint": "solhint ./contracts/**/*.sol",
         "format": "yarn prettier -w ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts contracts/**/*.sol ",
         "format:check": "yarn prettier -c ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts ./contracts/**/*.sol ",
-        "watch_test": "hardhat watch compilation & hardhat watch test --network hardhat",
-        "forge:watch-test": "forge test --watch"
+        "hh:watch-test": "hardhat watch compilation & hardhat watch test --network hardhat",
+        "--------":"--------------Forge Commands---------------",
+        "forge:build": "forge build && yarn generate-types ",
+        "forge:watch": "forge build --watch ",
+        "forge:clean": "forge clean ",
+        "forge:test": "forge test ",
+        "forge:watch-test": "forge test --watch",
+        "forge:generate": "ts-node  --ignore 'generated/*' scripts/generate.ts",
+        "forge:account": "ts-node scripts/account.ts",
+        "forge:deploy": "cross-env ETHERSCAN_API_KEY=KP6ZGYIWNJ5XK2NKJK8N477A7XKMU75C2D ts-node --ignore 'out/*.json'   scripts/deploy.ts ",
+        "generate-types": "typechain  --discriminate-types --target=ethers-v5 'out/**/*.json' --out-dir=./generated/contract-types "
     },
     "dependencies": {
         "@atixlabs/hardhat-time-n-mine": "^0.0.5",
@@ -66,7 +75,7 @@
         "hardhat-watcher": "^2.1.1",
         "ipfs-http-client": "^54.0.2",
         "qrcode-terminal": "^0.12.0",
-        "typechain": "^7.0.1"
+        "typechain": "^8.1.0"
     },
     "devDependencies": {
         "@types/chai": "^4.3.1",
@@ -95,6 +104,7 @@
         "mocha-github-actions-reporter": "^0.2.4",
         "mocha-junit-reporter": "^2.0.2",
         "node-watch": "^0.7.3",
+        "nodemon": "^2.0.16",
         "prettier": "^2.6.2",
         "prettier-plugin-solidity": "^1.0.0-beta.19",
         "rlp": "^3.0.0",

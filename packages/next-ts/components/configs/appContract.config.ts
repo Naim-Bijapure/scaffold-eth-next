@@ -1,6 +1,6 @@
 import { Chain, chain } from "wagmi";
-import { YourContract__factory, YourContract1__factory } from "../../contracts/contract-types";
-import hardhatConfgJson from "../../contracts/hardhat_contracts.json";
+import { YourContract__factory } from "../../contracts/contract-types";
+import foundryContracts from "../../contracts/foundry_contracts.json";
 
 // import { Chain, chain, configureChains, createClient, WagmiConfig } from "wagmi";
 
@@ -8,14 +8,14 @@ import hardhatConfgJson from "../../contracts/hardhat_contracts.json";
  * define your contracts
  * ---------------------*/
 export let ContractsConfig = {
-    YourContract: { factory: YourContract__factory, json: hardhatConfgJson },
-    YourContract1: { factory: YourContract1__factory, json: hardhatConfgJson },
+    YourContract: { factory: YourContract__factory, json: foundryContracts },
 } as const;
 
 /**----------------------
  * add targeted chain names
  * ---------------------*/
-let TARGATED_CHAINS = ["hardhat", "rinkeby", "mainnet"];
+// let TARGATED_CHAINS = ["hardhat", "rinkeby", "mainnet"];
+let TARGATED_CHAINS = ["hardhat", "rinkeby"];
 
 export type contractNameType = keyof typeof ContractsConfig;
 

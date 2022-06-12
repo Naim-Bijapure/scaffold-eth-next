@@ -1,12 +1,14 @@
-# 🏗 Scaffold-Eth Typescript
+# 🏗 Scaffold-Eth-next Typescript
 
-## Typescript
+## Typescript 
+This is the typescript repo of scaffold.eth with foundry, rainbowkit , wagmi hooks and nextjs.
 
-This is the typescript repo of scaffold.eth. The directories that you'll use are:
+
+The directories that you'll use are:
 
 ```bash
-packages/vite-app-ts/
-packages/hardhat-ts/
+packages/next-ts/
+packages/foundry-ts/
 ```
 
 ## Quick Start
@@ -19,7 +21,7 @@ Running the app
    yarn install
    ```
 
-2. start a hardhat node
+2. start a foundry node
 
    ```bash
    yarn chain
@@ -28,38 +30,35 @@ Running the app
 3. run the app, `open a new command prompt`
 
    ```bash
-   # build hardhat & external contracts types
-   yarn contracts:build 
-   # deploy your hardhat contracts
-   yarn deploy
+   # build foundry & external contracts types
+   yarn contracts:init 
+   # deploy your foundry contracts
+   yarn deploy --network xx (without --network it will deploy on localhost)
    # start the app
-   yarn start 
+   yarn dev 
    ```
-
-4. other commands
-   ```bash
-   # run hardhat commands for the workspace, or see all tasks
-   yarn hardhat 'xxx'
-   # run subgraph commands for the workspace
-   yarn subgraph 'xxx'
-   ```
+4. deploy on vercel. 
+```bash
+ yarn vercel:deploy
+ ## (login vercel  at first time)
+```
 
 ## Overview
 
 Everything you need to build on Ethereum! 🚀 Quickly experiment with Solidity using a frontend that adapts to your smart contract:
 
-![image](https://user-images.githubusercontent.com/2653167/124158108-c14ca380-da56-11eb-967e-69cde37ca8eb.png)
+![image](https://user-images.githubusercontent.com/22323693/173233298-69b090f3-92bc-44e6-ba91-25bd7425b120.png)
 
-- 🔏 Edit your smart contract `YourContract.sol` in `packages/hardhat-ts/contracts`
-- 📝 Edit your frontend `MainPage.tsx` in `packages/vite-app-ts/src`
-- 💼 Edit your deployment scripts in `packages/hardhat-ts/deploy`
+- 🔏 Edit your smart contract `YourContract.sol` in `packages/foundry-ts/src`
+- 📝 Start Editing your frontend  at `packages/next-ts/pages`
+- 💼  Update `DEPLOY_CONTRACTS` array you want to deploy at `pakages/foundry-ts/config/index.ts`
+- 
 - 📱 Open http://localhost:3000 to see the app
-- 👷🏽‍♂️ run `yarn hardhat` to get a list of all the tasks.  Run `yarn hardhat taskname` to run the task.
 
 ## Guides
 
 
-- Check out [eth-hooks docs](https://scaffold-eth.github.io/eth-hooks) for example of how to use hooks
+- Check out [wagmi hooks  docs](https://wagmi.sh/docs/getting-started) for example of how to use hooks
 - you can look at [speedrun ethereum](https://speedrunethereum.com/) to get started with scaffold-eth-typescript and web3.  
   - 🏁 Make sure to click on the typescript tab!
 

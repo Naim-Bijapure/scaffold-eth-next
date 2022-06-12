@@ -3,7 +3,9 @@ import { TNetworkInfo } from "eth-hooks/models";
 import { TNetworkNames } from "../models/TNetworkNames";
 
 // const INFURA_ID = process.env.VITE_RPC_MAINNET_INFURA;
-const INFURA_ID = process.env.VITE_RPC_MAINNET_INFURA;
+// const INFURA_ID = process.env.VITE_RPC_MAINNET_INFURA;
+//TODO:define a .env location for this id
+const INFURA_ID = "d7d49f3bcbd943b6bceb4a7549cd1bb0";
 
 let hostname = "localhost";
 if (typeof window !== "undefined") {
