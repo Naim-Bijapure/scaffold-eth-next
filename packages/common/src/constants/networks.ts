@@ -9,11 +9,13 @@ import { TNetworkNames } from "../models/TNetworkNames";
 dotenv.config({ path: path.resolve(__dirname, "../../../../.env") });
 
 // TODO:define a .env location for this id
-const INFURA_ID = process.env.INFURA_ID;
+const INFURA_ID = process.env.INFURA_ID as string;
 console.log("INFURA_ID: ", INFURA_ID);
 
 let hostname = "localhost";
+// @ts-ignore
 if (typeof window !== "undefined") {
+  // @ts-ignore
   hostname = window?.location?.hostname ?? "localhost";
 }
 
