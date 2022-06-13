@@ -1,5 +1,6 @@
 {
     "solidity.packageDefaultDependenciesContractsDirectory": ".",
     "solidity.packageDefaultDependenciesDirectory": "packages/foundry-ts/lib",
-    "solidity.defaultCompiler": "localFile"
+    "solidity.defaultCompiler": "localFile",
+    "eslint.workingDirectories": ["packages/next-ts", "packages/common", "packages/foundry-ts"]
 }

@@ -18,9 +18,9 @@
         "verify:etherscan": "hardhat etherscan-verify --api-key KP6ZGYIWNJ5XK2NKJK8N477A7XKMU75C2D",
         "verify:tenderly": "hardhat tenderly-verify",
         "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts",
-        "solhint": "solhint ./contracts/**/*.sol",
-        "format": "yarn prettier -w ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts contracts/**/*.sol ",
-        "format:check": "yarn prettier -c ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts ./contracts/**/*.sol ",
+        "solhint": "solhint ./src/**/*.sol",
+        "format": "yarn prettier -w ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts src/**/*.sol ",
+        "format:check": "yarn prettier -c ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts ./src/**/*.sol ",
         "hh:watch-test": "hardhat watch compilation & hardhat watch test --network hardhat",
         "--------": "--------------Forge Commands---------------",
         "forge:build": "forge build && yarn generate-types ",
@@ -93,9 +93,15 @@
         "eslint-config-prettier": "^8.5.0",
         "eslint-config-standard-kit": "^0.15.1",
         "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jest": "^26.1.5",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-mocha": "^10.0.4",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.29.4",
+        "eslint-plugin-react-hooks": "^4.5.0",
+        "eslint-plugin-tailwind": "^0.2.1",
+        "eslint-plugin-testing-library": "^5.3.1",
         "eslint-plugin-unused-imports": "^2.0.0",
         "ethereumjs-util": "^7.1.4",
         "ethereumjs-wallet": "^1.0.2",
@@ -113,7 +119,7 @@
         "solidity-coverage": "^0.7.21",
         "ts-node": "^10.7.0",
         "tsconfig-paths": "^3.14.1",
-        "typescript": "^4.6.4"
+        "typescript": "4.7.3"
     },
     "installConfig": {
         "hoistingLimits": "workspaces"
