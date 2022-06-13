@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
+
+const path = require("path");
+// load root .env file
+require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
+
 const nextConfig = {
-    reactStrictMode: true,
+  reactStrictMode: true,
+  //   to temprory ignore eslint error on build
+  //   eslint: {
+  //     ignoreDuringBuilds: true,
+  //   },
 };
 
 module.exports = nextConfig;

@@ -11,6 +11,7 @@ async function run(): Promise<any> {
   for (const n in NETWORKS) {
     try {
       const network: any = NETWORKS;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const { url } = network[n];
       const provider = new ethers.providers.JsonRpcProvider(url as string);
       const balance = await provider.getBalance(address);

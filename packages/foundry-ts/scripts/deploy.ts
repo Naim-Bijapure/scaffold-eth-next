@@ -28,7 +28,7 @@ const deploy = async (contractName: string, { args }: { args: string[] }): Promi
   const currentNetwork = NETWORKS[network];
   const networkUrl = currentNetwork.url;
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
     const deploy = spawn("forge", [
       "create",
       "--rpc-url",
@@ -40,9 +40,9 @@ const deploy = async (contractName: string, { args }: { args: string[] }): Promi
       ...args,
       network !== "localhost" ? "--verify" : "",
     ]);
-    deploy.stdout.on("data", (data) => {
+    deploy.stdout.on("data", (data: string) => {
       if (data.toString().includes("Deployed to:")) {
-        const output = data.toString() as string;
+        const output = data.toString();
 
         let deployedCotractAddress = output.split(":")[2];
         deployedCotractAddress = String(deployedCotractAddress).split("\n")[0].trim();
@@ -84,7 +84,7 @@ const deploy = async (contractName: string, { args }: { args: string[] }): Promi
       }
     });
 
-    deploy.stderr.on("data", (data) => {
+    deploy.stderr.on("data", (data: string) => {
       console.log("data: ", data.toString());
     });
     deploy.on("exit", (code) => {
