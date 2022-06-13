@@ -1,16 +1,16 @@
-import { formatUnits } from '@ethersproject/units';
-import { task } from 'hardhat/config';
-import { HttpNetworkUserConfig } from 'hardhat/types';
-import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
-import * as qrcode from 'qrcode-terminal';
-import { findFirstAddress, getAccountData } from 'tasks/functions/accounts';
-import { DEBUG } from 'tasks/functions/debug';
+import { formatUnits } from "@ethersproject/units";
+import { task } from "hardhat/config";
+import { HttpNetworkUserConfig } from "hardhat/types";
+import { THardhatRuntimeEnvironmentExtended } from "helpers/types/THardhatRuntimeEnvironmentExtended";
+import * as qrcode from "qrcode-terminal";
+import { findFirstAddress, getAccountData } from "tasks/functions/accounts";
+import { DEBUG } from "tasks/functions/debug";
 
-import { config } from '../hardhat.config';
+import { config } from "../hardhat.config";
 
-import { getMnemonic } from './functions/mnemonic';
+import { getMnemonic } from "./functions/mnemonic";
 
-task('account', 'Get balance informations for the deployment account.', async (_, hre) => {
+task("account", "Get balance informations for the deployment account.", async (_, hre) => {
   const { address } = await getAccountData(getMnemonic());
 
   qrcode.generate(address);
@@ -30,14 +30,14 @@ task('account', 'Get balance informations for the deployment account.', async (_
   }
 });
 
-task('balance', "Prints an account's balance")
-  .addPositionalParam('account', "The account's address")
+task("balance", "Prints an account's balance")
+  .addPositionalParam("account", "The account's address")
   .setAction(async (taskArgs: { account: string }, hre: THardhatRuntimeEnvironmentExtended) => {
     const balance = await hre.ethers.provider.getBalance(await findFirstAddress(hre, taskArgs.account));
-    console.log(formatUnits(balance, 'ether'), 'ETH');
+    console.log(formatUnits(balance, "ether"), "ETH");
   });
 
-task('accounts', 'Prints the list of accounts', async (_, { ethers }) => {
+task("accounts", "Prints the list of accounts", async (_, { ethers }) => {
   const accounts = await ethers.provider.listAccounts();
   accounts.forEach((account: any) => console.log(account));
 });
