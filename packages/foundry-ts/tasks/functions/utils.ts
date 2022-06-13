@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-import '@nomiclabs/hardhat-ethers';
-import fs from 'fs';
+import "@nomiclabs/hardhat-ethers";
+import fs from "fs";
 
-import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
-import { ContractTransaction } from 'ethers';
-import { HardhatRuntimeEnvironment } from 'hardhat/types';
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import { ContractTransaction } from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
 
-export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
+export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 export enum ProtocolState {
   Unpaused,
@@ -15,7 +14,7 @@ export enum ProtocolState {
 }
 
 export function getAddrs(): any {
-  const json = fs.readFileSync('addresses.json', 'utf8');
+  const json = fs.readFileSync("addresses.json", "utf8");
   const addrs = JSON.parse(json);
   return addrs;
 }

@@ -1,7 +1,7 @@
-import { task } from 'hardhat/config';
+import { task } from "hardhat/config";
 
-task('faucet', 'Sends ETH and tokens to an address')
-  .addPositionalParam('receiver', 'The address that will receive them')
+task("faucet", "Sends ETH and tokens to an address")
+  .addPositionalParam("receiver", "The address that will receive them")
   .setAction(async ({ receiver }: { receiver: string }, { ethers }) => {
     const [sender] = await ethers.getSigners();
 

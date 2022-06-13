@@ -11,22 +11,22 @@ import "openzeppelin-contracts/contracts/utils/Address.sol";
 // import "@openzeppelin/contracts/utils/Address.sol";
 
 contract YourContract {
-    event SetPurpose(address sender, string purpose);
+  event SetPurpose(address sender, string purpose);
 
-    string public purpose;
+  string public purpose;
 
-    constructor(string memory startingPurpose) payable {
-        purpose = startingPurpose;
-    }
+  constructor(string memory startingPurpose) payable {
+    purpose = startingPurpose;
+  }
 
-    function setPurpose(string memory newPurpose) public {
-        purpose = newPurpose;
-        // console.log(msg.sender, "set purpose to", purpose);
-        emit SetPurpose(msg.sender, purpose);
-    }
+  function setPurpose(string memory newPurpose) public {
+    purpose = newPurpose;
+    // console.log(msg.sender, "set purpose to", purpose);
+    emit SetPurpose(msg.sender, purpose);
+  }
 
-    // to support receiving ETH by default
-    receive() external payable {}
+  // to support receiving ETH by default
+  receive() external payable {}
 
-    fallback() external payable {}
+  fallback() external payable {}
 }

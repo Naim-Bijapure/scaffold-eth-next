@@ -1,31 +1,31 @@
-import { Provider, TransactionRequest } from '@ethersproject/abstract-provider';
-import { parseUnits } from '@ethersproject/units';
-import { Signer } from 'ethers';
-import { task } from 'hardhat/config';
-import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
-import { findFirstAddress } from 'tasks/functions/accounts';
-import { debugLog } from 'tasks/functions/debug';
-import { getMnemonic } from 'tasks/functions/mnemonic';
+import { Provider, TransactionRequest } from "@ethersproject/abstract-provider";
+import { parseUnits } from "@ethersproject/units";
+import { Signer } from "ethers";
+import { task } from "hardhat/config";
+import { THardhatRuntimeEnvironmentExtended } from "helpers/types/THardhatRuntimeEnvironmentExtended";
+import { findFirstAddress } from "tasks/functions/accounts";
+import { debugLog } from "tasks/functions/debug";
+import { getMnemonic } from "tasks/functions/mnemonic";
 
-import { send } from './functions/send';
+import { send } from "./functions/send";
 
 // eslint-disable-next-line @typescript-eslint/require-await
-task('wallet', 'Create a wallet (pk) link', async (_, { ethers }): Promise<void> => {
+task("wallet", "Create a wallet (pk) link", async (_, { ethers }): Promise<void> => {
   const randomWallet = ethers.Wallet.createRandom();
   const { privateKey } = randomWallet._signingKey();
   console.log(`🔐 WALLET Generated as ${randomWallet.address}`);
   console.log(`🔗 http://localhost:3000/pk#${privateKey}`);
 });
 
-task('fundedwallet', 'Create a wallet (pk) link and fund it with deployer?')
-  .addOptionalParam('amount', 'Amount of ETH to send to wallet after generating')
-  .addOptionalParam('url', 'URL to add pk to')
+task("fundedwallet", "Create a wallet (pk) link and fund it with deployer?")
+  .addOptionalParam("amount", "Amount of ETH to send to wallet after generating")
+  .addOptionalParam("url", "URL to add pk to")
   .setAction(async (taskArgs: { url?: string; amount?: string }, hre) => {
     const { ethers } = hre;
     const randomWallet = ethers.Wallet.createRandom();
     const { privateKey } = randomWallet._signingKey();
     console.log(`🔐 WALLET Generated as ${randomWallet.address}`);
-    const url = taskArgs.url != null ? taskArgs.url : 'http://localhost:3000';
+    const url = taskArgs.url != null ? taskArgs.url : "http://localhost:3000";
 
     let localDeployerMnemonic: string | undefined;
     try {
@@ -35,7 +35,7 @@ task('fundedwallet', 'Create a wallet (pk) link and fund it with deployer?')
       /* do nothing - this file isn't always there */
     }
 
-    const amount = taskArgs.amount != null ? taskArgs.amount : '0.01';
+    const amount = taskArgs.amount != null ? taskArgs.amount : "0.01";
     const tx = {
       to: randomWallet.address,
       value: ethers.utils.parseEther(amount),
@@ -58,13 +58,13 @@ task('fundedwallet', 'Create a wallet (pk) link and fund it with deployer?')
     }
   });
 
-task('send', 'Send ETH')
-  .addParam('from', 'From address or account index')
-  .addOptionalParam('to', 'To address or account index')
-  .addOptionalParam('amount', 'Amount to send in ether')
-  .addOptionalParam('data', 'Data included in transaction')
-  .addOptionalParam('gasPrice', 'Price you are willing to pay in gwei')
-  .addOptionalParam('gasLimit', 'Limit of how much gas to spend')
+task("send", "Send ETH")
+  .addParam("from", "From address or account index")
+  .addOptionalParam("to", "To address or account index")
+  .addOptionalParam("amount", "Amount to send in ether")
+  .addOptionalParam("data", "Data included in transaction")
+  .addOptionalParam("gasPrice", "Price you are willing to pay in gwei")
+  .addOptionalParam("gasLimit", "Limit of how much gas to spend")
 
   .setAction(
     async (
@@ -85,9 +85,9 @@ task('send', 'Send ETH')
       const txRequest: TransactionRequest = {
         from: await fromSigner.getAddress(),
         to,
-        value: parseUnits(taskArgs.amount != null ? taskArgs.amount : '0', 'ether').toHexString(),
+        value: parseUnits(taskArgs.amount != null ? taskArgs.amount : "0", "ether").toHexString(),
         nonce: await fromSigner.getTransactionCount(),
-        gasPrice: parseUnits(taskArgs.gasPrice != null ? taskArgs.gasPrice : '1.001', 'gwei').toHexString(),
+        gasPrice: parseUnits(taskArgs.gasPrice != null ? taskArgs.gasPrice : "1.001", "gwei").toHexString(),
         gasLimit: taskArgs.gasLimit != null ? taskArgs.gasLimit : 24000,
         chainId: network.config.chainId,
       };
