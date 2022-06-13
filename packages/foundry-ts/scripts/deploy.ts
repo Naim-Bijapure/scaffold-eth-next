@@ -42,7 +42,7 @@ const deploy = async (contractName: string, { args }: { args: string[] }): Promi
     ]);
     deploy.stdout.on("data", (data) => {
       if (data.toString().includes("Deployed to:")) {
-        const output = data.toString();
+        const output = data.toString() as string;
 
         let deployedCotractAddress = output.split(":")[2];
         deployedCotractAddress = String(deployedCotractAddress).split("\n")[0].trim();
@@ -60,13 +60,14 @@ const deploy = async (contractName: string, { args }: { args: string[] }): Promi
 
         if (isExists) {
           const oldFileData = fs.readFileSync(CONTRACTS_FILE);
-          const contractsData = JSON.parse(oldFileData.toString());
+          const contractsData = JSON.parse(oldFileData.toString()) as Record<string, any>;
           //     console.log("contractsData: ", JSON.stringify(contractsData));
           const currentContractData = {
             [contractName]: { address: deployedCotractAddress },
           };
           const isChainIdExist = contractsData[currentNetwork.chainId] ? true : false;
           if (isChainIdExist) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             contractsData[currentNetwork.chainId]["contracts"] = {
               ...contractsData[currentNetwork.chainId]["contracts"],
               ...currentContractData,
@@ -111,8 +112,8 @@ async function run(): Promise<any> {
       await sendBalanceToLocalAddress(address);
     }
 
-    const balanceBigNumber1 = await localProvider.getBalance(address);
-    const balance1 = ethers.utils.formatEther(balanceBigNumber1).toString();
+    // const balanceBigNumber1 = await localProvider.getBalance(address);
+    // const balance1 = ethers.utils.formatEther(balanceBigNumber1).toString();
   }
 
   for (const contract of DEPLOY_CONTRACTS) {
