@@ -1148,7 +1148,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:12.1.6":
+"@next/eslint-plugin-next@npm:12.1.6, @next/eslint-plugin-next@npm:^12.1.6":
   version: 12.1.6
   resolution: "@next/eslint-plugin-next@npm:12.1.6"
   dependencies:
@@ -1648,7 +1648,7 @@ __metadata:
     shx: ^0.3.4
     ts-patch: ^2.0.1
     tsconfig-paths: ^3.14.1
-    typescript: ^4.6.4
+    typescript: 4.7.3
     typescript-transform-paths: ^3.3.1
   languageName: unknown
   linkType: soft
@@ -1699,9 +1699,15 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-config-standard-kit: ^0.15.1
     eslint-plugin-import: ^2.26.0
+    eslint-plugin-jest: ^26.1.5
+    eslint-plugin-jsx-a11y: ^6.5.1
     eslint-plugin-mocha: ^10.0.4
     eslint-plugin-node: ^11.1.0
     eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-react: ^7.29.4
+    eslint-plugin-react-hooks: ^4.5.0
+    eslint-plugin-tailwind: ^0.2.1
+    eslint-plugin-testing-library: ^5.3.1
     eslint-plugin-unused-imports: ^2.0.0
     ethereum-waffle: ^3.4.4
     ethereumjs-util: ^7.1.4
@@ -1734,7 +1740,7 @@ __metadata:
     ts-node: ^10.7.0
     tsconfig-paths: ^3.14.1
     typechain: ^8.1.0
-    typescript: ^4.6.4
+    typescript: 4.7.3
   languageName: unknown
   linkType: soft
 
@@ -1743,16 +1749,32 @@ __metadata:
   resolution: "@scaffold-eth/next-ts@workspace:packages/next-ts"
   dependencies:
     "@ethersproject/providers": ^5.6.8
+    "@next/eslint-plugin-next": ^12.1.6
     "@rainbow-me/rainbowkit": ^0.2.3
     "@tailwindcss/forms": ^0.5.2
     "@tailwindcss/typography": ^0.5.2
     "@types/node": 17.0.40
     "@types/react": 18.0.12
     "@types/react-dom": 18.0.5
+    "@typescript-eslint/eslint-plugin": ^5.21.0
+    "@typescript-eslint/parser": ^5.21.0
     autoprefixer: ^10.4.7
     daisyui: ^2.15.2
     eslint: 8.17.0
+    eslint-config-airbnb: ^19.0.4
+    eslint-config-airbnb-typescript: ^16.2.0
     eslint-config-next: 12.1.6
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-jest: ^26.1.5
+    eslint-plugin-jsx-a11y: ^6.5.1
+    eslint-plugin-mocha: ^10.0.4
+    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-react: ^7.29.4
+    eslint-plugin-react-hooks: ^4.5.0
+    eslint-plugin-tailwind: ^0.2.1
+    eslint-plugin-testing-library: ^5.3.1
+    eslint-plugin-unused-imports: ^2.0.0
     eth-hooks: ^4.2.21
     ethers: ^5.6.8
     next: 12.1.6
@@ -1781,7 +1803,7 @@ __metadata:
   dependencies:
     cross-env: ^7.0.3
     eslint: ^8.14.0
-    husky: ^7.0.4
+    husky: ^8.0.0
     lint-staged: ^12.4.1
     prettier: ^2.6.2
     prettier-plugin-solidity: ^1.0.0-beta.19
@@ -10555,6 +10577,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"husky@npm:^8.0.0":
+  version: 8.0.1
+  resolution: "husky@npm:8.0.1"
+  bin:
+    husky: lib/bin.js
+  checksum: 943a73a13d0201318fd30e83d299bb81d866bd245b69e6277804c3b462638dc1921694cb94c2b8c920a4a187060f7d6058d3365152865406352e934c5fff70dc
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:0.4.24, iconv-lite@npm:^0.4.24, iconv-lite@npm:^0.4.4":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -18443,7 +18474,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.7.3, typescript@npm:^4.5.4, typescript@npm:^4.6.4":
+"typescript@npm:4.7.3, typescript@npm:^4.5.4":
   version: 4.7.3
   resolution: "typescript@npm:4.7.3"
   bin:
@@ -18463,7 +18494,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.7.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.7.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.4#~builtin<compat/typescript>":
   version: 4.7.3
   resolution: "typescript@patch:typescript@npm%3A4.7.3#~builtin<compat/typescript>::version=4.7.3&hash=7ad353"
   bin:

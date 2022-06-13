@@ -43,7 +43,7 @@
     "devDependencies": {
         "cross-env": "^7.0.3",
         "eslint": "^8.14.0",
-        "husky": "^7.0.4",
+        "husky": "^8.0.0",
         "lint-staged": "^12.4.1",
         "prettier": "^2.6.2",
         "prettier-plugin-solidity": "^1.0.0-beta.19",
@@ -52,32 +52,28 @@
     },
     "lint-staged": {
         "packages/vite-app-ts/src/**/*.{ts,tsx}": [
-            "yarn workspace @scaffold-eth/vite-app lint --fix",
+            "yarn workspace @scaffold-eth/next-ts lint --fix",
             "yarn workspace @scaffold-eth/vite-app format"
         ],
         "packages/common/src/**/*.{ts,tsx}": [
-            "yarn workspace @scaffold-eth/common lint --fix",
-            "yarn workspace @scaffold-eth/common format"
+            "yarn workspace @scaffold-eth/next-ts lint --fix",
+            "yarn workspace @scaffold-eth/next-ts format"
         ],
         "packages/foundry-ts/test/**/*.ts": [
-            "yarn workspace @scaffold-eth/foundry lint --fix",
-            "yarn workspace @scaffold-eth/foundry format"
+            "yarn workspace @scaffold-eth/foundry-ts lint --fix",
+            "yarn workspace @scaffold-eth/foundry-ts format"
         ],
         "packages/foundry-ts/helpers/**/*.ts": [
-            "yarn workspace @scaffold-eth/foundry lint --fix",
-            "yarn workspace @scaffold-eth/foundry format"
+            "yarn workspace @scaffold-eth/foundry-ts lint --fix",
+            "yarn workspace @scaffold-eth/foundry-ts format"
         ],
-        "packages/foundry-ts/tasks/**/*.ts": [
-            "yarn workspace @scaffold-eth/foundry lint --fix",
-            "yarn workspace @scaffold-eth/foundry format"
-        ],
-        "packages/foundry-ts/deploy/**/*.ts": [
-            "yarn workspace @scaffold-eth/foundry lint --fix",
-            "yarn workspace @scaffold-eth/foundry format"
+        "packages/foundry-ts/scripts/**/*.ts": [
+            "yarn workspace @scaffold-eth/foundry-ts lint --fix",
+            "yarn workspace @scaffold-eth/foundry-ts format"
         ],
         "packages/foundry-ts/**/*.sol": [
-            "yarn workspace @scaffold-eth/foundry format",
-            "yarn workspace @scaffold-eth/foundry solhint --fix"
+            "yarn workspace @scaffold-eth/foundry-ts format",
+            "yarn workspace @scaffold-eth/foundry-ts solhint --fix"
         ]
     }
 }

@@ -60,7 +60,7 @@
       }
     ],
     "prettier/prettier": [
-      "warn",
+      "off",
       {
         "endOfLine": "auto"
       }

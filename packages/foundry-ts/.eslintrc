@@ -5,7 +5,7 @@
         "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
         "sourceType": "module", // Allows for the use of imports,
         "ecmaFeatures": {
-            "jsx": true // Allows for the parsing of JSX,
+            "jsx": false // Allows for the parsing of JSX,
         },
         "project": "tsconfig.json",
         "tsconfigRootDir": ".",
@@ -29,46 +29,21 @@
         "plugin:import/errors",
         "plugin:import/warnings",
         "plugin:import/typescript",
-        "plugin:react-hooks/recommended",
-        "plugin:react/recommended",
         "plugin:tailwind/recommended",
         "plugin:prettier/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "next/core-web-vitals",
-        "next",
-        "prettier",
-        "plugin:@next/next/recommended"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
-    "plugins": ["react", "react-hooks", "unused-imports", "testing-library", "prettier"],
+    "plugins": ["prettier", "unused-imports", "testing-library"],
     "rules": {
         "eqeqeq": ["error", "smart"],
-        "react/jsx-wrap-multilines": "warn",
-        "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off",
-        "react/jsx-filename-extension": "off",
-        "react/require-default-props": "off",
-        "react/jsx-one-expression-per-line": "off",
-        "react/jsx-closing-tag-location": "off",
-        "react/jsx-indent-props": "off",
-        "react/jsx-closing-bracket-location": "off",
-        "react/prop-types": "off",
-        "react-hooks/rules-of-hooks": "error",
-        "react/display-name": "off",
-        "react-hooks/exhaustive-deps": [
-            "warn",
-            {
-                "additionalHooks": "(useRecoilCallback)"
-            }
-        ],
         "prettier/prettier": [
             "off",
             {
                 "endOfLine": "auto"
             }
         ],
-
         "@typescript-eslint/ban-ts-comment": [
             "warn",
             {
@@ -102,7 +77,6 @@
         "@typescript-eslint/restrict-template-expressions": ["warn", { "allowBoolean": true, "allowNumber": true }],
         "prefer-destructuring": "off",
         "prefer-template": "off",
-        "react/destructuring-assignment": "off",
         "no-param-reassign": "error",
         "import/order": [
             "warn",
@@ -157,9 +131,7 @@
         "eslint linebreak-style": "off",
         "object-curly-newline": "off",
         "no-shadow": "off",
-        "no-void": ["error", { "allowAsStatement": true }],
-        "react/jsx-indent": ["off", 4],
-        "no-unexpected-multiline": "off"
+        "no-void": ["error", { "allowAsStatement": true }]
     },
     "overrides": [
         {
@@ -169,17 +141,6 @@
             }
         }
     ],
-    "settings": {
-        "react": {
-            "createClass": "createReactClass", // Regex for Component Factory to use,
-            // default to "createReactClass"
-            "pragma": "React", // Pragma to use, default to "React"
-            "fragment": "Fragment", // Fragment to use (may be a property of <pragma>), default to "Fragment"
-            "version": "detect" // React version. "detect" automatically picks the version you have installed.
-            // You can also use `16."off"`, `16.3`, etc, if you want to override the detected value.
-            // default to latest and warns if missing
-            // It will default to "detect" in the future
-        }
-    },
+    "settings": {},
     "reportUnusedDisableDirectives": true
 }
