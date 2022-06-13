@@ -15,6 +15,10 @@ packages/foundry-ts/
 
 Running the app
 
+# NOTE !! : Rename .env.example file to .env file 
+* using only single .env file 
+* .env file at project root is required. 
+
 1. install your dependencies
 
    ```bash
@@ -61,8 +65,7 @@ go inside ```packages/next-ts/components/configs/appContract.config.ts```  file
 * inside  appContract.config.ts  file  add your contract json, and typechain factory module
 
 2. target networks setup
-* to define rainbow kit targeted network update TARGATED_CHAINS variable
-![2022-06-12_23-13](https://user-images.githubusercontent.com/22323693/173246124-dd72cde9-38f7-4330-bca1-0edf7f69335f.png)
+* to define rainbow kit targeted networks inside .env file 
 
 * deployed contract's json file saved as ``` foundry_contracts.json``` file inside contracts dirctory
 
