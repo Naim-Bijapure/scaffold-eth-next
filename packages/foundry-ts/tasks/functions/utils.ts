@@ -15,6 +15,7 @@ export enum ProtocolState {
 
 export function getAddrs(): any {
   const json = fs.readFileSync("addresses.json", "utf8");
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const addrs = JSON.parse(json);
   return addrs;
 }

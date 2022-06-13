@@ -93,6 +93,7 @@ task("send", "Send ETH")
       };
 
       if (taskArgs.data != null) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         txRequest.data = taskArgs.data;
         debugLog(`Adding data to payload: ${txRequest.data}`);
       }
