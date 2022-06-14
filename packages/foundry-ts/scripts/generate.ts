@@ -1,30 +1,32 @@
-import { ethers } from "ethers";
 import fs from "fs";
+
 import chalk from "chalk";
-import sendBalanceToLocalAddress from "helpers/sendBalanceToLocalAddress";
+import { ethers } from "ethers";
 
+import sendBalanceToLocalAddress from "../helpers/sendBalanceToLocalAddress";
 
-async function run() {
-    // create a random wallet
+function run(): any {
+  // create a random wallet
 
-    const wallet = ethers.Wallet.createRandom();
+  const wallet = ethers.Wallet.createRandom();
 
-    const { privateKey, publicKey, address } = wallet;
-    let accountData = {
-        address,
-        publicKey,
-        privateKey,
-    };
+  const { privateKey, publicKey, address } = wallet;
+  const accountData = {
+    address,
+    publicKey,
+    privateKey,
+  };
 
-    let FILE_LOCATION = "./generated/account.json";
+  const FILE_LOCATION = "./generated/account.json";
 
-    if (fs.existsSync(FILE_LOCATION)) {
-        fs.unlinkSync(FILE_LOCATION);
-    }
+  if (fs.existsSync(FILE_LOCATION)) {
+    fs.unlinkSync(FILE_LOCATION);
+  }
 
-    fs.writeFile(FILE_LOCATION, JSON.stringify(accountData), () => {
-        console.log(chalk.whiteBright("account created with address: "), chalk.black.bgWhite(accountData.address));
-        sendBalanceToLocalAddress(accountData.address);
-    });
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  fs.writeFile(FILE_LOCATION, JSON.stringify(accountData), async (): Promise<any> => {
+    console.log(chalk.whiteBright("account created with address: "), chalk.black.bgWhite(accountData.address));
+    await sendBalanceToLocalAddress(accountData.address);
+  });
 }
 run();

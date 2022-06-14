@@ -16,7 +16,7 @@
         "dev": "yarn workspace @scaffold-eth/next-ts dev",
         "contracts:build": "yarn workspace @scaffold-eth/foundry-ts forge:build && yarn workspace @scaffold-eth/next-ts contracts:build ",
         "contracts:rebuild": "yarn workspace @scaffold-eth/foundry-ts forge:clean && yarn contracts:build",
-        "contracts:init": "yarn contracts:build && yarn deploy",
+        "contracts:init": "yarn workspace @scaffold-eth/foundry-ts forge:generate && yarn workspace @scaffold-eth/foundry-ts forge:install &&  yarn contracts:build && yarn deploy",
         "chain": "yarn workspace @scaffold-eth/foundry-ts chain",
         "fork": "yarn workspace @scaffold-eth/foundry fork",
         "test": "yarn workspace @scaffold-eth/foundry-ts forge:test",
