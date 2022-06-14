@@ -10,7 +10,6 @@ cache_hardhat/
 artifacts/
 
 generated/
-lib/
 
 #Hardhat plugin files
 typechain-types/
