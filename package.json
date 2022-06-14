@@ -71,7 +71,7 @@
             "yarn workspace @scaffold-eth/foundry-ts lint --fix",
             "yarn workspace @scaffold-eth/foundry-ts format"
         ],
-        "packages/foundry-ts/**/*.sol": [
+        "packages/foundry-ts/src/**/*.sol": [
             "yarn workspace @scaffold-eth/foundry-ts format",
             "yarn workspace @scaffold-eth/foundry-ts solhint --fix"
         ]
