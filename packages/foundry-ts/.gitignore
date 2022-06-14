@@ -10,7 +10,7 @@ cache_hardhat/
 artifacts/
 
 generated/
-# lib/
+lib/soulmate
 
 #Hardhat plugin files
 typechain-types/
