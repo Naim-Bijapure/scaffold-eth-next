@@ -1,3 +1,4 @@
-ds-test/=lib/forge-std/lib/ds-test/src/
+ds-test/=lib/soulmate/lib/ds-test/src/
 forge-std/=lib/forge-std/src/
 openzeppelin-contracts/=lib/openzeppelin-contracts/
+soulmate/=lib/soulmate/src/
