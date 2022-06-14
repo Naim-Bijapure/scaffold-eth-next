@@ -23,7 +23,7 @@
     "format:check": "yarn prettier -c ./deploy/**/*.ts ./tasks/**/*.ts ./test/**/*.ts ./helpers/**/*.ts ./src/**/*.sol ",
     "hh:watch-test": "hardhat watch compilation & hardhat watch test --network hardhat",
     "--------": "--------------Forge Commands---------------",
-    "forge:install": "forge install  --no-commit --no-git   ",
+    "forge:install": "forge install  --no-commit --no-git ",
     "forge:build": "forge build && yarn generate-types ",
     "forge:watch": "forge build --watch ",
     "forge:clean": "forge clean ",

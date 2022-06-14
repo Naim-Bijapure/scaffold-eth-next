@@ -13,6 +13,8 @@ artifacts/
 #Hardhat plugin files
 typechain-types/
 
+contracts/contract-types
+
 .next/
 .yarn
 .vercel

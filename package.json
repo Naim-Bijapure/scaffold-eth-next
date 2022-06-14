@@ -1,79 +1,80 @@
 {
-    "name": "@scaffold-eth/next-typescript",
-    "version": "0.4.0",
-    "keywords": [
-        "ethereum",
-        "react",
-        "uniswap",
-        "workspaces",
-        "yarn"
+  "name": "@scaffold-eth/next-typescript",
+  "version": "0.4.0",
+  "keywords": [
+    "ethereum",
+    "react",
+    "uniswap",
+    "workspaces",
+    "yarn"
+  ],
+  "private": true,
+  "scripts": {
+    "build": "yarn workspace @scaffold-eth/next-ts build",
+    "serve": "yarn workspace @scaffold-eth/next-ts serve",
+    "start": "yarn workspace @scaffold-eth/next-ts start",
+    "dev": "yarn workspace @scaffold-eth/next-ts dev",
+    "contracts:build": "yarn workspace @scaffold-eth/foundry-ts forge:build && yarn workspace @scaffold-eth/next-ts contracts:build ",
+    "contracts:rebuild": "yarn workspace @scaffold-eth/foundry-ts forge:clean && yarn contracts:build",
+    "contracts:init": "yarn workspace @scaffold-eth/foundry-ts forge:install &&  yarn contracts:build && yarn deploy",
+    "scafold:init": "yarn  install &&  yarn generate",
+    "chain": "yarn workspace @scaffold-eth/foundry-ts chain",
+    "fork": "yarn workspace @scaffold-eth/foundry fork",
+    "test": "yarn workspace @scaffold-eth/foundry-ts forge:test",
+    "test-watch": "yarn workspace @scaffold-eth/foundry-ts forge:watch-test",
+    "deploy": "yarn workspace  @scaffold-eth/foundry-ts forge:deploy",
+    "watch": "yarn workspace @scaffold-eth/foundry forge:watch",
+    "generate": "yarn workspace @scaffold-eth/foundry-ts forge:generate",
+    "account": "yarn workspace @scaffold-eth/foundry-ts forge:account",
+    "balance": "yarn workspace @scaffold-eth/foundry balance",
+    "prepare": "husky install",
+    "postinstall": "husky install && yarn generate",
+    "lint": "yarn workspace @scaffold-eth/next-ts lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/foundry lint --fix",
+    "vercel:deploy": "yarn workspace @scaffold-eth/next-ts vercel:deploy"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/common",
+      "packages/next-ts",
+      "packages/foundry-ts",
+      "packages/*"
+    ]
+  },
+  "packageManager": "yarn@3.2.1",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^8.14.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "sass": "^1.51.0",
+    "ts-node": "^10.7.0"
+  },
+  "lint-staged": {
+    "packages/vite-app-ts/src/**/*.{ts,tsx}": [
+      "yarn workspace @scaffold-eth/next-ts lint --fix",
+      "yarn workspace @scaffold-eth/vite-app format"
     ],
-    "private": true,
-    "scripts": {
-        "build": "yarn workspace @scaffold-eth/next-ts build",
-        "serve": "yarn workspace @scaffold-eth/next-ts serve",
-        "start": "yarn workspace @scaffold-eth/next-ts start",
-        "dev": "yarn workspace @scaffold-eth/next-ts dev",
-        "contracts:build": "yarn workspace @scaffold-eth/foundry-ts forge:build && yarn workspace @scaffold-eth/next-ts contracts:build ",
-        "contracts:rebuild": "yarn workspace @scaffold-eth/foundry-ts forge:clean && yarn contracts:build",
-        "contracts:init": "yarn workspace @scaffold-eth/foundry-ts forge:generate && yarn workspace @scaffold-eth/foundry-ts forge:install &&  yarn contracts:build && yarn deploy",
-        "chain": "yarn workspace @scaffold-eth/foundry-ts chain",
-        "fork": "yarn workspace @scaffold-eth/foundry fork",
-        "test": "yarn workspace @scaffold-eth/foundry-ts forge:test",
-        "test-watch": "yarn workspace @scaffold-eth/foundry-ts forge:watch-test",
-        "deploy": "yarn workspace  @scaffold-eth/foundry-ts forge:deploy",
-        "watch": "yarn workspace @scaffold-eth/foundry forge:watch",
-        "generate": "yarn workspace @scaffold-eth/foundry-ts forge:generate",
-        "account": "yarn workspace @scaffold-eth/foundry-ts forge:account",
-        "balance": "yarn workspace @scaffold-eth/foundry balance",
-        "prepare": "husky install",
-        "postinstall": "husky install",
-        "lint": "yarn workspace @scaffold-eth/next-ts lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/foundry lint --fix",
-        "vercel:deploy": "yarn workspace @scaffold-eth/next-ts vercel:deploy"
-    },
-    "workspaces": {
-        "packages": [
-            "packages/common",
-            "packages/next-ts",
-            "packages/foundry-ts",
-            "packages/*"
-        ]
-    },
-    "packageManager": "yarn@3.2.1",
-    "devDependencies": {
-        "cross-env": "^7.0.3",
-        "eslint": "^8.14.0",
-        "husky": "^8.0.0",
-        "lint-staged": "^12.4.1",
-        "prettier": "^2.6.2",
-        "prettier-plugin-solidity": "^1.0.0-beta.19",
-        "sass": "^1.51.0",
-        "ts-node": "^10.7.0"
-    },
-    "lint-staged": {
-        "packages/vite-app-ts/src/**/*.{ts,tsx}": [
-            "yarn workspace @scaffold-eth/next-ts lint --fix",
-            "yarn workspace @scaffold-eth/vite-app format"
-        ],
-        "packages/common/src/**/*.{ts,tsx}": [
-            "yarn workspace @scaffold-eth/next-ts lint --fix",
-            "yarn workspace @scaffold-eth/next-ts format"
-        ],
-        "packages/foundry-ts/test/**/*.ts": [
-            "yarn workspace @scaffold-eth/foundry-ts lint --fix",
-            "yarn workspace @scaffold-eth/foundry-ts format"
-        ],
-        "packages/foundry-ts/helpers/**/*.ts": [
-            "yarn workspace @scaffold-eth/foundry-ts lint --fix",
-            "yarn workspace @scaffold-eth/foundry-ts format"
-        ],
-        "packages/foundry-ts/scripts/**/*.ts": [
-            "yarn workspace @scaffold-eth/foundry-ts lint --fix",
-            "yarn workspace @scaffold-eth/foundry-ts format"
-        ],
-        "packages/foundry-ts/src/**/*.sol": [
-            "yarn workspace @scaffold-eth/foundry-ts format",
-            "yarn workspace @scaffold-eth/foundry-ts solhint --fix"
-        ]
-    }
+    "packages/common/src/**/*.{ts,tsx}": [
+      "yarn workspace @scaffold-eth/next-ts lint --fix",
+      "yarn workspace @scaffold-eth/next-ts format"
+    ],
+    "packages/foundry-ts/test/**/*.ts": [
+      "yarn workspace @scaffold-eth/foundry-ts lint --fix",
+      "yarn workspace @scaffold-eth/foundry-ts format"
+    ],
+    "packages/foundry-ts/helpers/**/*.ts": [
+      "yarn workspace @scaffold-eth/foundry-ts lint --fix",
+      "yarn workspace @scaffold-eth/foundry-ts format"
+    ],
+    "packages/foundry-ts/scripts/**/*.ts": [
+      "yarn workspace @scaffold-eth/foundry-ts lint --fix",
+      "yarn workspace @scaffold-eth/foundry-ts format"
+    ],
+    "packages/foundry-ts/src/**/*.sol": [
+      "yarn workspace @scaffold-eth/foundry-ts format",
+      "yarn workspace @scaffold-eth/foundry-ts solhint --fix"
+    ]
+  }
 }
