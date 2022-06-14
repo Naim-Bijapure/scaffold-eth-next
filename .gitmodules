@@ -1,0 +1,3 @@
+[submodule "scafold-foundry-ts"]
+	path = scafold-foundry-ts
+	url = git@github.com:Naim-Bijapure/scafold-foundry-ts.git
