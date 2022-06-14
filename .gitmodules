@@ -4,3 +4,6 @@
 [submodule "packages/foundry-ts/lib/openzeppelin-contracts"]
 	path = packages/foundry-ts/lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "packages/foundry-ts/lib/soulmate"]
+	path = packages/foundry-ts/lib/soulmate
+	url = https://github.com/Rari-Capital/solmate
