@@ -12,7 +12,7 @@ remappings = []
 # additional solc allow paths
 allow_paths = []
 # A list of deployed libraries to link against
-libraries = ['packages/hello_foundry/lib']
+libraries = []
 # Whether to cache builds or not
 cache = true
 # The cache directory if enabled
