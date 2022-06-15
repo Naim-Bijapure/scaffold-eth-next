@@ -2,7 +2,7 @@
 # The source directory
 src = 'packages/foundry-ts/src'
 # The test directory
-test = 'packages/foundry-ts/est'
+test = 'packages/foundry-ts/test'
 # The artifact directory
 out = 'packages/foundry-ts/out'
 # A list of paths to look for libraries in
