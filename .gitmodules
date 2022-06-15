@@ -1,6 +1,0 @@
-[submodule "packages/hello_foundry/lib/forge-std"]
-	path = packages/hello_foundry/lib/forge-std
-	url = https://github.com/brockelmore/forge-std
-[submodule "packages/hello_foundry/lib/solmate"]
-	path = packages/hello_foundry/lib/solmate
-	url = https://github.com/Rari-Capital/solmate
