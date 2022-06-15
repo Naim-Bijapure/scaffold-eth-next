@@ -1,0 +1,6 @@
+[default]
+src = 'packages/hello_foundry/src'
+out = 'packages/hello_foundry/out'
+libs = ['packages/hello_foundry/lib']
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config
