@@ -1,7 +1,7 @@
 [default]
-src = 'packages/hello_foundry/src'
-out = 'packages/hello_foundry/out'
-libs = ["packages/hello_foundry/lib"]
-cache_path = 'packages/hello_foundry/cache'
+src = 'packages/hello_foundry_1/src'
+out = 'packages/hello_foundry_1/out'
+libs = ["packages/hello_foundry_1/lib"]
+cache_path = 'packages/hello_foundry_1/cache'
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
