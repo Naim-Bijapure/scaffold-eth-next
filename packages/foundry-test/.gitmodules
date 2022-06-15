@@ -1,6 +1,0 @@
-[submodule "packages/foundry-test/lib/forge-std"]
-	path = packages/foundry-test/lib/forge-std
-	url = https://github.com/foundry-rs/forge-std
-[submodule "packages/foundry-test/lib/soulmate"]
-	path = packages/foundry-test/lib/soulmate
-	url = https://github.com/Rari-Capital/solmate
