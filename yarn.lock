@@ -1825,6 +1825,7 @@ __metadata:
     prettier: ^2.6.2
     prettier-plugin-solidity: ^1.0.0-beta.19
     sass: ^1.51.0
+    shx: ^0.3.4
     ts-node: ^10.7.0
   languageName: unknown
   linkType: soft

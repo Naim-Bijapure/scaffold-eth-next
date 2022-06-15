@@ -16,18 +16,19 @@
     "dev": "yarn workspace @scaffold-eth/next-ts dev",
     "contracts:build": "yarn workspace @scaffold-eth/foundry-ts forge:build && yarn workspace @scaffold-eth/next-ts contracts:build ",
     "contracts:rebuild": "yarn workspace @scaffold-eth/foundry-ts forge:clean && yarn contracts:build",
-    "contracts:init": "yarn workspace @scaffold-eth/foundry-ts forge:install  &&  yarn generate",
+    "contracts:init": "yarn forge:install  &&  yarn generate",
     "chain": "yarn workspace @scaffold-eth/foundry-ts chain",
     "fork": "yarn workspace @scaffold-eth/foundry fork",
     "test": "yarn workspace @scaffold-eth/foundry-ts forge:test",
     "test-watch": "yarn workspace @scaffold-eth/foundry-ts forge:watch-test",
-    "deploy": "yarn workspace  @scaffold-eth/foundry-ts forge:deploy",
+    "deploy": "yarn workspace @scaffold-eth/foundry-ts forge:build && yarn workspace @scaffold-eth/next-ts contracts:build && yarn workspace  @scaffold-eth/foundry-ts forge:deploy",
     "watch": "yarn workspace @scaffold-eth/foundry forge:watch",
     "generate": "yarn workspace @scaffold-eth/foundry-ts forge:generate",
     "account": "yarn workspace @scaffold-eth/foundry-ts forge:account",
     "balance": "yarn workspace @scaffold-eth/foundry balance",
     "prepare": "husky install",
     "postinstall": "husky install",
+    "forge:install": "shx rm -rf packages/foundry-ts/lib && forge install",
     "lint": "yarn workspace @scaffold-eth/next-ts lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/foundry lint --fix",
     "vercel:deploy": "yarn workspace @scaffold-eth/next-ts vercel:deploy"
   },
@@ -75,5 +76,8 @@
       "yarn workspace @scaffold-eth/foundry-ts format",
       "yarn workspace @scaffold-eth/foundry-ts solhint --fix"
     ]
+  },
+  "dependencies": {
+    "shx": "^0.3.4"
   }
 }
