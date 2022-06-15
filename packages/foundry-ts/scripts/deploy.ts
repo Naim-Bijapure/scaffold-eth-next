@@ -19,8 +19,8 @@ const args = process.argv.slice(2);
 
 const network = args.length === 0 ? ("localhost" as TNetworkNames) : (args[1] as TNetworkNames);
 console.log(chalk.blueBright(`deploying to network => ${network}`));
-const address = account.address;
-const privateKey = account.privateKey;
+const address = account.address as string;
+const privateKey = account.privateKey as string;
 // const CONTRACTS_FILE = "./generated/foundry_contracts.json";
 const CONTRACTS_FILE = "../next-ts/contracts/foundry_contracts.json";
 
