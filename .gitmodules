@@ -1,0 +1,9 @@
+[submodule "packages/foundry-ts/lib/solmate"]
+	path = packages/foundry-ts/lib/solmate
+	url = https://github.com/Rari-Capital/solmate
+[submodule "packages/foundry-ts/lib/forge-std"]
+	path = packages/foundry-ts/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "packages/foundry-ts/lib/openzeppelin-contracts"]
+	path = packages/foundry-ts/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
