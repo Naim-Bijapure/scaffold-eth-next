@@ -2,11 +2,11 @@
 # The source directory
 src = 'packages/hello_foundry/src'
 # The test directory
-test = 'tpackages/hello_foundry/est'
+test = 'packages/hello_foundry/est'
 # The artifact directory
 out = 'packages/hello_foundry/out'
 # A list of paths to look for libraries in
-libs = ['packages/hello_foundry/lib']
+libs = ["packages/hello_foundry/lib"]
 # A list of remappings
 remappings = []
 # additional solc allow paths
