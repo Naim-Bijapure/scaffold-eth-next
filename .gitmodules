@@ -1,0 +1,3 @@
+[submodule "packages/femplate"]
+	path = packages/femplate
+	url = https://github.com/abigger87/femplate
