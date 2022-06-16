@@ -9,18 +9,40 @@ import dotenv from "dotenv";
 import { ethers } from "ethers";
 
 import { DEPLOY_CONTRACTS } from "../configs";
-import account from "../generated/account.json";
+// import account from "../generated/account.json";
 import sendBalanceToLocalAddress from "../helpers/sendBalanceToLocalAddress";
+
+type accountType = {
+  address: string;
+  publicKey: string;
+  privateKey: string;
+};
 
 // load root .env file
 dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
 
 const args = process.argv.slice(2);
 
+// check account.json file
+const isAccountExist = fs.existsSync(path.resolve(__dirname, "../generated/account.json"));
+
+if (isAccountExist === false) {
+  console.log("--------");
+  console.log(chalk.bgRedBright.white("account is not generated please run > yarn generate"));
+  // @ts-ignore
+  return false;
+}
+
+// read account.json file and convert to object
+const accountData: string = fs.readFileSync(path.resolve(__dirname, "../generated/account.json")).toString();
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const account: accountType = JSON.parse(accountData);
+
 const network = args.length === 0 ? ("localhost" as TNetworkNames) : (args[1] as TNetworkNames);
 console.log(chalk.blueBright(`deploying to network => ${network}`));
-const address = account.address as string;
-const privateKey = account.privateKey as string;
+const address = account.address;
+const privateKey = account.privateKey;
 // const CONTRACTS_FILE = "./generated/foundry_contracts.json";
 const CONTRACTS_FILE = "../next-ts/contracts/foundry_contracts.json";
 
@@ -103,21 +125,28 @@ const deploy = async (contractName: string, { args }: { args: string[] }): Promi
 async function run(): Promise<any> {
   console.log(chalk.blueBright(`deploying...`));
 
-  if (network === "localhost") {
-    const localProvider = new ethers.providers.StaticJsonRpcProvider(process.env.STATIC_LOCAL_RPC);
-    const balanceBigNumber = await localProvider.getBalance(address);
-    const balance = ethers.utils.formatEther(balanceBigNumber).toString();
-    // if initial balance is zero at start
-    if (Number(balance) === 0) {
-      await sendBalanceToLocalAddress(address);
+  try {
+    if (network === "localhost") {
+      const localProvider = new ethers.providers.StaticJsonRpcProvider(process.env.STATIC_LOCAL_RPC);
+      const balanceBigNumber = await localProvider.getBalance(address);
+      const balance = ethers.utils.formatEther(balanceBigNumber).toString();
+      // if initial balance is zero at start
+      if (Number(balance) === 0) {
+        await sendBalanceToLocalAddress(address);
+      }
+
+      // const balanceBigNumber1 = await localProvider.getBalance(address);
+      // const balance1 = ethers.utils.formatEther(balanceBigNumber1).toString();
     }
 
-    // const balanceBigNumber1 = await localProvider.getBalance(address);
-    // const balance1 = ethers.utils.formatEther(balanceBigNumber1).toString();
-  }
-
-  for (const contract of DEPLOY_CONTRACTS) {
-    await deploy(contract.contractName, { args: [...contract.args] });
+    for (const contract of DEPLOY_CONTRACTS) {
+      await deploy(contract.contractName, { args: [...contract.args] });
+    }
+  } catch (error) {
+    if (network === "localhost") {
+      console.log("--------");
+      console.log(chalk.white.bgRedBright("please start foundry anvil server in new terminal run => yarn chain"));
+    }
   }
 }
 run().catch((error) => {

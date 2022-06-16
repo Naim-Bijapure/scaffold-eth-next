@@ -16,7 +16,7 @@
     "dev": "yarn workspace @scaffold-eth/next-ts dev",
     "contracts:build": "yarn workspace @scaffold-eth/foundry-ts forge:build && yarn workspace @scaffold-eth/next-ts contracts:build ",
     "contracts:rebuild": "yarn workspace @scaffold-eth/foundry-ts forge:clean && yarn contracts:build",
-    "contracts:init": "yarn forge:install  &&  yarn generate",
+    "setup": "yarn forge:install  &&  yarn generate",
     "chain": "yarn workspace @scaffold-eth/foundry-ts chain",
     "fork": "yarn workspace @scaffold-eth/foundry fork",
     "test": "yarn workspace @scaffold-eth/foundry-ts forge:test",
@@ -25,7 +25,7 @@
     "watch": "yarn workspace @scaffold-eth/foundry forge:watch",
     "generate": "yarn workspace @scaffold-eth/foundry-ts forge:generate",
     "account": "yarn workspace @scaffold-eth/foundry-ts forge:account",
-    "balance": "yarn workspace @scaffold-eth/foundry balance",
+    "-balance": "yarn workspace @scaffold-eth/foundry balance",
     "prepare": "husky install",
     "postinstall": "husky install",
     "forge:install": "shx rm -rf packages/foundry-ts/lib && forge install",
@@ -49,6 +49,7 @@
     "prettier": "^2.6.2",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "sass": "^1.51.0",
+    "shx": "^0.3.4",
     "ts-node": "^10.7.0"
   },
   "lint-staged": {
@@ -76,8 +77,5 @@
       "yarn workspace @scaffold-eth/foundry-ts format",
       "yarn workspace @scaffold-eth/foundry-ts solhint --fix"
     ]
-  },
-  "dependencies": {
-    "shx": "^0.3.4"
   }
 }
