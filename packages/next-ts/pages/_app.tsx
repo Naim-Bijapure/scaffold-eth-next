@@ -5,13 +5,11 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Layout from "../components/Layout";
 import RainbowKitWrapper from "../components/RainbowKitWrapper";
 
 // ----------
 
-import React from "react";
-
-import Layout from "../components/Layout";
 import "../styles/globals.scss";
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
