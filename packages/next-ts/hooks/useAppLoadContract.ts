@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { ethers } from "ethers";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -11,9 +12,9 @@ interface IuseAppLoadContract {
 }
 
 /** ----------------------
- * a hook to load the app contracts from  ContractsConfig
+ * a hook to loads the app contracts from  ContractsConfig
  * ---------------------*/
-const useAppLoadContract = ({ contractName }: IuseAppLoadContract): any => {
+const useAppLoadContract = ({ contractName }: IuseAppLoadContract) => {
   type factoryConnectType = typeof ContractsConfig[typeof contractName]["factory"]["connect"];
   type contractType = NonNullable<ReturnType<factoryConnectType>>;
 
