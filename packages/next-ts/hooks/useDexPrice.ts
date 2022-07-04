@@ -71,11 +71,6 @@ const useDexPrice = (): { ethPrice: number; usdPrice: number } => {
   }
 
   const fetchEthPrice = async (): Promise<any> => {
-    //   to get ens name from address
-    //     const mainnetScaffoldEthProvider = new StaticJsonRpcProvider("https://rpc.scaffoldeth.io:48544");
-    //     const addressname = await mainnetScaffoldEthProvider.lookupAddress("0x378D26155E4F3a5c24240aB2199616aadfbD4bCa");
-    //     console.log("addressname: ", addressname);
-
     //     uniswap sdk
 
     const poolAddress = process.env.NEXT_PUBLIC_UNISWAP_POOL_ADDRESS as string;
@@ -108,7 +103,7 @@ const useDexPrice = (): { ethPrice: number; usdPrice: number } => {
      * update state only on price change
      * ---------------------*/
     if (fetchedEthPrice !== ethPriceRef.current) {
-      console.log("price changed... ");
+      // console.log("price changed... ");
       ethPriceRef.current = fetchedEthPrice;
       usdPriceRef.current = fetchedUsdPrice;
       setToggle((preToggle) => !preToggle);
@@ -117,7 +112,7 @@ const useDexPrice = (): { ethPrice: number; usdPrice: number } => {
       // if no price changed call again same function recursively
       setTimeout(() => {
         void fetchEthPrice();
-      }, 1000);
+      }, 10000);
     }
   };
 
@@ -132,7 +127,7 @@ const useDexPrice = (): { ethPrice: number; usdPrice: number } => {
     if (ethPriceRef.current !== 0) {
       setEthPrice(ethPriceRef.current);
       setUsdPrice(usdPriceRef.current);
-      //       caching the state in local storage
+      // caching the state in local storage
       localStorage.setItem(
         "dexPrice",
         JSON.stringify({ ethPrice: ethPriceRef.current, usdPrice: usdPriceRef.current })
