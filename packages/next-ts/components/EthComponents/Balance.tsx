@@ -14,11 +14,14 @@ const Balance = ({ address, price, provider }: IBalance): any => {
   const [ethBalance, setEthBalance] = useState(0);
 
   const loadBalance = async (): Promise<any> => {
-    const ethBalance = await provider.getBalance(address);
-    const formatedBalance = +formatEther(ethBalance.toString());
-    setEthBalance(formatedBalance);
-    const usdBalance = formatedBalance * price;
-    setUsdBalance(usdBalance);
+    console.log("address: ", address);
+    if (address !== undefined) {
+      const ethBalance = await provider.getBalance(address);
+      const formatedBalance = +formatEther(ethBalance.toString());
+      setEthBalance(formatedBalance);
+      const usdBalance = formatedBalance * price;
+      setUsdBalance(usdBalance);
+    }
   };
   useEffect(() => {
     void loadBalance();
