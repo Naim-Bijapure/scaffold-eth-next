@@ -12,7 +12,8 @@ if (["linux", "darwin"].includes(platform)) {
     await spinner("wait downloading foundry", () => $`curl -L https://foundry.paradigm.xyz | bash`);
     console.log(chalk.blue("installing foundry"));
 
-    await $`/root/.foundry/bin/foundryup`;
+    // await $`/root/.foundry/bin/foundryup`;
+    await $`~/.foundry/bin/foundryup`;
 
     console.log(chalk.green("foundry installed successfully"));
 
@@ -35,7 +36,7 @@ if (["linux", "darwin"].includes(platform)) {
 
   if (isFoundryExist === true) {
     console.log(chalk.green("foundry already installed updating"));
-    await $`/root/.foundry/bin/foundryup`;
+    await $`~/.foundry/bin/foundryup`;
     console.log(chalk.green("foundry updated successfully"));
 
     await $`zx  help.mjs`;
