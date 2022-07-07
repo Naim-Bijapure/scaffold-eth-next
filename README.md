@@ -31,7 +31,7 @@ Running the app
    it will install or update foundry 
    also it will install project dependencies
 
-2. start a foundry node
+2. start a foundry node `open a new command prompt`
 
    ```bash
    yarn chain
