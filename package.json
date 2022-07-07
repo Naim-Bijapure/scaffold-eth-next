@@ -16,12 +16,13 @@
     "dev": "yarn workspace @scaffold-eth/next-ts dev",
     "contracts:build": "yarn workspace @scaffold-eth/foundry-ts forge:build && yarn workspace @scaffold-eth/next-ts contracts:build ",
     "contracts:rebuild": "yarn workspace @scaffold-eth/foundry-ts forge:clean && yarn contracts:build",
-    "setup": "yarn forge:install  &&  yarn generate",
+    "setup": "yarn install && yarn foundry:install && yarn forge:install",
     "chain": "yarn workspace @scaffold-eth/foundry-ts chain",
+    "deploy": "yarn workspace @scaffold-eth/foundry-ts forge:build && yarn workspace @scaffold-eth/next-ts contracts:build && yarn workspace  @scaffold-eth/foundry-ts forge:deploy",
+    "vercel:deploy": "yarn workspace @scaffold-eth/next-ts vercel:deploy",
     "fork": "yarn workspace @scaffold-eth/foundry fork",
     "test": "yarn workspace @scaffold-eth/foundry-ts forge:test",
     "test-watch": "yarn workspace @scaffold-eth/foundry-ts forge:watch-test",
-    "deploy": "yarn workspace @scaffold-eth/foundry-ts forge:build && yarn workspace @scaffold-eth/next-ts contracts:build && yarn workspace  @scaffold-eth/foundry-ts forge:deploy",
     "watch": "yarn workspace @scaffold-eth/foundry forge:watch",
     "generate": "yarn workspace @scaffold-eth/foundry-ts forge:generate",
     "account": "yarn workspace @scaffold-eth/foundry-ts forge:account",
@@ -29,8 +30,9 @@
     "prepare": "husky install",
     "postinstall": "husky install",
     "forge:install": "shx rm -rf packages/foundry-ts/lib && forge install",
-    "lint": "yarn workspace @scaffold-eth/next-ts lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/foundry lint --fix",
-    "vercel:deploy": "yarn workspace @scaffold-eth/next-ts vercel:deploy"
+    "foundry:install": "yarn workspace @scaffold-eth/foundry-ts foundry:install",
+    "scafold:help": "yarn workspace @scaffold-eth/foundry-ts foundry:help",
+    "lint": "yarn workspace @scaffold-eth/next-ts lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/foundry lint --fix"
   },
   "workspaces": {
     "packages": [

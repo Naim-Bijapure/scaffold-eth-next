@@ -19,11 +19,17 @@ Running the app
 * using only single .env file 
 * .env file at project root is required. 
 
+0. print all the basic project commands 
+    ```bash
+    yarn scafold:help
+    ```
 1. install your dependencies
 
    ```bash
-   yarn install
+   yarn setup 
    ```
+   it will install or update foundry 
+   also it will install project dependencies
 
 2. start a foundry node
 
@@ -35,7 +41,7 @@ Running the app
 
    ```bash
    # build foundry & external contracts types
-   yarn contracts:init 
+   yarn contracts:build
    # deploy your foundry contracts
    yarn deploy --network xx (without --network it will deploy on localhost)
    # start the app
