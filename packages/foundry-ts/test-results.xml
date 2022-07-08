@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.0030" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-07-08T11:40:35" tests="0" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Color Code Converter" timestamp="2022-07-08T11:40:35" tests="0" file="/usr/src/app/Web3/scafold-eth-next/packages/foundry-ts/test/YourContract.test.ts" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="RGB to Hex conversion" timestamp="2022-07-08T11:40:35" tests="1" file="/usr/src/app/Web3/scafold-eth-next/packages/foundry-ts/test/YourContract.test.ts" time="0.0020" failures="0">
+    <testcase name="Color Code Converter RGB to Hex conversion converts the basic colors" time="0.0010" classname="converts the basic colors">
+    </testcase>
+  </testsuite>
+  <testsuite name="Hex to RGB conversion" timestamp="2022-07-08T11:40:35" tests="1" file="/usr/src/app/Web3/scafold-eth-next/packages/foundry-ts/test/YourContract.test.ts" time="0.0000" failures="0">
+    <testcase name="Color Code Converter Hex to RGB conversion converts the basic colors" time="0.0000" classname="converts the basic colors">
+    </testcase>
+  </testsuite>
+</testsuites>
