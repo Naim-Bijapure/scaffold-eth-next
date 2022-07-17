@@ -1,4 +1,11 @@
 {
+    "4": {
+        "contracts": {
+            "YourContract": {
+                "address": "0xbbd3d9da3abb32d81732ef64973bfcf1ab4a4b01"
+            }
+        }
+    },
     "31337": {
         "contracts": {
             "YourContract": {

@@ -5,6 +5,8 @@ import { useCallback, useEffect, useState } from "react";
 import Address from "../components/EthComponents/Address";
 import transcactor, { ContractTransactionType } from "../functions/transcactor";
 import useAppLoadContract from "../hooks/useAppLoadContract";
+import DebugContract from "../components/DebugContract";
+import DebugContractProvider from "../components/DebugContract/store/DebugContractProvider";
 
 const Debug: NextPage = () => {
   const [purpose, setPurpose] = useState<string>("");
@@ -34,7 +36,7 @@ const Debug: NextPage = () => {
   return (
     <>
       <main className="flex flex-col items-center justify-center">
-        <div className="m-2 border-2 shadow-md card lg:w-1/3">
+        {/* <div className="m-2 border-2 shadow-md card lg:w-1/3">
           <div className="card-body ">
             <span className="flex justify-between card-title">
               <div>YourContract</div>
@@ -63,7 +65,10 @@ const Debug: NextPage = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
+        <DebugContractProvider>
+          <DebugContract />
+        </DebugContractProvider>
       </main>
     </>
   );

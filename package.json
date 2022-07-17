@@ -78,8 +78,7 @@
       "yarn workspace @scaffold-eth/foundry-ts format"
     ],
     "packages/foundry-ts/src/**/*.sol": [
-      "yarn workspace @scaffold-eth/foundry-ts format",
-      "yarn workspace @scaffold-eth/foundry-ts solhint --fix"
+      "yarn workspace @scaffold-eth/foundry-ts format"
     ]
   }
 }

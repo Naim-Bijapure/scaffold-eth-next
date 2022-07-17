@@ -1804,6 +1804,7 @@ __metadata:
     react-blockies: ^1.4.1
     react-copy-to-clipboard: ^5.1.0
     react-dom: 18.1.0
+    react-hook-form: ^7.33.1
     react-icons: ^4.4.0
     react-loader-spinner: ^5.1.5
     react-toastify: ^9.0.4
@@ -15830,6 +15831,15 @@ __metadata:
   peerDependencies:
     react: ^16.14.0
   checksum: 5a5c49da0f106b2655a69f96c622c347febcd10532db391c262b26aec225b235357d9da1834103457683482ab1b229af7a50f6927a6b70e53150275e31785544
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.33.1":
+  version: 7.33.1
+  resolution: "react-hook-form@npm:7.33.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: ec8f938b5af32148956edc9a87b6a0a99cc305617925608961cf4352ad1a786daea9fdc4d15106aea2821937d27367a69ab525882f07c0bb7ea45fba5dbf8ff2
   languageName: node
   linkType: hard
 
