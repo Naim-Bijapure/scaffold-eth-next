@@ -10,6 +10,7 @@ const nextConfig = {
   //   eslint: {
   //     ignoreDuringBuilds: true,
   //   },
+  strictMode: true,
 };
 
 module.exports = nextConfig;
