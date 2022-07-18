@@ -1,15 +1,15 @@
-import { BigNumberish } from "ethers";
-import { formatEther } from "ethers/lib/utils";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useAccount, useBalance } from "wagmi";
 
 import useAppLoadContract from "../hooks/useAppLoadContract";
+
 const Home: NextPage = () => {
   const [contractPurpose, setContractPurpose] = useState<string>("");
 
-  const { data: accountData, isLoading } = useAccount();
+  const { data: accountData, isLoading, isSuccess, status, isFetched } = useAccount();
+  console.log("isSuccess: ", accountData, isSuccess, isFetched);
   const { data } = useBalance({ addressOrName: accountData?.address });
 
   const YourContract = useAppLoadContract({
@@ -24,6 +24,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     void getPurpose();
   }, [YourContract, getPurpose]);
+
 
   return (
     <>
@@ -57,8 +58,8 @@ const Home: NextPage = () => {
         <div className="m-2">
           <span className="mx-2">🤖</span>
           An example to get your balance from wagmi hooks for your account
-          <span className="mx-2 bg-base-200">{accountData?.address}</span>
-          balance : <span className="mx-2 bg-base-200">{data && formatEther(data?.value as BigNumberish)} eth</span>
+          {isSuccess && accountData && <span className="mx-2 bg-base-200">{accountData?.address}</span>}
+          {/* balance : <span className="mx-2 bg-base-200">{data && formatEther(data?.value as BigNumberish)} eth</span> */}
         </div>
         <div className="m-2">
           <span className="mx-2">💭</span>

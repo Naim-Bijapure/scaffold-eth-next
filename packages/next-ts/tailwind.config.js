@@ -7,7 +7,8 @@ module.exports = {
         themes: [
             {
                 light: {
-                    ...require("daisyui/src/colors/themes")["[data-theme=cupcake]"],
+                    // ...require("daisyui/src/colors/themes")["[data-theme=cupcake]"],
+                    ...require("daisyui/src/colors/themes")["[data-theme=winter]"],
                 },
             },
             {

@@ -17,17 +17,10 @@ interface IFunctionInputForm {
   methodName;
   inputData: any[];
   loadedContract: any;
-  isDict: boolean;
   isPayable: boolean;
 }
 
-const FunctionInputForm: React.FC<IFunctionInputForm> = ({
-  methodName,
-  inputData,
-  loadedContract,
-  isDict,
-  isPayable,
-}) => {
+const FunctionInputForm: React.FC<IFunctionInputForm> = ({ methodName, inputData, loadedContract, isPayable }) => {
   const [state, dispatch] = useDebugContractStore();
   const {
     register,
@@ -37,7 +30,6 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({
     reset,
   } = useForm<any>();
 
-  const [dictValue, setDictValue] = useState<any>();
   const [outputData, setOutputData] = useState<any>();
 
   //   call contract function
@@ -45,44 +37,28 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({
     /** ----------------------
      * on method call
      * ---------------------*/
-    if (isDict === false) {
-      const value = data["txValue"];
-      delete data["txValue"];
-      const argumets = Object.values(data as { any });
-      console.log("argumets: ", argumets, value);
-      let tx, rcpt;
+    const value = data["txValue"];
+    delete data["txValue"];
+    const argumets = Object.values(data as { any });
+    console.log("argumets: ", argumets, value);
+    let tx, rcpt;
 
-      if (isPayable) {
-        tx = await loadedContract[methodName](
-          ...argumets,
-          value !== undefined && { value: ethers.utils.parseEther(String(value)) }
-        );
-        rcpt = await tx.wait();
-        setOutputData({ [methodName]: JSON.stringify(rcpt, null, 4) });
-      }
-
-      if (isPayable === false) {
-        tx = await loadedContract[methodName](...argumets);
-        if (tx.wait) {
-          rcpt = await tx.wait();
-          setOutputData({ [methodName]: JSON.stringify(rcpt, null, 4) });
-        } else {
-          setOutputData({ [methodName]: JSON.stringify(tx, null, 4) });
-        }
-      }
+    if (isPayable) {
+      tx = await loadedContract[methodName](
+        ...argumets,
+        value !== undefined && { value: ethers.utils.parseEther(String(value)) }
+      );
+      rcpt = await tx.wait();
+      setOutputData({ [methodName]: JSON.stringify(rcpt, null, 4) });
     }
 
-    /** ----------------------
-     * on dictionary  or array value fetch
-     * ---------------------*/
-    if (isDict === true) {
-      try {
-        const argumets = Object.values(data as { any });
-        const value = await loadedContract[methodName](...argumets);
-
-        setDictValue(value.toString());
-      } catch (error) {
-        console.log("error: ", error);
+    if (isPayable === false) {
+      tx = await loadedContract[methodName](...argumets);
+      if (tx.wait) {
+        rcpt = await tx.wait();
+        setOutputData({ [methodName]: JSON.stringify(rcpt, null, 4) });
+      } else {
+        setOutputData({ [methodName]: JSON.stringify(tx, null, 4) });
       }
     }
 
@@ -94,41 +70,40 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col   form-control card card-body card-bordered shadow-sm">
-        <div className={`card-title ${isDict && "hidden"}`}>{methodName}</div>
+        className="flex flex-col border-4 form-control card card-body card-bordered shadow-sm border-base-300">
+        <div className={`card-title `}>{methodName}</div>
         {/* if the input is function */}
-        {isDict === false &&
-          inputData.map((data, index) => {
-            return (
-              <React.Fragment key={index}>
-                <label className="mt-2 input-group">
-                  <input
-                    type={data.type.includes("uint") ? "number" : "text"}
-                    placeholder={data.type}
-                    {...register(data.name, { required: true, valueAsNumber: data.type.includes("uint") })}
-                    className="max-w-xs  input input-bordered"
-                  />
-                  <span>{data.name}</span>
-                </label>
-                <div>{errors[data.name] && <span className="text-red-500">This field is required</span>}</div>
+        {inputData.map((data, index) => {
+          return (
+            <React.Fragment key={index}>
+              <label className="mt-2 input-group">
+                <input
+                  type={data.type.includes("uint") ? "number" : "text"}
+                  placeholder={data.type}
+                  {...register(data.name, { required: true, valueAsNumber: data.type.includes("uint") })}
+                  className="max-w-xs  input input-bordered"
+                />
+                <span>{data.name}</span>
+              </label>
+              <div>{errors[data.name] && <span className="text-red-500">This field is required</span>}</div>
 
-                {outputData && outputData[methodName] && (
-                  <div tabIndex={0} className="border collapse collapse-arrow border-base-300 bg-base-100 rounded-box">
-                    <div className="text-xl font-medium collapse-title">Output </div>
-                    <div className="collapse-content">
-                      <p>
-                        <div className="mockup-code">
-                          <pre data-prefix=">">
-                            <code>{outputData[methodName]}</code>
-                          </pre>
-                        </div>
-                      </p>
-                    </div>
+              {outputData && outputData[methodName] && (
+                <div tabIndex={0} className="border collapse collapse-arrow border-base-300 bg-base-100 rounded-box">
+                  <div className="text-xl font-medium collapse-title">Output </div>
+                  <div className="collapse-content">
+                    <p>
+                      <div className="mockup-code">
+                        <pre data-prefix=">">
+                          <code>{outputData[methodName]}</code>
+                        </pre>
+                      </div>
+                    </p>
                   </div>
-                )}
-              </React.Fragment>
-            );
-          })}
+                </div>
+              )}
+            </React.Fragment>
+          );
+        })}
 
         {isPayable && (
           <>
@@ -146,53 +121,83 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({
           </>
         )}
 
-        {/* if the input is dict or array */}
-        {isDict === true &&
-          inputData.map((data, index) => {
-            return (
-              <React.Fragment key={index}>
-                {/* <label className="label">
-                  <span className="label-text bd-red">{methodName}</span>
-                  <span className="mx-2 label-text-alt">Alt label</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder={data.type}
-                  {...register(methodName, { required: true })}
-                  className="w-full max-w-xs input input-bordered"
-                />
-                <div>{errors[methodName] && <span>This field is required</span>}</div> */}
-                <div className="form-control ">
-                  <label className="input-group input-group-vertical">
-                    <span className="justify-center p-2">{methodName}</span>
-                    <input
-                      type="text"
-                      placeholder={`Enter ${data.type} value`}
-                      {...register(methodName, { required: true })}
-                      className="w-full max-w-xs input input-bordered "
-                    />
-                    <input
-                      type="text"
-                      value={dictValue}
-                      className={`input input-bordered ${dictValue ? "block" : "hidden"}`}
-                      disabled
-                    />
-                    <button type="submit" className="btn btn-primary ">
-                      Send
-                    </button>
-                  </label>
-                </div>
-              </React.Fragment>
-            );
-          })}
+        <div className="justify-end card-actions">
+          <button type="submit" className="btn btn-primary ">
+            Send
+          </button>
+        </div>
+      </form>
+    </>
+  );
+};
 
-        {isDict === false && (
-          <div className="justify-end card-actions">
-            <button type="submit" className="btn btn-primary ">
-              Send
-            </button>
-          </div>
-        )}
+interface IDictInput {
+  methodName;
+  inputData: any[];
+  loadedContract: any;
+}
+const DictInput: React.FC<IDictInput> = ({ methodName, inputData, loadedContract }) => {
+  const [state, dispatch] = useDebugContractStore();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<any>();
+
+  const [dictValue, setDictValue] = useState<any>();
+  const [outputData, setOutputData] = useState<any>();
+
+  //   call contract function
+  const onSubmit: SubmitHandler<any> = async (data) => {
+    /** ----------------------
+     * on dictionary  or array value fetch
+     * ---------------------*/
+    try {
+      const argumets = Object.values(data as { any });
+      const value = await loadedContract[methodName](...argumets);
+
+      setDictValue(value.toString());
+    } catch (error) {
+      console.log("error: ", error);
+    }
+
+    reset();
+    dispatch({ payload: { refreshContract: !state.refreshContract } });
+  };
+
+  return (
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col  form-control card card-body card-bordered shadow-sm ">
+        {inputData.map((data, index) => {
+          return (
+            <React.Fragment key={index}>
+              <div className="form-control ">
+                <label className="input-group input-group-vertical">
+                  <span className="justify-center p-2">{methodName}</span>
+                  <input
+                    type="text"
+                    placeholder={`Enter ${data.type} value`}
+                    {...register(methodName, { required: true })}
+                    className="w-full max-w-xs input input-bordered "
+                  />
+                  <input
+                    type="text"
+                    value={dictValue}
+                    className={`input input-bordered ${dictValue ? "block" : "hidden"}`}
+                    disabled
+                  />
+                  <button type="submit" className="btn btn-primary ">
+                    Send
+                  </button>
+                </label>
+              </div>
+            </React.Fragment>
+          );
+        })}
       </form>
     </>
   );
@@ -304,7 +309,7 @@ const Index: React.FC = () => {
         </div>
 
         {/* variables */}
-        <div className="mt-2 bd--red card card-body card-bordered">
+        <div className="mt-2 border-4 border-base-300  card card-body card--bordered">
           <div className="card-title">Variables</div>
           <div className="overflow-x-auto">
             <table className="table w-full text-sm table-">
@@ -321,7 +326,7 @@ const Index: React.FC = () => {
                       <tr className="" key={index}>
                         <td>{data.name}</td>
                         <td>
-                          <span className="p-2 bg-gray-300 rounded-lg">
+                          <span className="p-2 rounded-lg bg-base-300">
                             {contractViewData !== undefined && contractViewData[data.name as string]}
                           </span>
                         </td>
@@ -333,7 +338,7 @@ const Index: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-start mt-2 card card-body card-bordered ">
+        <div className="flex flex-wrap justify-start mt-2 border-4 border-base-300 card card-body card-bordered">
           <div className="card-title">Dictionary and array</div>
           {/* <div>dictionary and array</div> */}
 
@@ -343,20 +348,14 @@ const Index: React.FC = () => {
                 return (
                   <div key={index} className="w-full">
                     {/* <div>{data.name}</div> */}
-                    <FunctionInputForm
-                      isPayable={false}
-                      isDict={true}
-                      methodName={data.name}
-                      inputData={data.inputs}
-                      loadedContract={loadedContract}
-                    />
+                    <DictInput methodName={data.name} inputData={data.inputs} loadedContract={loadedContract} />
                   </div>
                 );
               })}
           </div>
         </div>
       </div>
-      <div className="divider lg:divider-horizontal "></div>
+      {/* <div className="divider lg:divider-horizontal "></div> */}
 
       {/* functions */}
       <div className="w-auto lg:w-[45%] bd--red">
@@ -368,7 +367,6 @@ const Index: React.FC = () => {
                 <div key={index} className="card- card--body card--bordered">
                   {/* <div className="card-title">{data.name}</div> */}
                   <FunctionInputForm
-                    isDict={false}
                     methodName={data.name}
                     inputData={data.inputs}
                     loadedContract={loadedContract}
