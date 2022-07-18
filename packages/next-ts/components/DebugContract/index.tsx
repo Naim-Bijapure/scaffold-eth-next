@@ -70,61 +70,71 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({ methodName, inputData
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col border-4 form-control card card-body card-bordered shadow-sm border-base-300">
-        <div className={`card-title `}>{methodName}</div>
+        // className="flex flex--col border--2 form-control card card-body card-bordered shadow-sm border-base-300">
+        className="flex flex-row items-start justify-between  form-control  card card-body card-bordered">
+        {/* <div className={`card--title `}>{methodName}</div> */}
+        <div className={`mt-2 opacity-70 font-bold`}>{methodName}</div>
         {/* if the input is function */}
-        {inputData.map((data, index) => {
-          return (
-            <React.Fragment key={index}>
-              <label className="mt-2 input-group">
-                <input
-                  type={data.type.includes("uint") ? "number" : "text"}
-                  placeholder={data.type}
-                  {...register(data.name, { required: true, valueAsNumber: data.type.includes("uint") })}
-                  className="max-w-xs  input input-bordered"
-                />
-                <span>{data.name}</span>
-              </label>
-              <div>{errors[data.name] && <span className="text-red-500">This field is required</span>}</div>
+        <div className="flex flex-col  justify-end">
+          <div className="flex flex-col items-end justify-end ">
+            {inputData.map((data, index) => {
+              return (
+                <div key={index}>
+                  <label className="mt-2 input-group">
+                    <input
+                      type={data.type.includes("uint") ? "number" : "text"}
+                      placeholder={data.type}
+                      {...register(data.name, { required: true, valueAsNumber: data.type.includes("uint") })}
+                      className="max-w-xs  input input-bordered"
+                    />
+                    <span>{data.name}</span>
+                  </label>
+                  <div>{errors[data.name] && <span className="text-red-500">This field is required</span>}</div>
 
-              {outputData && outputData[methodName] && (
-                <div tabIndex={0} className="border collapse collapse-arrow border-base-300 bg-base-100 rounded-box">
-                  <div className="text-xl font-medium collapse-title">Output </div>
-                  <div className="collapse-content">
-                    <p>
-                      <div className="mockup-code">
-                        <pre data-prefix=">">
-                          <code>{outputData[methodName]}</code>
-                        </pre>
+                  {outputData && outputData[methodName] && (
+                    <div
+                      tabIndex={0}
+                      className="mt-2 border collapse collapse-arrow border-base-300 bg-base-100 rounded-box">
+                      <div className="text-xl font-medium collapse-title">Output </div>
+                      <div className="collapse-content">
+                        <p>
+                          <div className="mockup-code">
+                            <pre data-prefix=">">
+                              <code>{outputData[methodName]}</code>
+                            </pre>
+                          </div>
+                        </p>
                       </div>
-                    </p>
-                  </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </React.Fragment>
-          );
-        })}
+              );
+            })}
+          </div>
 
-        {isPayable && (
-          <>
-            <label className="mt-2 input-group">
-              <input
-                type="number"
-                step={0.00001}
-                placeholder={"Enter transaction value in eth"}
-                {...register("txValue", { required: true, valueAsNumber: true })}
-                className="w-full max-w-xs input input-bordered"
-              />
-              <span>Eth</span>
-            </label>
-            <div>{errors["txValue"] && <span className="text-red-500">This field is required</span>}</div>
-          </>
-        )}
+          <div>
+            {isPayable && (
+              <>
+                <label className="mt-2 input-group">
+                  <input
+                    type="number"
+                    step={0.00001}
+                    placeholder={"Enter transaction value in eth"}
+                    {...register("txValue", { required: true, valueAsNumber: true })}
+                    className="w-full max-w-xs input input-bordered"
+                  />
+                  <span>Eth</span>
+                </label>
+                <div>{errors["txValue"] && <span className="text-red-500">This field is required</span>}</div>
+              </>
+            )}
+          </div>
 
-        <div className="justify-end card-actions">
-          <button type="submit" className="btn btn-primary ">
-            Send
-          </button>
+          <div className="justify-end my-2 card-actions">
+            <button type="submit" className="btn btn-primary ">
+              Send
+            </button>
+          </div>
         </div>
       </form>
     </>
@@ -285,7 +295,7 @@ const Index: React.FC = () => {
     );
 
   return (
-    <div className="flex flex-col lg:justify-around lg:w-[100%] lg:flex-row ">
+    <div className="flex flex-col lg:justify-around lg-:w-[100%] lg-:flex-row ">
       {/* <button
         className="btn btn-primary"
         // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -296,7 +306,7 @@ const Index: React.FC = () => {
         test
       </button> */}
 
-      <div className="w-auto bd--red lg:w-[40%]">
+      <div className="w-auto bd--red lg-:w-[40%]">
         {/* contract info */}
         <div className="flex items-center justify-around">
           <div className="text-xl font-bold flex--1">{contractName}</div>
@@ -309,7 +319,7 @@ const Index: React.FC = () => {
         </div>
 
         {/* variables */}
-        <div className="mt-2 border-4 border-base-300  card card-body card--bordered">
+        <div className="mt-2 border--4 border-base-300  card card-body card--bordered">
           <div className="card-title">Variables</div>
           <div className="overflow-x-auto">
             <table className="table w-full text-sm table-">
@@ -338,7 +348,7 @@ const Index: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-start mt-2 border-4 border-base-300 card card-body card-bordered">
+        <div className="flex flex-wrap items-center justify-center mt-2 border--4 border-base-300 card card-body card-bordered">
           <div className="card-title">Dictionary and array</div>
           {/* <div>dictionary and array</div> */}
 
@@ -346,7 +356,7 @@ const Index: React.FC = () => {
             {contractDicts &&
               contractDicts.map((data, index) => {
                 return (
-                  <div key={index} className="w-full">
+                  <div key={index} className="w-full mt-2">
                     {/* <div>{data.name}</div> */}
                     <DictInput methodName={data.name} inputData={data.inputs} loadedContract={loadedContract} />
                   </div>
@@ -358,7 +368,7 @@ const Index: React.FC = () => {
       {/* <div className="divider lg:divider-horizontal "></div> */}
 
       {/* functions */}
-      <div className="w-auto lg:w-[45%] bd--red">
+      <div className="w-auto lg-:w-[45%] bd--red">
         <div className="card card-body card-bordered">
           <div className="card-title">Methods</div>
           {contractFunctions &&
