@@ -4,58 +4,66 @@
 
 html,
 body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-        Helvetica Neue, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @layer utilities {
-    .bd-red {
-        border: 1px solid red;
-    }
+  .bd-red {
+    border: 1px solid red;
+  }
 
-    .bd-blue {
-        border: 1px solid blue;
-    }
+  .bd-blue {
+    border: 1px solid blue;
+  }
 
-    .highlight {
-        @apply bg-base-100 mx-2 font-bold;
+  .highlight {
+    @apply bg-base-100 mx-2 font-bold;
+  }
+  .info-block {
+    div {
+      @apply mt-4;
     }
-    .info-block {
-        div {
-            @apply mt-4;
-        }
-        span {
-            @apply mx-2;
-        }
+    span {
+      @apply mx-2;
     }
+  }
 }
 
 // BLOCKIES OVERRIDE
 .blockies {
-    canvas {
-        border-radius: 10px;
-    }
+  canvas {
+    border-radius: 10px;
+  }
 }
 
 // TOASTIFY OVERRIDE
 .Toastify__toast-theme--light {
-    border-radius: 10px;
-    // border-right: 10px solid rgb(146, 146, 242);
+  border-radius: 10px;
+  // border-right: 10px solid rgb(146, 146, 242);
 }
 
 .Toastify__toast-theme--dark {
-    border-radius: 10px;
-    // border-right: 10px solid blue;
-    background-color: rgb(42, 42, 42);
+  border-radius: 10px;
+  // border-right: 10px solid blue;
+  background-color: rgb(42, 42, 42);
+}
+
+.rc-collapse {
+  background-color: transparent !important;
+  border-radius: 10px !important;
+}
+.rc-collapse-item {
+  //   border: 1px solid red;
 }

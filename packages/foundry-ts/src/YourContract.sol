@@ -79,6 +79,14 @@ contract YourContract {
     return "cool this is payable ";
   }
 
+  function setAddresses(
+    address ownerAddress,
+    address yourAddress,
+    address diffAddress
+  ) public payable returns (string memory) {
+    return "cool this is payable ";
+  }
+
   // to support receiving ETH by default
   receive() external payable {}
 

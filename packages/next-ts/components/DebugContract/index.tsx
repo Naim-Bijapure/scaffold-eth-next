@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import { StaticJsonRpcProvider } from "@ethersproject/providers";
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,6 +10,7 @@ import { useProvider } from "wagmi";
 
 import { YourContract__factory } from "../../contracts/contract-types";
 import useAppLoadContract from "../../hooks/useAppLoadContract";
+import { Sleep } from "../configs/utils";
 import Address from "../EthComponents/Address";
 
 import { useDebugContractStore } from "./store/useDebugContractStore";
@@ -18,22 +20,63 @@ interface IFunctionInputForm {
   inputData: any[];
   loadedContract: any;
   isPayable: boolean;
+  mainProvider: StaticJsonRpcProvider;
 }
 
-const FunctionInputForm: React.FC<IFunctionInputForm> = ({ methodName, inputData, loadedContract, isPayable }) => {
+const FunctionInputForm: React.FC<IFunctionInputForm> = ({
+  methodName,
+  inputData,
+  loadedContract,
+  isPayable,
+  mainProvider,
+}) => {
   const [state, dispatch] = useDebugContractStore();
+  const [isEnsLoading, setIsEnsLoading] = useState(false);
+  const [outputData, setOutputData] = useState<any>();
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<any>();
 
-  const [outputData, setOutputData] = useState<any>();
+  useEffect(() => {
+    const multipleSubscriptions = {};
+    inputData.map((data) => {
+      if (data.type === "address") {
+        multipleSubscriptions[data.name] = watch(async (data, { name, type }) => {
+          if (data[name as string]?.includes(".eth")) {
+            await Sleep(500);
+            setValue(name as string, "");
+            setIsEnsLoading(() => true);
+            const ensName = data[name as string];
+            const ensAddress = await mainProvider.resolveName(ensName as string);
+            setValue(name as string, ensAddress);
+            setIsEnsLoading(() => false);
+          }
+        });
+      }
+    });
+
+    console.log("multipleSubscriptions: ", multipleSubscriptions);
+
+    return () => {
+      inputData.map((data) => {
+        if (data.type === "address") {
+          multipleSubscriptions[data.name]?.unsubscribe();
+        }
+      });
+    };
+  }, []);
 
   //   call contract function
   const onSubmit: SubmitHandler<any> = async (data) => {
+    // const ens = await mainProvider.resolveName("naimbijapure.eth");
+    // console.log("ens: ", ens);
+
     /** ----------------------
      * on method call
      * ---------------------*/
@@ -67,46 +110,30 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({ methodName, inputData
   };
 
   return (
-    <>
+    <div className="card card-body card-bordered">
       <form
         onSubmit={handleSubmit(onSubmit)}
         // className="flex flex--col border--2 form-control card card-body card-bordered shadow-sm border-base-300">
-        className="flex flex-row items-start justify-between  form-control  card card-body card-bordered">
+        className="flex flex-row items-start justify-between  form-control   ">
         {/* <div className={`card--title `}>{methodName}</div> */}
         <div className={`mt-2 opacity-70 font-bold`}>{methodName}</div>
         {/* if the input is function */}
-        <div className="flex flex-col  justify-end">
+        <div className="flex flex-col  justify-end ">
           <div className="flex flex-col items-end justify-end ">
             {inputData.map((data, index) => {
               return (
-                <div key={index}>
-                  <label className="mt-2 input-group">
+                <div key={index} className="w-full">
+                  <label className="mt-2 input-group  ">
                     <input
                       type={data.type.includes("uint") ? "number" : "text"}
-                      placeholder={data.type}
+                      placeholder={isEnsLoading === false ? data.type : "Loading ens"}
                       {...register(data.name, { required: true, valueAsNumber: data.type.includes("uint") })}
-                      className="max-w-xs  input input-bordered"
+                      className="w-full input input-bordered"
+                      disabled={isEnsLoading}
                     />
                     <span>{data.name}</span>
                   </label>
                   <div>{errors[data.name] && <span className="text-red-500">This field is required</span>}</div>
-
-                  {outputData && outputData[methodName] && (
-                    <div
-                      tabIndex={0}
-                      className="mt-2 border collapse collapse-arrow border-base-300 bg-base-100 rounded-box">
-                      <div className="text-xl font-medium collapse-title">Output </div>
-                      <div className="collapse-content">
-                        <p>
-                          <div className="mockup-code">
-                            <pre data-prefix=">">
-                              <code>{outputData[methodName]}</code>
-                            </pre>
-                          </div>
-                        </p>
-                      </div>
-                    </div>
-                  )}
                 </div>
               );
             })}
@@ -119,7 +146,7 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({ methodName, inputData
                   <input
                     type="number"
                     step={0.00001}
-                    placeholder={"Enter transaction value in eth"}
+                    placeholder={"Enter tx value in eth"}
                     {...register("txValue", { required: true, valueAsNumber: true })}
                     className="w-full max-w-xs input input-bordered"
                   />
@@ -131,13 +158,29 @@ const FunctionInputForm: React.FC<IFunctionInputForm> = ({ methodName, inputData
           </div>
 
           <div className="justify-end my-2 card-actions">
-            <button type="submit" className="btn btn-primary ">
+            <button type="submit" className="btn btn-primary " disabled={isEnsLoading}>
               Send
             </button>
           </div>
         </div>
       </form>
-    </>
+      <div className="w-full">
+        {outputData && outputData[methodName] && (
+          <div tabIndex={0} className="mt-2 border collapse collapse-arrow border-base-300 bg-base-100 rounded-box">
+            <div className="text-xl font-medium collapse-title">Output </div>
+            <div className="collapse-content">
+              <p>
+                <div className="mockup-code ">
+                  <pre data-prefix=">">
+                    <code className="">{outputData[methodName]}</code>
+                  </pre>
+                </div>
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
@@ -145,19 +188,43 @@ interface IDictInput {
   methodName;
   inputData: any[];
   loadedContract: any;
+  mainProvider: StaticJsonRpcProvider;
 }
-const DictInput: React.FC<IDictInput> = ({ methodName, inputData, loadedContract }) => {
+const DictInput: React.FC<IDictInput> = ({ methodName, inputData, loadedContract, mainProvider }) => {
   const [state, dispatch] = useDebugContractStore();
+
+  const [dictValue, setDictValue] = useState<any>();
+  const [isEnsLoading, setIsEnsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<any>();
 
-  const [dictValue, setDictValue] = useState<any>();
-  const [outputData, setOutputData] = useState<any>();
+  const isAddress = inputData.findIndex((data) => data.type === "address");
+
+  useEffect(() => {
+    let watchSubscribe;
+    if (isAddress !== -1) {
+      watchSubscribe = watch(async (data, { name, type }) => {
+        if (data[name as string]?.includes(".eth")) {
+          await Sleep(500);
+          setValue(methodName, "");
+          setIsEnsLoading(() => true);
+          const ensName = data[name as string];
+          const ensAddress = await mainProvider.resolveName(ensName as string);
+          setValue(methodName, ensAddress);
+          setIsEnsLoading(() => false);
+        }
+      });
+    }
+
+    return () => watchSubscribe?.unsubscribe();
+  }, []);
 
   //   call contract function
   const onSubmit: SubmitHandler<any> = async (data) => {
@@ -190,9 +257,14 @@ const DictInput: React.FC<IDictInput> = ({ methodName, inputData, loadedContract
                   <span className="justify-center p-2">{methodName}</span>
                   <input
                     type="text"
-                    placeholder={`Enter ${data.type} value`}
+                    placeholder={
+                      isEnsLoading === false
+                        ? `Enter ${data.type === "address" ? "ens" : data.type} value`
+                        : "Loading ens"
+                    }
                     {...register(methodName, { required: true })}
                     className="w-full max-w-xs input input-bordered "
+                    disabled={isEnsLoading}
                   />
                   <input
                     type="text"
@@ -200,7 +272,7 @@ const DictInput: React.FC<IDictInput> = ({ methodName, inputData, loadedContract
                     className={`input input-bordered ${dictValue ? "block" : "hidden"}`}
                     disabled
                   />
-                  <button type="submit" className="btn btn-primary ">
+                  <button type="submit" className="btn btn-primary " disabled={isEnsLoading}>
                     Send
                   </button>
                 </label>
@@ -222,6 +294,9 @@ const Index: React.FC = () => {
   const loadedContract = useAppLoadContract({
     contractName: contractName,
   });
+  const mainProvider = new StaticJsonRpcProvider("https://rpc.scaffoldeth.io:48544");
+  //     const addressname = await mainnetScaffoldEthProvider.lookupAddress("0x378D26155E4F3a5c24240aB2199616aadfbD4bCa");
+  //     console.log("addressname: ", addressname);
 
   const [state, dispatch] = useDebugContractStore();
   const provider = useProvider();
@@ -295,7 +370,7 @@ const Index: React.FC = () => {
     );
 
   return (
-    <div className="flex flex-col lg:justify-around lg-:w-[100%] lg-:flex-row ">
+    <div className="flex flex-col w-[100%] lg-:w-1/2 ">
       {/* <button
         className="btn btn-primary"
         // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -319,7 +394,7 @@ const Index: React.FC = () => {
         </div>
 
         {/* variables */}
-        <div className="mt-2 border--4 border-base-300  card card-body card--bordered">
+        <div className="mt-2 border--4 border-base-300  card card-body card-bordered">
           <div className="card-title">Variables</div>
           <div className="overflow-x-auto">
             <table className="table w-full text-sm table-">
@@ -349,7 +424,7 @@ const Index: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center justify-center mt-2 border--4 border-base-300 card card-body card-bordered">
-          <div className="card-title">Dictionary and array</div>
+          <div className="self-start card-title">Dictionary and array</div>
           {/* <div>dictionary and array</div> */}
 
           <div className="flex flex-wrap w-96  ">
@@ -358,7 +433,12 @@ const Index: React.FC = () => {
                 return (
                   <div key={index} className="w-full mt-2">
                     {/* <div>{data.name}</div> */}
-                    <DictInput methodName={data.name} inputData={data.inputs} loadedContract={loadedContract} />
+                    <DictInput
+                      methodName={data.name}
+                      inputData={data.inputs}
+                      loadedContract={loadedContract}
+                      mainProvider={mainProvider}
+                    />
                   </div>
                 );
               })}
@@ -368,19 +448,19 @@ const Index: React.FC = () => {
       {/* <div className="divider lg:divider-horizontal "></div> */}
 
       {/* functions */}
-      <div className="w-auto lg-:w-[45%] bd--red">
-        <div className="card card-body card-bordered">
+      <div className="w-auto mt-2 lg-:w-[45%]">
+        <div className="card card-body card-bordered ">
           <div className="card-title">Methods</div>
           {contractFunctions &&
             contractFunctions.map((data, index) => {
               return (
                 <div key={index} className="card- card--body card--bordered">
-                  {/* <div className="card-title">{data.name}</div> */}
                   <FunctionInputForm
                     methodName={data.name}
                     inputData={data.inputs}
                     loadedContract={loadedContract}
                     isPayable={data.stateMutability === "payable"}
+                    mainProvider={mainProvider}
                   />
                 </div>
               );

@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import type { NextPage } from "next";
+import Collapse, { Panel } from "rc-collapse";
 import { useCallback, useEffect, useState } from "react";
 
-import Address from "../components/EthComponents/Address";
-import transcactor, { ContractTransactionType } from "../functions/transcactor";
-import useAppLoadContract from "../hooks/useAppLoadContract";
 import DebugContract from "../components/DebugContract";
 import DebugContractProvider from "../components/DebugContract/store/DebugContractProvider";
+import transcactor, { ContractTransactionType } from "../functions/transcactor";
+import useAppLoadContract from "../hooks/useAppLoadContract";
+
+import "rc-collapse/assets/index.css";
 
 const Debug: NextPage = () => {
   const [purpose, setPurpose] = useState<string>("");
@@ -35,7 +36,7 @@ const Debug: NextPage = () => {
 
   return (
     <>
-      <main className="flex flex-col items-center justify-center">
+      <main className="flex items-center justify-center flex--col">
         {/* <div className="m-2 border-2 shadow-md card lg:w-1/3">
           <div className="card-body ">
             <span className="flex justify-between card-title">
@@ -66,9 +67,17 @@ const Debug: NextPage = () => {
             </div>
           </div>
         </div> */}
-        <DebugContractProvider>
-          <DebugContract />
-        </DebugContractProvider>
+
+        <div className="w-[70%]">
+          <Collapse accordion={true} className="w-full ">
+            <Panel header="YourContract" headerClass="my-header-class" className="w-full">
+              <DebugContractProvider>
+                <DebugContract />
+              </DebugContractProvider>
+            </Panel>
+            <Panel header="Another Contract">this is panel content2 or other</Panel>
+          </Collapse>
+        </div>
       </main>
     </>
   );

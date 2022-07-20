@@ -203,6 +203,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.10.1, @babel/runtime@npm:^7.11.1, @babel/runtime@npm:^7.18.3":
+  version: 7.18.9
+  resolution: "@babel/runtime@npm:7.18.9"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 36dd736baba7164e82b3cc9d43e081f0cb2d05ff867ad39cac515d99546cee75b7f782018b02a3dcf5f2ef3d27f319faa68965fdfec49d4912c60c6002353a2e
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.9, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.6.2, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.7.6":
   version: 7.18.3
   resolution: "@babel/runtime@npm:7.18.3"
@@ -1800,6 +1809,7 @@ __metadata:
     next-themes: ^0.2.0
     postcss: ^8.4.14
     qrcode.react: ^3.0.2
+    rc-collapse: ^3.3.1
     react: 18.1.0
     react-blockies: ^1.4.1
     react-copy-to-clipboard: ^5.1.0
@@ -5680,6 +5690,13 @@ __metadata:
     isobject: ^3.0.0
     static-extend: ^0.1.1
   checksum: be108900801e639e50f96a7e4bfa8867c753a7750a7603879f3981f8b0a89cba657497a2d5f40cd4ea557ff15d535a100818bb486baf6e26fe5d7872e75f1078
+  languageName: node
+  linkType: hard
+
+"classnames@npm:2.x, classnames@npm:^2.2.1":
+  version: 2.3.1
+  resolution: "classnames@npm:2.3.1"
+  checksum: 14db8889d56c267a591f08b0834989fe542d47fac659af5a539e110cc4266694e8de86e4e3bbd271157dbd831361310a8293e0167141e80b0f03a0f175c80960
   languageName: node
   linkType: hard
 
@@ -15771,6 +15788,50 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rc-collapse@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "rc-collapse@npm:3.3.1"
+  dependencies:
+    "@babel/runtime": ^7.10.1
+    classnames: 2.x
+    rc-motion: ^2.3.4
+    rc-util: ^5.2.1
+    shallowequal: ^1.1.0
+  peerDependencies:
+    react: ">=16.9.0"
+    react-dom: ">=16.9.0"
+  checksum: 5070f529450511f18e7f0fcfd459c2009714d19bc61c5ed76564b0d41b0425916bf1ec8273e89895087aa9fecdde69cc0f67481a8967d99bd0ea8dbf7f0dc6c4
+  languageName: node
+  linkType: hard
+
+"rc-motion@npm:^2.3.4":
+  version: 2.6.2
+  resolution: "rc-motion@npm:2.6.2"
+  dependencies:
+    "@babel/runtime": ^7.11.1
+    classnames: ^2.2.1
+    rc-util: ^5.21.0
+  peerDependencies:
+    react: ">=16.9.0"
+    react-dom: ">=16.9.0"
+  checksum: e91ec8a9f8748ae34d6f9c0380d4587729453c7c8afe23c026ff096905b5a24672b050e04789061c833994e05ed18fec02919bc0e27c1e05b06fe7a0c0b75532
+  languageName: node
+  linkType: hard
+
+"rc-util@npm:^5.2.1, rc-util@npm:^5.21.0":
+  version: 5.23.0
+  resolution: "rc-util@npm:5.23.0"
+  dependencies:
+    "@babel/runtime": ^7.18.3
+    react-is: ^16.12.0
+    shallowequal: ^1.1.0
+  peerDependencies:
+    react: ">=16.9.0"
+    react-dom: ">=16.9.0"
+  checksum: 58cebf9744fa67c1b1d666e8d8eea2ed24e911198c3ecf2c729132a39b4716b1d150f8717a7aeb2ce08ad7b8bea5124d1a65662b020cb9714e21b8d13ea97ce1
+  languageName: node
+  linkType: hard
+
 "rc@npm:^1.2.7, rc@npm:^1.2.8":
   version: 1.2.8
   resolution: "rc@npm:1.2.8"
@@ -15852,7 +15913,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.13.1, react-is@npm:^16.7.0":
+"react-is@npm:^16.12.0, react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
