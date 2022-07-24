@@ -18,7 +18,7 @@ interface IContractData {
 const ContractData: React.FC<IContractData> = ({ contractName, loadedContract }) => {
   // type abiType = typeof YourContract__factory.abi;
   // const yourContractAbi = YourContract__factory.abi;
-  console.log("loadedContract.contractName: ", loadedContract);
+  // console.log("loadedContract.contractName: ", loadedContract);
 
   type abiType = any;
   // const contractName = "YourContract";

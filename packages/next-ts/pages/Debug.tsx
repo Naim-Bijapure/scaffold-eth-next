@@ -1,11 +1,16 @@
+// import { DebugContract } from "debug-eth-contract";
+import { DebugContract } from "debug-eth-contract";
+import "debug-eth-contract/dist/styles/index.css";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import { DebugContract } from "debug-eth-contract";
 
 // import DebugContract from "../components/DebugContract";
-import useAppLoadContract from "../hooks/useAppLoadContract";
 
+// import "rc-collapse/assets/index.css";
+
+// import DebugContract from "../components/DebugContract";
 import { YourContract } from "../contracts/contract-types";
+import useAppLoadContract from "../hooks/useAppLoadContract";
 
 const Debug: NextPage = () => {
   const [purpose, setPurpose] = useState<string>("");
@@ -32,7 +37,7 @@ const Debug: NextPage = () => {
     <>
       <main className="flex items-center justify-center flex--col">
         <div className="w-[70%]">
-          <DebugContract contracts={loadedContract as any} />
+          <DebugContract contracts={loadedContracts as any} />
         </div>
       </main>
     </>

@@ -28,6 +28,7 @@ const LoadContractList: React.FC = () => {
 };
 
 const Index: React.FC<{ contracts: contractsType }> = ({ contracts }) => {
+  console.log("contracts: ", contracts);
   return (
     <div>
       <DebugContractProvider contracts={contracts}>
