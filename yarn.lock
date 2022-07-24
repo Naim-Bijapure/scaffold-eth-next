@@ -1637,7 +1637,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@scaffold-eth/common@workspace:^, @scaffold-eth/common@workspace:packages/common":
+"@scaffold-eth/common@*, @scaffold-eth/common@workspace:^, @scaffold-eth/common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@scaffold-eth/common@workspace:packages/common"
   dependencies:
@@ -1775,6 +1775,7 @@ __metadata:
     "@ethersproject/providers": ^5.6.8
     "@next/eslint-plugin-next": ^12.1.6
     "@rainbow-me/rainbowkit": ^0.2.3
+    "@scaffold-eth/common": "*"
     "@tailwindcss/forms": ^0.5.2
     "@tailwindcss/typography": ^0.5.2
     "@types/node": 17.0.40
@@ -1787,6 +1788,7 @@ __metadata:
     "@uniswap/v3-sdk": ^3.8.3
     autoprefixer: ^10.4.7
     daisyui: ^2.15.2
+    debug-eth-contract: ^0.0.2
     dotenv: ^16.0.1
     eslint: 8.17.0
     eslint-config-airbnb: ^19.0.4
@@ -6494,6 +6496,37 @@ __metadata:
   version: 1.1.0
   resolution: "death@npm:1.1.0"
   checksum: 8010ba9a320752f9580eb474985ed214572c0595cf83e92859e3c5a014a01fc8e8f2f2908b80b5f8bca9cb3f94adb546cf55810df6b80e282452e355cdce5aaa
+  languageName: node
+  linkType: hard
+
+"debug-eth-contract@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "debug-eth-contract@npm:0.0.2"
+  dependencies:
+    "@ethersproject/providers": ^5.6.8
+    "@rainbow-me/rainbowkit": ^0.2.3
+    "@tailwindcss/forms": ^0.5.2
+    "@tailwindcss/typography": ^0.5.2
+    daisyui: ^2.15.2
+    eth-hooks: ^4.2.21
+    ethers: ^5.6.8
+    next: 12.1.6
+    next-themes: ^0.2.0
+    qrcode.react: ^3.0.2
+    rc-collapse: ^3.3.1
+    react: ^18.1.0
+    react-blockies: ^1.4.1
+    react-copy-to-clipboard: ^5.1.0
+    react-dom: ^18.1.0
+    react-hook-form: ^7.33.1
+    react-icons: ^4.4.0
+    react-loader-spinner: ^5.1.5
+    react-toastify: ^9.0.4
+    sass: ^1.52.2
+    wagmi: ^0.4.9
+  peerDependencies:
+    react: ">=16"
+  checksum: f697c5ea99e7a2f3999a86726005b94f7888f87cfead1907e97a37b69ae09db47888fbbf52a355e443cebcca1fdca2d0bbad83ddf9eb03466cc6bfa5c54418a7
   languageName: node
   linkType: hard
 
@@ -15895,6 +15928,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-dom@npm:^18.1.0":
+  version: 18.2.0
+  resolution: "react-dom@npm:18.2.0"
+  dependencies:
+    loose-envify: ^1.1.0
+    scheduler: ^0.23.0
+  peerDependencies:
+    react: ^18.2.0
+  checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
+  languageName: node
+  linkType: hard
+
 "react-hook-form@npm:^7.33.1":
   version: 7.33.1
   resolution: "react-hook-form@npm:7.33.1"
@@ -16082,6 +16127,15 @@ __metadata:
     object-assign: ^4.1.1
     prop-types: ^15.6.2
   checksum: 8484f3ecb13414526f2a7412190575fc134da785c02695eb92bb6028c930bfe1c238d7be2a125088fec663cc7cda0a3623373c46807cf2c281f49c34b79881ac
+  languageName: node
+  linkType: hard
+
+"react@npm:^18.1.0":
+  version: 18.2.0
+  resolution: "react@npm:18.2.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
   languageName: node
   linkType: hard
 
@@ -16880,6 +16934,15 @@ __metadata:
   dependencies:
     loose-envify: ^1.1.0
   checksum: a8ef5cab769c020cd6382ad9ecc3f72dbde56a50a36639b3a42ad9c11f7724f03700bcad373044059b8067d4a6365154dc7c0ca8027ef20ff4900cf58a0fc2c5
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.23.0":
+  version: 0.23.0
+  resolution: "scheduler@npm:0.23.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: d79192eeaa12abef860c195ea45d37cbf2bbf5f66e3c4dcd16f54a7da53b17788a70d109ee3d3dde1a0fd50e6a8fc171f4300356c5aee4fc0171de526bf35f8a
   languageName: node
   linkType: hard
 

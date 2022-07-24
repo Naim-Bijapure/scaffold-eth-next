@@ -9,6 +9,7 @@ import Blockie from "../components/EthComponents/Blockie";
 import EtherInput from "../components/EthComponents/EtherInput";
 import PunkBlockie from "../components/EthComponents/PunkBlockie";
 import { useStore } from "../store/useStore";
+import AddressBalance from "../components/EthComponents/AddressBalance";
 
 const EthComponents: NextPage = () => {
   const { data } = useAccount();
@@ -28,7 +29,12 @@ const EthComponents: NextPage = () => {
         <div className="shadow-md card card-bordered border-base-200 lg:w-[30%]">
           <h2 className="mx-4 card-title">Address</h2>
           <div className="card-body">
-            <Address address={data?.address as string} />
+            <Address
+              provider={provider}
+              address={data?.address as string}
+              price={ethPrice as number}
+              isBalance={true}
+            />
           </div>
         </div>
 

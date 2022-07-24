@@ -7,7 +7,7 @@ interface IAddressInput {
 const AddressInput = ({ value, onChange }: IAddressInput): any => {
   return (
     <>
-      <div className="form-control">
+      <div className="form-control ">
         <label className="input-group input-group-sm ">
           <input
             type="text"

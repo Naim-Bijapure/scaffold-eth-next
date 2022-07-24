@@ -1,4 +1,4 @@
-[default]
+[profile.default]
 # The source directory
 src = 'packages/foundry-ts/src'
 # The test directory

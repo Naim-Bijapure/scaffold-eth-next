@@ -13,16 +13,6 @@ interface IAddress {
   provider: ethers.providers.BaseProvider;
 }
 const Address = ({ address, price, isBalance, provider }: IAddress): any => {
-  //   <Blockies
-  //     seed="Jeremy" {/* the only required prop; determines how the image is generated */}
-  //     size={10} {/* number of squares wide/tall the image will be; default = 15 */}
-  //     scale={3} {/* width/height of each square in pixels; default = 4 */}
-  //     color="#dfe" {/* normal color; random by default */}
-  //     bgColor="#ffe" {/* background color; random by default */}
-  //     spotColor="#abc" {/* color of the more notable features; random by default */}
-  //     className="identicon" {/* optional class name for the canvas element; "identicon" by default */}
-  //   />
-
   const [toggleBalance, setToggleBalance] = useState(false);
   const [usdBalance, setUsdBalance] = useState(0);
   const [ethBalance, setEthBalance] = useState(0);
@@ -64,7 +54,7 @@ const Address = ({ address, price, isBalance, provider }: IAddress): any => {
             className="flex items-center self-stretch justify-center w-24 cursor-pointer  bg-base-200"
             onClick={(): any => setToggleBalance(!toggleBalance)}>
             <div className="flex items-center justify-center   ">
-              <span className="text-xs mb-1">{toggleBalance === false ? <FaEthereum /> : <FaDollarSign />}</span>
+              <span className="mb-1 text-xs">{toggleBalance === false ? <FaEthereum /> : <FaDollarSign />}</span>
               {toggleBalance === false ? ethBalance.toFixed(2) : usdBalance.toFixed(2)}
             </div>
           </div>

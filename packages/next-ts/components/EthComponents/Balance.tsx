@@ -15,7 +15,6 @@ const Balance = ({ address, price, provider, className }: IBalance): any => {
   const [ethBalance, setEthBalance] = useState(0);
 
   const loadBalance = async (): Promise<any> => {
-    console.log("address: ", address);
     if (address !== undefined) {
       const ethBalance = await provider.getBalance(address);
       const formatedBalance = +formatEther(ethBalance.toString());

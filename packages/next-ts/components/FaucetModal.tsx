@@ -3,9 +3,13 @@ import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { AiOutlineSwap } from "react-icons/ai";
 import { useAccount, useNetwork } from "wagmi";
+
+import AddressInput from "./EthComponents/AddressInput";
+
 const FaucetModal: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [ethValue, setEthValue] = useState<number>(0);
+  const [sendAddress, setSendAddress] = useState<string>("");
   const [toAddress, setToAddress] = useState<string | null>(null);
   const [isFaucetVisible, setIsFaucetVisible] = useState<boolean>(false);
 
@@ -18,6 +22,7 @@ const FaucetModal: React.FC = () => {
     // check localhost and enable faucet modal
     if (["Hardhat", "Localhost"].includes(activeChain?.name as string)) {
       setIsFaucetVisible(true);
+      setSendAddress(data?.address as string);
     } else {
       setIsFaucetVisible(false);
     }
@@ -27,9 +32,12 @@ const FaucetModal: React.FC = () => {
     const localProvider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
     const burnerSigner = localProvider.getSigner(0);
     const balance = await burnerSigner.getBalance();
-    console.log("balance: ", balance.toString());
+
     if (ethValue > 0) {
-      await burnerSigner.sendTransaction({ to: data?.address, value: ethers.utils.parseEther(`${ethValue}`) });
+      await burnerSigner.sendTransaction({
+        to: sendAddress ? sendAddress : data?.address,
+        value: ethers.utils.parseEther(`${ethValue}`),
+      });
       window.location.reload();
     }
   };
@@ -64,9 +72,12 @@ const FaucetModal: React.FC = () => {
             </label>
 
             <h3 className="text-lg font-bold">Get some burning faucets!!! 🔥🔥🔥</h3>
+            <div className="mr-14">
+              <AddressInput value={sendAddress} onChange={setSendAddress} />
+            </div>
 
             {/* eth input */}
-            <div className="mt-2 form-control">
+            <div className=" mt-2 form-control">
               <div className="input-group ">
                 <input
                   type="text"
@@ -87,7 +98,7 @@ const FaucetModal: React.FC = () => {
                             </label> */}
 
               <button className="btn btn-primary" onClick={onReceiveFaucet}>
-                receive
+                Send
               </button>
             </div>
           </div>

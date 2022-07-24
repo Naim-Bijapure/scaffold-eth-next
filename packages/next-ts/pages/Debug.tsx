@@ -1,82 +1,38 @@
 import type { NextPage } from "next";
-import Collapse, { Panel } from "rc-collapse";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { DebugContract } from "debug-eth-contract";
 
-import DebugContract from "../components/DebugContract";
-import DebugContractProvider from "../components/DebugContract/store/DebugContractProvider";
-import transcactor, { ContractTransactionType } from "../functions/transcactor";
+// import DebugContract from "../components/DebugContract";
 import useAppLoadContract from "../hooks/useAppLoadContract";
 
-import "rc-collapse/assets/index.css";
+import { YourContract } from "../contracts/contract-types";
 
 const Debug: NextPage = () => {
   const [purpose, setPurpose] = useState<string>("");
+  const [loadedContracts, setLoadedContracts] = useState<any[]>();
   const [contractPurpose, setContractPurpose] = useState<string>("");
 
-  // const { data, isLoading } = useAccount();
-
-  const YourContract = useAppLoadContract({
-    contractName: "YourContract",
+  const contractName = "YourContract";
+  const loadedContract = useAppLoadContract({
+    contractName: contractName,
   });
 
-  const getPurpose = useCallback(async () => {
-    const purpose = await YourContract?.purpose();
-    setContractPurpose(purpose as string);
-  }, [YourContract]);
-
-  const updateContractPurpose = async (): Promise<any> => {
-    const rcpt = await transcactor(YourContract?.setPurpose as ContractTransactionType, [purpose]);
-    console.log("rcpt: ", rcpt);
-    setContractPurpose(purpose);
-  };
+  const contractsData = [
+    { contractName: "YourContract", contract: loadedContract as YourContract },
+    { contractName: "YourContract", contract: loadedContract as YourContract },
+  ];
 
   useEffect(() => {
-    void getPurpose();
-  }, [YourContract, getPurpose]);
+    if (loadedContract !== undefined) {
+      setLoadedContracts(contractsData);
+    }
+  }, [loadedContract]);
 
   return (
     <>
       <main className="flex items-center justify-center flex--col">
-        {/* <div className="m-2 border-2 shadow-md card lg:w-1/3">
-          <div className="card-body ">
-            <span className="flex justify-between card-title">
-              <div>YourContract</div>
-              <div className="text-sm">
-                <Address address={YourContract?.address as string} />
-              </div>
-            </span>
-            <input
-              type={"text"}
-              className=" input input-primary"
-              placeholder="set purpose"
-              value={purpose}
-              onChange={(event): any => setPurpose(event.target.value)}
-            />
-
-            <span className="flex items-center justify-start w-full m-2">
-              <span className="font-medium lg:w-[30%]">PURPOSE :</span>
-              <span className="p-1 text-center rounded-lg bg-base-200 lg:w-[70%]">
-                {contractPurpose && contractPurpose}
-              </span>
-            </span>
-
-            <div className="card-actions">
-              <button className="btn btn-primary" onClick={updateContractPurpose}>
-                submit
-              </button>
-            </div>
-          </div>
-        </div> */}
-
         <div className="w-[70%]">
-          <Collapse accordion={true} className="w-full ">
-            <Panel header="YourContract" headerClass="my-header-class" className="w-full">
-              <DebugContractProvider>
-                <DebugContract />
-              </DebugContractProvider>
-            </Panel>
-            <Panel header="Another Contract">this is panel content2 or other</Panel>
-          </Collapse>
+          <DebugContract contracts={loadedContract as any} />
         </div>
       </main>
     </>
