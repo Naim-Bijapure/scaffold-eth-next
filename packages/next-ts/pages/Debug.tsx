@@ -1,4 +1,3 @@
-// import { DebugContract } from "debug-eth-contract";
 import { DebugContract } from "debug-eth-contract";
 import "debug-eth-contract/dist/styles/index.css";
 import type { NextPage } from "next";
