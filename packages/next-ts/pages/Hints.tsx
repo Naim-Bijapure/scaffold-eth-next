@@ -71,7 +71,12 @@ const Help: NextPage = () => {
                       use the <b>faucet</b> to send funds to
                       <span className="highlight ">
                         <div className="w-5 ">
-                          <Address address={accountData?.address as string} />
+                          <Address
+                            isBalance={false}
+                            price={0}
+                            provider={null as any}
+                            address={accountData?.address as string}
+                          />
                         </div>
                       </span>
                     </div>

@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { formatEther } from "ethers/lib/utils";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Blockies from "react-blockies";
 import CopyToClipBoard from "react-copy-to-clipboard";
 import { FaDollarSign, FaEthereum } from "react-icons/fa";

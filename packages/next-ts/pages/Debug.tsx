@@ -3,8 +3,8 @@ import "debug-eth-contract/dist/styles/index.css";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 
+// local debug-eth-contract module
 // import DebugContract from "../components/DebugContract";
-
 // import "rc-collapse/assets/index.css";
 
 // import DebugContract from "../components/DebugContract";

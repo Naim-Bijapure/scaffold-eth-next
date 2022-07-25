@@ -1,3 +1,5 @@
+@import "rc-collapse/assets/index.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,22 +43,22 @@ a {
   }
 }
 
-// BLOCKIES OVERRIDE
+/* // BLOCKIES OVERRIDE */
 .blockies {
   canvas {
     border-radius: 10px;
   }
 }
 
-// TOASTIFY OVERRIDE
+/*  TOASTIFY OVERRIDE */
 .Toastify__toast-theme--light {
   border-radius: 10px;
-  // border-right: 10px solid rgb(146, 146, 242);
+  /*border-right: 10px solid rgb(146, 146, 242); */
 }
 
 .Toastify__toast-theme--dark {
   border-radius: 10px;
-  // border-right: 10px solid blue;
+  /* border-right: 10px solid blue; */
   background-color: rgb(42, 42, 42);
 }
 
@@ -65,7 +67,6 @@ a {
   border-radius: 10px !important;
 }
 .rc-collapse-item {
-  //   border: 1px solid red;
   background-color: transparent !important;
 }
 .rc-collapse-content {
