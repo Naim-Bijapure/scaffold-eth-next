@@ -8,7 +8,7 @@ import { IoCopyOutline } from "react-icons/io5";
 
 interface IAddress {
   address: string;
-  price: number;
+  price?: number;
   isBalance: boolean;
   provider: ethers.providers.BaseProvider;
 }
@@ -43,7 +43,7 @@ const Address = ({ address, price, isBalance, provider }: IAddress): any => {
 
   return (
     <>
-      <div className="flex items-center justify-between p-1 border-2 border-base-200 rounded-xl">
+      <div className="flex items-center justify-between p-1">
         <div className="rounded-xl blockies">
           <Blockies seed={address ? address?.toLowerCase() : "aaaaa"} size={11} />
         </div>
@@ -64,7 +64,7 @@ const Address = ({ address, price, isBalance, provider }: IAddress): any => {
             className="flex items-center self-stretch justify-center w-24 cursor-pointer  bg-base-200"
             onClick={(): any => setToggleBalance(!toggleBalance)}>
             <div className="flex items-center justify-center   ">
-              <span className="text-xs mb-1">{toggleBalance === false ? <FaEthereum /> : <FaDollarSign />}</span>
+              <span className="mb-1 text-xs">{toggleBalance === false ? <FaEthereum /> : <FaDollarSign />}</span>
               {toggleBalance === false ? ethBalance.toFixed(2) : usdBalance.toFixed(2)}
             </div>
           </div>

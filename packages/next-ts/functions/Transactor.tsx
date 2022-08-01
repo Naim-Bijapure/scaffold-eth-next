@@ -12,7 +12,7 @@ const NotificationMsg = ({ closeToast, toastProps }: any) => (
   </>
 );
 
-const transcactor = async (tx: ContractTransactionType, argsData?: any, txData?: Overrides & { from?: string }) => {
+const Transactor = async (tx: ContractTransactionType, argsData?: any, txData?: Overrides & { from?: string }) => {
   const executeTx: ContractTransaction = await tx.apply(this, [...argsData, txData !== undefined ? txData : null]);
 
   // reading current theme from localstorage
@@ -37,4 +37,4 @@ const transcactor = async (tx: ContractTransactionType, argsData?: any, txData?:
   return rcpt;
 };
 
-export default transcactor;
+export default Transactor;

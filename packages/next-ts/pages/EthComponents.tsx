@@ -2,14 +2,10 @@ import { NextPage } from "next";
 import { useState } from "react";
 import { useAccount, useProvider } from "wagmi";
 
-import Address from "../components/EthComponents/Address";
-import AddressInput from "../components/EthComponents/AddressInput";
-import Balance from "../components/EthComponents/Balance";
-import Blockie from "../components/EthComponents/Blockie";
-import EtherInput from "../components/EthComponents/EtherInput";
-import PunkBlockie from "../components/EthComponents/PunkBlockie";
+import { Address, AddressBalance, AddressInput, Balance, Blockie, EtherInput, PunkBlockie } from "../components/EthComponents";
+
 import { useStore } from "../store/useStore";
-import AddressBalance from "../components/EthComponents/AddressBalance";
+
 
 const EthComponents: NextPage = () => {
   const { data } = useAccount();
@@ -23,7 +19,6 @@ const EthComponents: NextPage = () => {
 
   return (
     <>
-      <h1 className="m-2 text-2xl font-medium ml-[40%]">Eth Components</h1>
       <div className="flex flex-wrap items-center justify-around flex--col">
         {/* Address component */}
         <div className="shadow-md card card-bordered border-base-200 lg:w-[30%]">
