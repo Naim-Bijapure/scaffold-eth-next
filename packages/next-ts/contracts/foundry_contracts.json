@@ -9,7 +9,10 @@
     "31337": {
         "contracts": {
             "YourContract": {
-                "address": "0xBbd3d9Da3aBB32d81732eF64973Bfcf1AB4a4B01"
+                "address": "0x3a4d8d48f54cE3eE12483825d4AFEA9794C39FC0"
+            },
+            "YourContractX": {
+                "address": "0xB7DE723fAF4033591a195074f4B72d075923335d"
             }
         }
     }

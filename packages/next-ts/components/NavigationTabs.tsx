@@ -11,7 +11,6 @@ import { BsViewList } from "react-icons/bs";
 const navigationTabs = [
     { tabName: "Home", pageName: "/", icon: <AiOutlineHome /> },
     { tabName: "Debug Contracts", pageName: "/Debug", icon: <VscDebugAll /> },
-    { tabName: "Eth Components", pageName: "/EthComponents", icon: <BsViewList /> },
     { tabName: "Example UI", pageName: "/ExampleUI", icon: <BsViewList /> },
     { tabName: "Hints", pageName: "/Hints", icon: <AiOutlineBulb /> },
     { tabName: "Subgraph", pageName: "/Subgraph" },

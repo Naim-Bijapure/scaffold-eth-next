@@ -29,8 +29,6 @@ const EtherInput = ({ value, onChange, price }: IEtherInput): any => {
     setFinalValue(value);
   }, [value]);
 
-  console.log("finalValue: ", finalValue);
-
   return (
     <>
       <div className="form-control ">

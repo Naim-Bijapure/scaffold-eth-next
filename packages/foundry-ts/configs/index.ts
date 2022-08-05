@@ -3,6 +3,6 @@
 export const DEPLOY_CONTRACTS = [
     {
         contractName: "YourContract",
-        args: ["abc"],
+        args: ["Building Unstoppable Apps!!!"],
     },
 ];

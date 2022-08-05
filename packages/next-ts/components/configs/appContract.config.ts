@@ -16,7 +16,7 @@ export const ContractsConfig = {
   YourContract: { factory: YourContract__factory, json: foundryContracts },
 } as const;
 
-const TARGATED_CHAINS = ["hardhat", "rinkeby", "mainnet"]; // <---- define your target network
+const TARGATED_CHAINS = ["foundry", "rinkeby", "mainnet"]; // <---- define your target network
 
 // disabled: define your target names in root .env file inside NEXT_PUBLIC_TARGET_NETWORKS variable
 // const TARGATED_CHAINS = [...(process.env.NEXT_PUBLIC_TARGET_NETWORKS as string).split(",")];

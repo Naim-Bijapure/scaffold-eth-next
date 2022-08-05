@@ -11,7 +11,7 @@ contract YourContractTest is Test {
   function setUp() public {
     testNumber = 42;
     console.log("testNumber: ", testNumber);
-    yc = new YourContract("yo default");
+    yc = new YourContract("Building Unstoppable Apps!!!");
   }
 
   function testSetPuprpose() public {
