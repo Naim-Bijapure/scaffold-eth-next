@@ -16,6 +16,7 @@ typechain-types/
 contracts/contract-types
 contracts/**/*.json
 contracts/*.json
+contracts/foundry_contracts.json
 
 .next/
 .yarn
