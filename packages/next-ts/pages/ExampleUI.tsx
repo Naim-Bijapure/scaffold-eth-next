@@ -25,10 +25,9 @@ const ExampleUI: NextPage = () => {
     contractName: "YourContract",
   });
 
-
   const { data, isError, isLoading } = useEnsName({
-    address: '0xA0Cf798816D4b9b9866b5330EEa46a18382f251e',
-  })
+    address: "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e",
+  });
 
   const getPurpose = useCallback(async () => {
     const purpose = await YourContract?.purpose();
@@ -46,27 +45,26 @@ const ExampleUI: NextPage = () => {
           <h2>Example UI:</h2>
           <h4>purpose: {contractPurpose}</h4>
           <div className="divider"></div>
-          <input type="text" placeholder="Purpose" className="w-full max-w-xs input input-bordered input-secondary"
+          <input
+            type="text"
+            placeholder="Purpose"
+            className="w-full max-w-xs input input-bordered input-secondary"
             onChange={(e: React.ChangeEvent<HTMLInputElement>): any => {
               setContractPurpose(e.currentTarget.value);
-            }} 
+            }}
           />
-          <button 
+          <button
             className="mt-8 btn"
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onClick={async () => {
               void YourContract?.setPurpose(contractPurpose);
-            }}
-          >Set Purpose!</button>
+            }}>
+            Set Purpose!
+          </button>
           <div className="divider"></div>
           <div className="flex items-center">
             Your Address:
-            <Address
-              provider={provider}
-              address={address as string}
-              price={ethPrice as number}
-              isBalance={true}
-            />
+            <Address provider={provider} address={address as string} price={ethPrice as number} isBalance={true} />
           </div>
           <div className="divider"></div>
           <div className="flex items-center">
@@ -83,23 +81,19 @@ const ExampleUI: NextPage = () => {
           {/* Address component */}
           <div className="flex items-center">
             Your Contract Address:&nbsp;
-            <Address
-            address={YourContract?.address as string}
-            provider={provider}
-            isBalance={false}
-            />
+            <Address address={YourContract?.address as string} provider={provider} isBalance={false} />
           </div>
           <div className="divider"></div>
           {/* Address input component */}
           <div className="flex items-center">
-              Address Input:&nbsp;
-              <AddressInput value={addressValue} onChange={setAddressValue} />
+            Address Input:&nbsp;
+            <AddressInput value={addressValue} onChange={setAddressValue} />
           </div>
           <div className="divider"></div>
           {/* Ether input component */}
           <div className="flex items-center">
-              Ether Input:&nbsp;
-              <EtherInput value={ethValue as number} onChange={setEthValue} price={ethPrice as number} />
+            Ether Input:&nbsp;
+            <EtherInput value={ethValue as number} onChange={setEthValue} price={ethPrice as number} />
           </div>
           <div className="divider"></div>
           {/* QR Code component */}
@@ -109,50 +103,50 @@ const ExampleUI: NextPage = () => {
           </div>
           <div className="divider"></div>
           <div style={{ margin: 8 }}>
-            <button 
+            <button
               className="mt-8 btn"
               // eslint-disable-next-line @typescript-eslint/no-misused-promises
               onClick={async () => {
                 void YourContract?.setPurpose("🍻 Cheers");
-              }}
-            >
-            Set Purpose to &quot;🍻 Cheers&quot;
+              }}>
+              Set Purpose to &quot;🍻 Cheers&quot;
             </button>
           </div>
           <div style={{ margin: 8 }}>
-            <button 
+            <button
               className="mt-8 btn"
               // eslint-disable-next-line @typescript-eslint/no-misused-promises
               onClick={async () => {
-                void YourContract?.fallback({value: utils.parseEther("0.001")})}
-              }
-            >
-            Send Value
+                void YourContract?.fallback({ value: utils.parseEther("0.001") });
+              }}>
+              Send Value
             </button>
           </div>
           <div style={{ margin: 8 }}>
-            <button 
+            <button
               className="mt-8 btn"
               // eslint-disable-next-line @typescript-eslint/no-misused-promises
               onClick={async () => {
-                const data = YourContract?.interface.encodeFunctionData("setPurpose",["🤓 Whoa so 1337!"])
-                void YourContract?.signer.sendTransaction({to: YourContract.address ,data: data , value: utils.parseEther("0.001")})
-              }}
-            >
-            Set Purpose With Value
+                const data = YourContract?.interface.encodeFunctionData("setPurpose", ["🤓 Whoa so 1337!"]);
+                void YourContract?.signer.sendTransaction({
+                  to: YourContract.address,
+                  data: data,
+                  value: utils.parseEther("0.001"),
+                });
+              }}>
+              Set Purpose With Value
             </button>
           </div>
           <div style={{ margin: 8 }}>
-            <button 
+            <button
               className="mt-8 btn"
               // eslint-disable-next-line @typescript-eslint/no-misused-promises
               onClick={async () => {
                 void YourContract?.setPurpose("💵 Paying for this one!", {
                   value: utils.parseEther("0.001"),
                 });
-              }}
-            >
-            Another Example
+              }}>
+              Another Example
             </button>
           </div>
         </div>
@@ -160,7 +154,7 @@ const ExampleUI: NextPage = () => {
           <div>
             There are tons of generic components included from{" "}
             <a href="https://daisyui.com/components/" target="_blank" rel="noopener noreferrer">
-            🌼 daisyUI
+              🌼 daisyUI
             </a>{" "}
             too!
           </div>
@@ -168,14 +162,15 @@ const ExampleUI: NextPage = () => {
             <button className="btn btn-primary">Button</button>
           </div>
           <div className="flex flex-row items-center mt-8">
-            <ImSpinner size="2em" className="animate-spin"/>Icons
+            <ImSpinner size="2em" className="animate-spin" />
+            Icons
           </div>
           <div className="mt-8">
-            <input type="range" min="0" max="100" value="40" className="range range-primary" readOnly/>
+            <input type="range" min="0" max="100" value="40" className="range range-primary" readOnly />
           </div>
           <div className="mt-8 form-control">
             <label className="cursor-pointer label">
-              <input type="checkbox" className="toggle toggle-primary" defaultChecked/>
+              <input type="checkbox" className="toggle toggle-primary" defaultChecked />
             </label>
           </div>
           <div>

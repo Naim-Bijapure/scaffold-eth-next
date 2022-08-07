@@ -13,14 +13,16 @@ const FaucetModal: React.FC = () => {
   const [toAddress, setToAddress] = useState<string | null>(null);
   const [isFaucetVisible, setIsFaucetVisible] = useState<boolean>(false);
 
-  const { activeChain, chains, error, isLoading, pendingChainId, switchNetwork } = useNetwork();
+  // const { activeChain, chains, error, isLoading, pendingChainId, switchNetwork } = useNetwork();
+  const { chain: activeChain, chains  } = useNetwork();
 
-  const { data } = useAccount();
+  const {address } = useAccount();
+  const data ={address}
   useEffect(() => {
     setToAddress(data?.address as string);
 
     // check localhost and enable faucet modal
-    if (["Hardhat", "Localhost"].includes(activeChain?.name as string)) {
+    if (["Hardhat", "Localhost","Foundry",].includes(activeChain?.name as string)) {
       setIsFaucetVisible(true);
       setSendAddress(data?.address as string);
     } else {

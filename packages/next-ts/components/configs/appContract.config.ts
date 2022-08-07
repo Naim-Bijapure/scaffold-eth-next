@@ -40,7 +40,8 @@ export const targedChains = targetNetowrks([...TARGATED_CHAINS]);
 
 export const { chains, provider } = configureChains(
   [...targedChains],
-  [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
+  // [alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }), publicProvider()]
+  [publicProvider()]
 ); // <---- configure your custom chain
 
 const { connectors } = getDefaultWallets({
