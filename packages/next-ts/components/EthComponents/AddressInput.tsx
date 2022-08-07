@@ -8,17 +8,17 @@ const AddressInput = ({ value, onChange }: IAddressInput): any => {
   return (
     <>
       <div className="form-control ">
-        <label className="input-group input-group-sm ">
+        <label className="input-group input-group-sm">
           <input
             type="text"
             placeholder="Enter address"
-            className="p-1 my-1 input input-bordered input-sm placeholder:p-3"
+            className="input input-bordered"
             value={value}
             onChange={(event): any => onChange(event.target.value)}
           />
 
           <span className="w-10 p-0 rounded-md bg-base-100">
-            <Blockies seed={value && value.toLowerCase()} size={10} />
+            <Blockies seed={value && value.toLowerCase()} size={12} />
           </span>
         </label>
       </div>

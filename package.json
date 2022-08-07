@@ -57,10 +57,6 @@
     "ts-node": "^10.7.0"
   },
   "lint-staged": {
-    "packages/vite-app-ts/src/**/*.{ts,tsx}": [
-      "yarn workspace @scaffold-eth/next-ts lint --fix",
-      "yarn workspace @scaffold-eth/vite-app format"
-    ],
     "packages/common/src/**/*.{ts,tsx}": [
       "yarn workspace @scaffold-eth/next-ts lint --fix",
       "yarn workspace @scaffold-eth/next-ts format"
@@ -75,9 +71,6 @@
     ],
     "packages/foundry-ts/scripts/**/*.ts": [
       "yarn workspace @scaffold-eth/foundry-ts lint --fix",
-      "yarn workspace @scaffold-eth/foundry-ts format"
-    ],
-    "packages/foundry-ts/src/**/*.sol": [
       "yarn workspace @scaffold-eth/foundry-ts format"
     ]
   }

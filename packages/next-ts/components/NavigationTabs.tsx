@@ -11,7 +11,7 @@ import { BsViewList } from "react-icons/bs";
 const navigationTabs = [
     { tabName: "Home", pageName: "/", icon: <AiOutlineHome /> },
     { tabName: "Debug Contracts", pageName: "/Debug", icon: <VscDebugAll /> },
-    { tabName: "Eth Components", pageName: "/EthComponents", icon: <BsViewList /> },
+    { tabName: "Example UI", pageName: "/ExampleUI", icon: <BsViewList /> },
     { tabName: "Hints", pageName: "/Hints", icon: <AiOutlineBulb /> },
     { tabName: "Subgraph", pageName: "/Subgraph" },
     { tabName: "Mainnet Dai", pageName: "/MainnetDai" },
@@ -28,7 +28,7 @@ const NavigationTabs: React.FC = () => {
                     {navigationTabs.map((tab) => {
                         return (
                             <li
-                                className={`${pathname === tab.pageName ? "bordered " : "tooltip tooltip-info"}`}
+                                className={`${pathname === tab.pageName ? "bordered " : "tooltip-info"}`}
                                 data-tip={tab.tabName}
                                 key={tab.tabName}
                             >

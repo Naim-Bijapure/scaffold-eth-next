@@ -43,4 +43,4 @@ const Debug: NextPage = () => {
   );
 };
 
-export default Debug;
+export default Debug

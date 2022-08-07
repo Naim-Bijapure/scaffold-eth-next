@@ -9,10 +9,8 @@ import useAppLoadContract from "../hooks/useAppLoadContract";
 
 const Home: NextPage = () => {
   const [contractPurpose, setContractPurpose] = useState<string>("");
-
-  const { data: accountData, isLoading, isSuccess, status, isFetched } = useAccount();
-
-  const { data } = useBalance({ addressOrName: accountData?.address });
+  const { address } = useAccount();
+  const { data } = useBalance({ addressOrName: address });
 
   const YourContract = useAppLoadContract({
     contractName: "YourContract",
@@ -20,6 +18,7 @@ const Home: NextPage = () => {
 
   const getPurpose = useCallback(async () => {
     const purpose = await YourContract?.purpose();
+    console.log("Purpose", purpose);
     setContractPurpose(purpose as string);
   }, [YourContract]);
 
@@ -42,26 +41,25 @@ const Home: NextPage = () => {
             Edit your smart contract <span className="font-bold bg-primary-content">YourContract.sol</span> in{" "}
             <span className="font-bold bg-primary-content">packages/foundry-ts/src</span>
           </div>
-          {!contractPurpose ? (
+          {contractPurpose ? (
+            <div className="m-8">
+              <span className="mr-2">🤓</span>
+              The &quot;purpose&quot; variable from your contract is{" "}
+              <span className="font-bold bg-primary-content">{contractPurpose}</span>
+            </div>
+          ) : (
             <div className="m-8">
               <span className="mr-2">👷‍♀️</span>
               You haven&apos;t deployed your contract yet, run{" "}
               <span className="font-bold bg-primary-content">yarn chain</span> and{" "}
               <span className="font-bold bg-primary-content">yarn deploy</span> to deploy your first contract!
             </div>
-          ) : (
-            <div className="m-8">
-              <span className="mr-2">🤓</span>
-              The &quot;purpose&quot; variable from your contract is{" "}
-              <span className="font-bold bg-primary-content">{contractPurpose}</span>
-            </div>
           )}
-
           <div className="m-8">
             <span className="mr-2">🤖</span>
             An example to get your balance:{" "}
             <span className="font-bold text-green-900">{data && formatEther(data?.value as BigNumberish)}</span> for
-            address <span className="font-bold bg-primary-content">{accountData?.address}</span> from wagmi hooks!
+            address <span className="font-bold bg-primary-content">{address}</span> from wagmi hooks!
           </div>
           <div className="m-8">
             <span className="mr-2">💭</span>
