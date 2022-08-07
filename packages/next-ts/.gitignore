@@ -13,8 +13,9 @@ artifacts/
 #Hardhat plugin files
 typechain-types/
 
-./contracts/contract-types
-./contracts/**/*.json
+contracts/contract-types
+contracts/**/*.json
+contracts/*.json
 
 .next/
 .yarn
