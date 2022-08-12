@@ -31,7 +31,7 @@
     "-balance": "yarn workspace @scaffold-eth/foundry balance",
     "prepare": "husky install",
     "postinstall": "husky install",
-    "forge:install": "shx rm -rf packages/foundry-ts/lib && forge install",
+    "forge:install": "forge install",
     "foundry:install": "yarn workspace @scaffold-eth/foundry-ts foundry:install",
     "scafold:help": "yarn workspace @scaffold-eth/foundry-ts foundry:help",
     "lint": "yarn workspace @scaffold-eth/next-ts lint --fix && yarn workspace @scaffold-eth/common lint --fix && yarn workspace @scaffold-eth/foundry lint --fix"
